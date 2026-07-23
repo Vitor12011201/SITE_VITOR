@@ -11,6 +11,7 @@ node_modules/
 coverage/
 dist/
 build/
+_site/
 .vite/
 .turbo/
 .next/
@@ -18,7 +19,7 @@ build/
 .netlify/
 .agents/
 .codex/
-assets/vid/*.mp4
-assets/vid/*.webm
-assets/vid/*.mov
+assets/vid/raw/
+assets/vid/masters/
+assets/vid/sources/
 prompts/renders/

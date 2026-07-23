@@ -103,6 +103,7 @@ function page(locale) {
   <meta property="og:title" content="${attr(brand)} — ${attr(locale.seo.title)}">
   <meta property="og:description" content="${attr(locale.seo.description)}">
   <meta property="og:image" content="../assets/scenes/studio.svg">
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml">
   <link rel="alternate" hreflang="pt-BR" href="../pt/">
   <link rel="alternate" hreflang="en" href="../en/">
   <link rel="alternate" hreflang="x-default" href="../pt/">
@@ -324,6 +325,7 @@ await Promise.all(locales.pt.world.scenes.map((scene, index) =>
 const rootPage = `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,follow"><title>${esc(site.brand.name)}</title>
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
 <link rel="alternate" hreflang="pt-BR" href="./pt/"><link rel="alternate" hreflang="en" href="./en/">
 <style>html{background:${site.palette.background};color:${site.palette.text};font-family:system-ui}body{min-height:100vh;display:grid;place-items:center;margin:0}a{color:${site.palette.cyan}}</style>
 <script>
