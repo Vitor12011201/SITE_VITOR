@@ -160,6 +160,97 @@ function scrollProof(locale) {
     </section>`;
 }
 
+function brandGravity(locale) {
+  const gravity = locale.brandGravity;
+  const landing = gravity.landing;
+  const noiseBrands = ["Mono", "Vertex", "Flow", "Prime", "Orbit", "Shift", "Core", "Pixel", "Scale", "North", "Unit", "Form"];
+  const noiseTypes = ["site", "ad", "product", "browser", "banner", "card"];
+  const noisePanels = noiseBrands.map((brand, index) => {
+    const headline = gravity.noise[index % gravity.noise.length];
+    return `<article class="noise-panel noise-panel--${noiseTypes[index % noiseTypes.length]}" aria-hidden="true">
+      <div class="noise-panel__chrome"><i></i><i></i><span>www.${brand.toLowerCase()}.site</span></div>
+      <div class="noise-panel__nav"><b>${esc(brand)}</b><span>Home</span><span>About</span><span>Contact</span></div>
+      <div class="noise-panel__content">
+        <small>Digital solutions</small>
+        <strong>${esc(headline)}</strong>
+        <p>${esc(gravity.noiseBody)}</p>
+        <span class="noise-panel__button">${esc(gravity.noiseCta)}</span>
+        <i class="noise-panel__media"></i>
+      </div>
+    </article>`;
+  }).join("");
+
+  return `<section class="brand-gravity" id="brand-gravity" data-brand-gravity aria-labelledby="brand-gravity-title" style="--brand-gravity-progress:0;--brand-noise:0;--brand-pulse:0;--brand-attraction:0;--brand-dominance:0;--brand-final:0">
+      <div class="brand-gravity__stage">
+        <div class="brand-gravity__floor" aria-hidden="true"></div>
+        <div class="brand-gravity__beams" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="brand-gravity__label">
+          <p>${esc(gravity.eyebrow)}</p>
+          <h2 id="brand-gravity-title">${esc(gravity.title)}</h2>
+          <span>${esc(gravity.status)}</span>
+        </div>
+        <div class="brand-gravity__noise">${noisePanels}</div>
+        <div class="brand-core" aria-hidden="true">
+          <i></i><i></i><i></i><span></span>
+        </div>
+        <div class="gravity-browser">
+          <div class="gravity-browser__chrome" aria-hidden="true"><i></i><i></i><i></i><span>nexora.studio</span></div>
+          <div class="nexora-page">
+            <header class="nexora-nav gravity-component gravity-component--nav">
+              <a class="nexora-brand" href="#brand-gravity"><i aria-hidden="true"></i><span>${esc(landing.brand)}</span></a>
+              <nav aria-label="${esc(landing.brand)}">${landing.nav.map((item) => `<a href="#brand-gravity">${esc(item)}</a>`).join("")}</nav>
+              <a class="nexora-nav__cta" href="#contact">${esc(landing.navCta)}<span aria-hidden="true">↗</span></a>
+              <span class="nexora-menu" aria-hidden="true"><i></i><i></i></span>
+            </header>
+            <section class="nexora-hero">
+              <div class="nexora-hero__copy">
+                <p class="nexora-eyebrow gravity-component gravity-component--eyebrow">${esc(landing.eyebrow)}</p>
+                <h3 class="nexora-title gravity-component gravity-component--title">${esc(landing.title)} <em>${esc(landing.highlight)}</em></h3>
+                <p class="nexora-body gravity-component gravity-component--body">${esc(landing.body)}</p>
+                <div class="nexora-actions gravity-component gravity-component--actions">
+                  <a class="nexora-button nexora-button--primary" href="#contact">${esc(landing.primary)}</a>
+                  <a class="nexora-button nexora-button--secondary" href="#work">${esc(landing.secondary)}</a>
+                </div>
+              </div>
+              <div class="nexora-visual gravity-component gravity-component--visual" role="img" aria-label="${esc(landing.visualLabel)}">
+                <span class="nexora-visual__halo" aria-hidden="true"></span>
+                <svg viewBox="0 0 420 360" aria-hidden="true" focusable="false">
+                  <defs>
+                    <linearGradient id="nexora-ribbon" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0" stop-color="#22D3EE"/>
+                      <stop offset=".42" stop-color="#2563EB"/>
+                      <stop offset="1" stop-color="#7C3AED"/>
+                    </linearGradient>
+                    <filter id="nexora-glow"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                  </defs>
+                  <path class="nexora-ribbon nexora-ribbon--ghost" d="M72 238C124 82 318 68 344 180C365 270 204 313 142 243C91 186 151 119 224 128C286 136 291 205 246 226"/>
+                  <path class="nexora-ribbon" d="M72 238C124 82 318 68 344 180C365 270 204 313 142 243C91 186 151 119 224 128C286 136 291 205 246 226"/>
+                  <path class="nexora-ribbon nexora-ribbon--fine" d="M96 272C176 330 320 281 355 192"/>
+                </svg>
+                <span class="nexora-visual__axis" aria-hidden="true"></span>
+                <small>${esc(landing.visualLabel)}</small>
+              </div>
+            </section>
+            <section class="nexora-cards" aria-label="${esc(landing.eyebrow)}">
+              ${landing.cards.map((card, index) => `<article class="nexora-card gravity-component gravity-component--card-${String.fromCharCode(97 + index)}">
+                <i aria-hidden="true"><span></span></i>
+                <h4>${esc(card.title)}</h4>
+                <p>${esc(card.body)}</p>
+                <small>0${index + 1}</small>
+              </article>`).join("")}
+            </section>
+            <div class="nexora-proof gravity-component gravity-component--proof">
+              <p>${esc(landing.proof)}</p>
+              <div>${landing.proofBrands.map((brand) => `<span>${esc(brand)}</span>`).join("")}</div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-gravity__established"><i aria-hidden="true"></i><span>${esc(gravity.established)}</span></div>
+        <div class="brand-gravity__meter" aria-hidden="true"><span>${esc(gravity.title)}</span><i></i></div>
+      </div>
+    </section>`;
+}
+
 function page(locale) {
   const isPt = locale.locale === "pt";
   const otherLocale = isPt ? "EN" : "PT";
@@ -229,6 +320,7 @@ function page(locale) {
   <main id="main">
     <div id="top" aria-hidden="true"></div>
     ${scrollProof(locale)}
+    ${brandGravity(locale)}
     <section class="world" id="experience" aria-label="${attr(locale.world.aria)}">
       <div class="world-stage" aria-hidden="true">
         <div class="world-stage__halo"></div>
