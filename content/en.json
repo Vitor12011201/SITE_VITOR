@@ -15,6 +15,39 @@
     "contact": "Quote"
   },
   "headerCta": "Discuss a project",
+  "scrollProof": {
+    "aria": "Scroll animation proof from sketch to launch",
+    "eyebrow": "SCROLL PROOF",
+    "title": "From concept to published project.",
+    "body": "Ideas become digital experiences as every part of a real website finds its place.",
+    "scrollHint": "Scroll to assemble the project",
+    "launch": "Project launched",
+    "status": "Scroll controls the visual build",
+    "landing": {
+      "brand": "Lumina",
+      "nav": ["Projects", "Studio", "Services", "Contact"],
+      "eyebrow": "Contemporary architecture",
+      "title": "Spaces designed to stand the test of time.",
+      "body": "We design residences, commercial spaces and environments that combine function, material and identity.",
+      "primary": "Explore our projects",
+      "secondary": "Contact the studio",
+      "project": "Project 042 — Horizon House",
+      "statsLabel": "Studio figures",
+      "stats": [
+        { "value": "18", "label": "years of experience" },
+        { "value": "64", "label": "completed projects" },
+        { "value": "12", "label": "architecture awards" }
+      ],
+      "servicesLabel": "Areas of practice",
+      "services": [
+        { "title": "Residential architecture", "body": "Homes shaped around the way each client lives." },
+        { "title": "Interior design", "body": "Material, light and proportion in welcoming spaces." },
+        { "title": "Commercial projects", "body": "Brand spaces that unite experience and function." }
+      ],
+      "cta": "Let’s design something memorable.",
+      "ctaButton": "Start a conversation"
+    }
+  },
   "world": {
     "aria": "A journey through the digital creation process",
     "scrollHint": "Scroll to enter the studio",

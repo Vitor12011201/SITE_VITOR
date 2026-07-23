@@ -19,6 +19,18 @@ const storyboardSource = JSON.parse(
   await readFile(path.join(root, "prompts/scroll-world.json"), "utf8")
 );
 const requiredSelectors = [
+  ".scroll-proof",
+  ".scroll-proof__stage",
+  ".build-scene__browser",
+  ".wire-block",
+  ".lumina-header",
+  ".lumina-hero",
+  ".lumina-title",
+  ".lumina-visual",
+  ".lumina-stats",
+  ".lumina-services",
+  ".lumina-cta",
+  ".build-scene__launch",
   ".world-step",
   ".glass-panel",
   ".button",
@@ -45,12 +57,30 @@ if (!css.includes("@media (max-width: 1100px)") ||
 if (!css.includes("@media (prefers-reduced-motion: reduce)")) {
   errors.push("CSS: missing reduced-motion support");
 }
+if (!css.includes(".wire-block--card-c { display: none; }") ||
+    !css.includes("grid-template-columns: 1fr;") ||
+    !css.includes("--proof-content-opacity: 1")) {
+  errors.push("scroll proof: mobile or reduced-motion final composition is incomplete");
+}
+if (!css.includes("min-height: 420vh") ||
+    !css.includes(".scroll-proof__stage") ||
+    !css.includes("position: sticky") ||
+    !css.includes("100svh")) {
+  errors.push("scroll proof: missing 420vh sticky 100vh stage contract");
+}
 if (!css.includes(".site-header.is-menu-open .primary-nav") ||
     !clientJs.includes('header.classList.toggle("is-menu-open")')) {
   errors.push("mobile navigation contract is incomplete");
 }
 if (!clientJs.includes('localStorage.setItem("nova-frame-language"')) {
   errors.push("manual language selection persistence is missing");
+}
+if (!clientJs.includes("[data-scroll-proof]") ||
+    !clientJs.includes("--scene-progress") ||
+    !clientJs.includes('classList.toggle("is-settled", progressValue >= 0.82)') ||
+    !clientJs.includes("requestAnimationFrame(readScroll)") ||
+    !clientJs.includes("setScrollProofProgress(clamp01(-rect.top / travel))")) {
+  errors.push("scroll proof: missing normalized rAF scroll progress contract");
 }
 
 const storyboardFields = [
@@ -86,6 +116,25 @@ for (const locale of ["pt", "en"]) {
   const expectedLang = locale === "pt" ? "pt-BR" : "en";
   if (!html.includes(`<html lang="${expectedLang}">`)) errors.push(`${locale}: incorrect lang`);
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
+  if (!html.includes("data-scroll-proof")) errors.push(`${locale}: missing scroll proof section`);
+  if (!html.includes("--scene-progress:0")) errors.push(`${locale}: missing exposed scene progress variable`);
+  if (locale === "pt" && !html.includes("Espaços pensados para atravessar o tempo.")) {
+    errors.push("pt: missing Lumina landing page hero title");
+  }
+  if (locale === "en" && !html.includes("Spaces designed to stand the test of time.")) {
+    errors.push("en: missing Lumina landing page hero title");
+  }
+  if (!html.includes("class=\"lumina-title wire-block wire-block--title\"") ||
+      !html.includes("class=\"lumina-stats\"") ||
+      !html.includes("class=\"lumina-services\"") ||
+      !html.includes("class=\"lumina-header wire-block wire-block--nav\"") ||
+      (html.match(/class="lumina-stat wire-block/g) || []).length !== 3 ||
+      (html.match(/class="lumina-service wire-block/g) || []).length !== 3) {
+    errors.push(`${locale}: scroll proof is missing the complete Lumina landing page structure`);
+  }
+  if (html.includes("scroll-proof__final")) {
+    errors.push(`${locale}: obsolete oversized final overlay is still present`);
+  }
   if ((html.match(/<article class="world-step/g) || []).length !== 8) errors.push(`${locale}: expected 8 scenes`);
   if ((html.match(/<details/g) || []).length !== 5) errors.push(`${locale}: expected 5 FAQ items`);
   if (/(>98<|>1\.2s<|>AA<)/.test(html)) errors.push(`${locale}: contains unverified performance metrics`);
@@ -121,4 +170,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log("Checks passed: bilingual pages, 8 scenes, FAQ, language detection and motion fallback.");
+console.log("Checks passed: bilingual pages, scroll proof, 8 scenes, FAQ, language detection and motion fallback.");
