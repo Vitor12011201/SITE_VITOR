@@ -82,16 +82,7 @@ function projectCards(items) {
 
 function scrollProof(locale) {
   const proof = locale.scrollProof;
-  const wireBlocks = [
-    ["nav", "01"],
-    ["hero", "02"],
-    ["copy", "03"],
-    ["cta", "04"],
-    ["media", "05"],
-    ["card-a", "06"],
-    ["card-b", "07"],
-    ["card-c", "08"]
-  ];
+  const landing = proof.landing;
 
   return `<section class="scroll-proof" id="scroll-proof" data-scroll-proof aria-labelledby="scroll-proof-title" style="--scene-progress:0;--scene-phase-a:0;--scene-phase-b:0;--scene-phase-c:0;--scene-phase-d:0;--scene-phase-e:0">
       <div class="scroll-proof__stage">
@@ -103,22 +94,62 @@ function scrollProof(locale) {
             <p class="eyebrow">${esc(proof.eyebrow)}</p>
             <h1 id="scroll-proof-title">${esc(proof.title)}</h1>
             <p>${esc(proof.body)}</p>
+            <span class="scroll-proof__hint"><i aria-hidden="true"></i>${esc(proof.scrollHint)}</span>
           </div>
-          <div class="build-scene" aria-hidden="true">
-            <div class="build-scene__floor"></div>
+          <div class="build-scene">
+            <div class="build-scene__floor" aria-hidden="true"></div>
             <div class="build-scene__browser">
-              <div class="build-scene__bar"><span></span><span></span><span></span><i></i></div>
-              <div class="landing-page">
-                ${wireBlocks.map(([name, num]) => `<div class="wire-block wire-block--${name}" style="--block-index:${num}"><span></span><i></i></div>`).join("")}
+              <div class="build-scene__bar" aria-hidden="true"><span></span><span></span><span></span><i></i><b>lumina.arq</b></div>
+              <div class="landing-page lumina-page">
+                <div class="landing-page__guides" aria-hidden="true"></div>
+                <header class="lumina-header wire-block wire-block--nav">
+                  <a class="lumina-logo" href="#scroll-proof"><i aria-hidden="true"></i><span>${esc(landing.brand)}</span></a>
+                  <nav class="lumina-nav" aria-label="${esc(landing.brand)}">
+                    ${landing.nav.map((item, index) => `<a href="${index === 0 ? "#lumina-projects" : index === 1 ? "#lumina-studio" : index === 2 ? "#lumina-services" : "#contact"}">${esc(item)}</a>`).join("")}
+                  </nav>
+                  <a class="lumina-contact" href="#contact">${esc(landing.nav[3])}<span aria-hidden="true">↗</span></a>
+                  <span class="lumina-menu" aria-hidden="true"><i></i><i></i></span>
+                </header>
+                <section class="lumina-hero" id="lumina-projects">
+                  <div class="lumina-hero__copy">
+                    <p class="lumina-eyebrow wire-block wire-block--eyebrow">${esc(landing.eyebrow)}</p>
+                    <h2 class="lumina-title wire-block wire-block--title">${esc(landing.title)}</h2>
+                    <p class="lumina-body wire-block wire-block--body">${esc(landing.body)}</p>
+                    <div class="lumina-actions wire-block wire-block--actions">
+                      <a class="lumina-button lumina-button--primary" href="#lumina-services">${esc(landing.primary)}</a>
+                      <a class="lumina-button lumina-button--secondary" href="#contact">${esc(landing.secondary)}</a>
+                    </div>
+                  </div>
+                  <div class="lumina-visual wire-block wire-block--media" role="img" aria-label="${esc(landing.project)}">
+                    <span class="lumina-visual__sky" aria-hidden="true"></span>
+                    <span class="lumina-visual__sun" aria-hidden="true"></span>
+                    <span class="lumina-visual__volume lumina-visual__volume--rear" aria-hidden="true"></span>
+                    <span class="lumina-visual__volume lumina-visual__volume--front" aria-hidden="true"></span>
+                    <span class="lumina-visual__glass" aria-hidden="true"></span>
+                    <span class="lumina-visual__ground" aria-hidden="true"></span>
+                    <small>${esc(landing.project)}</small>
+                  </div>
+                </section>
+                <section class="lumina-stats" id="lumina-studio" aria-label="${esc(landing.statsLabel)}">
+                  ${landing.stats.map((item, index) => `<div class="lumina-stat wire-block wire-block--stat-${String.fromCharCode(97 + index)}"><strong>${esc(item.value)}</strong><span>${esc(item.label)}</span></div>`).join("")}
+                </section>
+                <section class="lumina-services" id="lumina-services" aria-label="${esc(landing.servicesLabel)}">
+                  ${landing.services.map((item, index) => `<article class="lumina-service wire-block wire-block--card-${String.fromCharCode(97 + index)}">
+                    <span>0${index + 1}</span>
+                    <h3>${esc(item.title)}</h3>
+                    <p>${esc(item.body)}</p>
+                    <i aria-hidden="true">↗</i>
+                  </article>`).join("")}
+                </section>
+                <aside class="lumina-cta wire-block wire-block--cta">
+                  <p>${esc(landing.cta)}</p>
+                  <a href="#contact">${esc(landing.ctaButton)}<span aria-hidden="true">↗</span></a>
+                </aside>
               </div>
             </div>
             <div class="build-scene__launch">
-              <span></span><i></i>
+              <i aria-hidden="true"></i><span>${esc(proof.launch)}</span>
             </div>
-          </div>
-          <div class="scroll-proof__final">
-            <p>${esc(proof.final)}</p>
-            <span><i aria-hidden="true"></i>${esc(proof.launch)}</span>
           </div>
           <div class="scroll-proof__meter" aria-hidden="true">
             <span>${esc(proof.status)}</span>

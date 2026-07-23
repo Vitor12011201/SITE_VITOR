@@ -23,6 +23,14 @@ const requiredSelectors = [
   ".scroll-proof__stage",
   ".build-scene__browser",
   ".wire-block",
+  ".lumina-header",
+  ".lumina-hero",
+  ".lumina-title",
+  ".lumina-visual",
+  ".lumina-stats",
+  ".lumina-services",
+  ".lumina-cta",
+  ".build-scene__launch",
   ".world-step",
   ".glass-panel",
   ".button",
@@ -48,6 +56,11 @@ if (!css.includes("@media (max-width: 1100px)") ||
 }
 if (!css.includes("@media (prefers-reduced-motion: reduce)")) {
   errors.push("CSS: missing reduced-motion support");
+}
+if (!css.includes(".wire-block--card-c { display: none; }") ||
+    !css.includes("grid-template-columns: 1fr;") ||
+    !css.includes("--proof-content-opacity: 1")) {
+  errors.push("scroll proof: mobile or reduced-motion final composition is incomplete");
 }
 if (!css.includes("min-height: 420vh") ||
     !css.includes(".scroll-proof__stage") ||
@@ -104,11 +117,22 @@ for (const locale of ["pt", "en"]) {
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
   if (!html.includes("data-scroll-proof")) errors.push(`${locale}: missing scroll proof section`);
   if (!html.includes("--scene-progress:0")) errors.push(`${locale}: missing exposed scene progress variable`);
-  if (locale === "pt" && !html.includes("Ideias se transformam em experiências digitais.")) {
-    errors.push("pt: missing final scroll proof phrase");
+  if (locale === "pt" && !html.includes("Espaços pensados para atravessar o tempo.")) {
+    errors.push("pt: missing Lumina landing page hero title");
   }
-  if (locale === "en" && !html.includes("Ideas become digital experiences.")) {
-    errors.push("en: missing final scroll proof phrase");
+  if (locale === "en" && !html.includes("Spaces designed to stand the test of time.")) {
+    errors.push("en: missing Lumina landing page hero title");
+  }
+  if (!html.includes("class=\"lumina-title wire-block wire-block--title\"") ||
+      !html.includes("class=\"lumina-stats\"") ||
+      !html.includes("class=\"lumina-services\"") ||
+      !html.includes("class=\"lumina-header wire-block wire-block--nav\"") ||
+      (html.match(/class="lumina-stat wire-block/g) || []).length !== 3 ||
+      (html.match(/class="lumina-service wire-block/g) || []).length !== 3) {
+    errors.push(`${locale}: scroll proof is missing the complete Lumina landing page structure`);
+  }
+  if (html.includes("scroll-proof__final")) {
+    errors.push(`${locale}: obsolete oversized final overlay is still present`);
   }
   if ((html.match(/<article class="world-step/g) || []).length !== 8) errors.push(`${locale}: expected 8 scenes`);
   if ((html.match(/<details/g) || []).length !== 5) errors.push(`${locale}: expected 5 FAQ items`);

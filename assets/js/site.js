@@ -19,14 +19,19 @@
   const phase = (value, start, end) => clamp01((value - start) / (end - start));
   const lerp = (from, to, value) => from + (to - from) * value;
   const blockOrigins = [
-    { x: -180, y: -120, z: 80, r: -11, s: 0.92 },
-    { x: 110, y: -95, z: 160, r: 8, s: 1.06 },
-    { x: -150, y: 65, z: 110, r: 7, s: 0.96 },
-    { x: 180, y: 105, z: 70, r: -9, s: 0.94 },
-    { x: 165, y: -10, z: 220, r: 12, s: 1.08 },
-    { x: -130, y: 145, z: 120, r: -7, s: 0.95 },
-    { x: 20, y: 175, z: 165, r: 5, s: 0.98 },
-    { x: 150, y: 145, z: 105, r: -6, s: 0.96 }
+    { x: -160, y: -115, z: 90, r: -8, s: 0.94 },
+    { x: -125, y: -40, z: 125, r: -6, s: 0.96 },
+    { x: -175, y: 35, z: 185, r: 7, s: 1.04 },
+    { x: -145, y: 98, z: 105, r: -5, s: 0.96 },
+    { x: -70, y: 145, z: 155, r: 6, s: 1.02 },
+    { x: 175, y: 10, z: 220, r: 10, s: 1.08 },
+    { x: -130, y: 145, z: 90, r: -5, s: 0.97 },
+    { x: 10, y: 175, z: 130, r: 4, s: 0.98 },
+    { x: 140, y: 135, z: 105, r: -5, s: 0.97 },
+    { x: -125, y: 205, z: 125, r: -7, s: 0.96 },
+    { x: 15, y: 225, z: 170, r: 5, s: 0.98 },
+    { x: 145, y: 195, z: 120, r: -6, s: 0.96 },
+    { x: 70, y: 245, z: 150, r: 4, s: 0.98 }
   ];
 
   const setScene = (index) => {
@@ -60,6 +65,7 @@
     const launch = phase(progressValue, 0.82, 1);
     const isMobile = window.innerWidth <= 760;
     const depthScale = isMobile ? 0.42 : 1;
+    const cameraSettle = clamp01(assemble * 0.72 + polish * 0.28);
 
     scrollProof.style.setProperty("--scene-progress", progressValue.toFixed(4));
     scrollProof.style.setProperty("--scene-phase-a", emerge.toFixed(4));
@@ -67,16 +73,18 @@
     scrollProof.style.setProperty("--scene-phase-c", assemble.toFixed(4));
     scrollProof.style.setProperty("--scene-phase-d", polish.toFixed(4));
     scrollProof.style.setProperty("--scene-phase-e", launch.toFixed(4));
-    scrollProof.style.setProperty("--proof-ambient-opacity", String(lerp(0.08, 0.52, emerge)));
+    scrollProof.style.setProperty("--proof-ambient-opacity", String(lerp(0.06, 0.34, emerge)));
     scrollProof.style.setProperty("--proof-browser-opacity", String(lerp(0.04, 1, Math.max(emerge, assemble))));
-    scrollProof.style.setProperty("--proof-copy-opacity", String(lerp(1, 0.18, launch)));
-    scrollProof.style.setProperty("--proof-final-opacity", String(launch));
+    scrollProof.style.setProperty("--proof-copy-opacity", String(lerp(1, 0.56, launch)));
     scrollProof.style.setProperty("--proof-polish", String(polish));
     scrollProof.style.setProperty("--proof-launch", String(launch));
-    scrollProof.style.setProperty("--proof-glow", `${(polish * 3).toFixed(2)}rem`);
-    scrollProof.style.setProperty("--proof-launch-offset", `${lerp(16, 0, launch).toFixed(1)}px`);
-    scrollProof.style.setProperty("--proof-final-offset", `${lerp(20, 0, launch).toFixed(1)}px`);
-    scrollProof.style.setProperty("--proof-camera-transform", `translate3d(0, ${lerp(28, -10, polish)}px, 0) rotateX(${lerp(58, isMobile ? 14 : 44, polish)}deg) rotateZ(${lerp(-10, isMobile ? 0 : -2, polish)}deg) scale(${lerp(isMobile ? 0.86 : 0.82, isMobile ? 1 : 1.08, polish)})`);
+    scrollProof.style.setProperty("--proof-content-opacity", String(Math.max(scatter * 0.48, polish)));
+    scrollProof.style.setProperty("--proof-guides-opacity", String(lerp(0.72, 0.08, polish)));
+    scrollProof.style.setProperty("--proof-glow", `${(polish * 1.4).toFixed(2)}rem`);
+    scrollProof.style.setProperty("--proof-launch-offset", `${lerp(12, 0, launch).toFixed(1)}px`);
+    scrollProof.style.setProperty("--proof-sheen-x", `${lerp(-145, 145, launch).toFixed(1)}%`);
+    scrollProof.style.setProperty("--proof-camera-transform", `translate3d(0, ${lerp(24, 0, cameraSettle).toFixed(1)}px, 0) rotateX(${lerp(isMobile ? 14 : 50, isMobile ? 0.5 : 2, cameraSettle).toFixed(2)}deg) rotateZ(${lerp(isMobile ? -1.5 : -7, 0, cameraSettle).toFixed(2)}deg) scale(${lerp(isMobile ? 0.9 : 0.8, isMobile ? 0.99 : 0.98, cameraSettle).toFixed(3)})`);
+    scrollProof.classList.toggle("is-complete", progressValue >= 0.985);
 
     proofBlocks.forEach((block, index) => {
       const origin = blockOrigins[index] || blockOrigins[0];

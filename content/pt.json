@@ -18,11 +18,35 @@
   "scrollProof": {
     "aria": "Prova de animação por scroll do rascunho ao lançamento",
     "eyebrow": "PROVA DE SCROLL",
-    "title": "Do rascunho ao lançamento.",
-    "body": "Acompanhe uma ideia se organizando em wireframe, interface e página pronta conforme o scroll avança.",
-    "final": "Ideias se transformam em experiências digitais.",
-    "launch": "Lançamento pronto",
-    "status": "Scroll controla a construção visual"
+    "title": "Do conceito ao projeto publicado.",
+    "body": "Ideias se transformam em experiências digitais enquanto cada parte de um site real encontra seu lugar.",
+    "scrollHint": "Role para montar o projeto",
+    "launch": "Projeto publicado",
+    "status": "Scroll controla a construção visual",
+    "landing": {
+      "brand": "Lumina",
+      "nav": ["Projetos", "Estúdio", "Serviços", "Contato"],
+      "eyebrow": "Arquitetura contemporânea",
+      "title": "Espaços pensados para atravessar o tempo.",
+      "body": "Projetamos residências, espaços comerciais e ambientes que unem funcionalidade, matéria e identidade.",
+      "primary": "Conheça nossos projetos",
+      "secondary": "Fale com o estúdio",
+      "project": "Projeto 042 — Casa Horizonte",
+      "statsLabel": "Números do estúdio",
+      "stats": [
+        { "value": "18", "label": "anos de experiência" },
+        { "value": "64", "label": "projetos concluídos" },
+        { "value": "12", "label": "prêmios de arquitetura" }
+      ],
+      "servicesLabel": "Áreas de atuação",
+      "services": [
+        { "title": "Arquitetura residencial", "body": "Casas desenhadas para o modo de viver de cada cliente." },
+        { "title": "Interiores", "body": "Matéria, luz e proporção em ambientes que acolhem." },
+        { "title": "Projetos comerciais", "body": "Espaços de marca que unem experiência e funcionalidade." }
+      ],
+      "cta": "Vamos projetar algo memorável.",
+      "ctaButton": "Iniciar conversa"
+    }
   },
   "world": {
     "aria": "Uma jornada pelo processo de criação digital",
