@@ -24,6 +24,7 @@ Abra `http://127.0.0.1:4173/pt/` ou `/en/`.
 - `assets/css/styles.css`: identidade visual e responsividade;
 - `assets/js/site.js`: transições, navegação, idioma e formulário demonstrativo;
 - `docs/PLAN.md`: decisões, custos futuros e sequência de produção.
+- `docs/STORYBOARD.md`: enquadramento, câmera, continuidade e áreas livres das oito cenas.
 
 Depois de alterar configuração ou conteúdo, execute `npm run build`.
 

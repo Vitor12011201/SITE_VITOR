@@ -131,6 +131,7 @@
   "reasons": {
     "eyebrow": "WHY WORK WITH US",
     "title": "A partner to think and build.",
+    "indicators": ["Strategy", "Clarity", "Evolution"],
     "items": [
       "Design tailored to your brand",
       "Clear communication",
@@ -145,9 +146,33 @@
     "title": "Work in progress. Standards already on display.",
     "body": "While the first real cases are being prepared, these studies demonstrate visual directions and capabilities — without invented clients or results.",
     "items": [
-      ["Concept project", "Atria Health", "A premium digital presence for a contemporary clinic.", "Identity · UX · Website"],
-      ["Interface study", "Northline", "A modular visual system for a growth consultancy.", "UI · System · Motion"],
-      ["Experimental experience", "Signal/01", "An interactive narrative for a digital product launch.", "3D · Scroll · Prototyping"]
+      {
+        "type": "Concept project",
+        "title": "Contemporary clinic",
+        "body": "A study for a premium digital presence in the healthcare sector.",
+        "tags": "Identity · UX · Website",
+        "image": "design",
+        "caseUrl": "",
+        "status": "concept"
+      },
+      {
+        "type": "Interface study",
+        "title": "Modular consultancy",
+        "body": "An exploration of a flexible visual system for professional services.",
+        "tags": "UI · System · Motion",
+        "image": "services",
+        "caseUrl": "",
+        "status": "concept"
+      },
+      {
+        "type": "Experimental experience",
+        "title": "Digital launch",
+        "body": "An interactive narrative designed to present a digital product.",
+        "tags": "3D · Scroll · Prototyping",
+        "image": "portfolio",
+        "caseUrl": "",
+        "status": "concept"
+      }
     ]
   },
   "faq": {

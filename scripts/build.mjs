@@ -66,6 +66,20 @@ function serviceCards(items) {
     </article>`).join("");
 }
 
+function projectCards(items) {
+  return items.map((item) => {
+    const tag = item.caseUrl ? "a" : "article";
+    const href = item.caseUrl ? ` href="${attr(item.caseUrl)}"` : "";
+    return `<${tag} class="project-card reveal${item.caseUrl ? " project-link" : ""}"${href} data-project-status="${attr(item.status)}">
+      <div class="project-card__visual">
+        <img src="../assets/scenes/${attr(item.image)}.svg" width="1600" height="900" loading="lazy" alt="">
+        <span>${esc(item.type)}</span>
+      </div>
+      <div class="project-card__content"><p class="eyebrow">${esc(item.type)}</p><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p><small>${esc(item.tags)}</small></div>
+    </${tag}>`;
+  }).join("");
+}
+
 function page(locale) {
   const isPt = locale.locale === "pt";
   const otherLocale = isPt ? "EN" : "PT";
@@ -184,9 +198,7 @@ function page(locale) {
     <section class="reasons section-shell">
       <div class="reasons__panel reveal">
         <div class="reasons__visual" aria-hidden="true">
-          <span class="metric metric--a"><i></i>98</span>
-          <span class="metric metric--b"><i></i>1.2s</span>
-          <span class="metric metric--c"><i></i>AA</span>
+          ${locale.reasons.indicators.map((indicator, index) => `<span class="metric metric--${["a", "b", "c"][index]}"><i></i>${esc(indicator)}</span>`).join("")}
           <div class="core"><i></i><i></i><i></i></div>
         </div>
         <div class="reasons__copy">
@@ -203,13 +215,7 @@ function page(locale) {
         <p>${esc(locale.portfolio.body)}</p>
       </div>
       <div class="portfolio-grid">
-        ${locale.portfolio.items.map(([type, title, body, tags], index) => `<article class="project-card reveal">
-          <div class="project-card__visual">
-            <img src="../assets/scenes/${["design", "services", "portfolio"][index]}.svg" width="1600" height="900" loading="lazy" alt="">
-            <span>${String(index + 1).padStart(2, "0")}</span>
-          </div>
-          <div class="project-card__content"><p class="eyebrow">${esc(type)}</p><h3>${esc(title)}</h3><p>${esc(body)}</p><small>${esc(tags)}</small></div>
-        </article>`).join("")}
+        ${projectCards(locale.portfolio.items)}
       </div>
     </section>
 

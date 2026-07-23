@@ -12,6 +12,59 @@ const required = [
   "prompts/generated/manifest.json"
 ];
 const errors = [];
+const css = await readFile(path.join(root, "assets/css/styles.css"), "utf8");
+const storyboardSource = JSON.parse(
+  await readFile(path.join(root, "prompts/scroll-world.json"), "utf8")
+);
+const requiredSelectors = [
+  ".world-step",
+  ".glass-panel",
+  ".button",
+  ".services-grid",
+  ".service-card",
+  ".process-list",
+  ".reasons__panel",
+  ".portfolio-grid",
+  ".project-card",
+  ".faq",
+  ".contact",
+  ".quote-form",
+  ".site-footer"
+];
+
+for (const selector of requiredSelectors) {
+  if (!css.includes(selector)) errors.push(`CSS: missing required selector ${selector}`);
+}
+if (!css.includes("@media (max-width: 1100px)") ||
+    !css.includes("@media (max-width: 920px)") ||
+    !css.includes("@media (max-width: 760px)")) {
+  errors.push("CSS: missing responsive desktop/tablet/mobile breakpoints");
+}
+if (!css.includes("@media (prefers-reduced-motion: reduce)")) {
+  errors.push("CSS: missing reduced-motion support");
+}
+
+const storyboardFields = [
+  "composition",
+  "objects",
+  "lighting",
+  "focalPoint",
+  "cameraStart",
+  "move",
+  "cameraEnd",
+  "transition",
+  "textSafeArea"
+];
+if (storyboardSource.scenes.length !== 8) {
+  errors.push("Storyboard: expected 8 scenes");
+}
+for (const scene of storyboardSource.scenes) {
+  for (const field of storyboardFields) {
+    if (!scene[field] || (Array.isArray(scene[field]) && !scene[field].length)) {
+      errors.push(`Storyboard ${scene.id}: missing ${field}`);
+    }
+  }
+}
 
 for (const file of required) {
   try { await access(path.join(root, file)); }
@@ -24,12 +77,9 @@ for (const locale of ["pt", "en"]) {
   const expectedLang = locale === "pt" ? "pt-BR" : "en";
   if (!html.includes(`<html lang="${expectedLang}">`)) errors.push(`${locale}: incorrect lang`);
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
-  if (!html.includes("prefers-reduced-motion")) {
-    const css = await readFile(path.join(root, "assets/css/styles.css"), "utf8");
-    if (!css.includes("prefers-reduced-motion")) errors.push("missing reduced-motion support");
-  }
   if ((html.match(/<article class="world-step/g) || []).length !== 8) errors.push(`${locale}: expected 8 scenes`);
   if ((html.match(/<details/g) || []).length !== 5) errors.push(`${locale}: expected 5 FAQ items`);
+  if (/(>98<|>1\.2s<|>AA<)/.test(html)) errors.push(`${locale}: contains unverified performance metrics`);
   const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
   for (const reference of references) {
     if (/^(#|mailto:|https?:)/.test(reference)) continue;

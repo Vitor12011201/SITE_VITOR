@@ -42,6 +42,11 @@ A direção evita o aspecto infantil de um diorama de brinquedo. O mundo é um e
 arquitetônico 3D estilizado, maduro e cinematográfico: superfícies escuras, vidro
 fumê, estruturas geométricas, luz volumétrica e neon usado com contenção.
 
+A continuidade usa cinco âncoras repetidas: linha ciano no piso, nervura violeta no
+teto, luzes práticas branco-quentes, metal preto fosco/vidro fumê e lente de 28 mm.
+Enquadramento, movimentos, emendas e áreas seguras para o HTML estão especificados em
+`docs/STORYBOARD.md`.
+
 A paleta e o nome ficam em `config/site.json`. Alterar esse arquivo e executar
 `npm run build` atualiza as duas versões do site e os placeholders.
 

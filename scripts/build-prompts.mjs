@@ -12,15 +12,20 @@ for (const [index, scene] of source.scenes.entries()) {
   const still = `${source.stylePreamble}
 
 Subject: ${scene.subject}
+Composition: ${scene.composition}
+Primary objects: ${scene.objects.join(", ")}.
+Lighting: ${scene.lighting}
+Focal point: ${scene.focalPoint}
+HTML text-safe area: ${scene.textSafeArea}
 
-Create a wide 3:2 establishing still. Keep the essential focal point horizontally centered with useful negative space for interface copy on the left.
+Create a wide 3:2 establishing still. Keep every word, label, button and logo outside the image; HTML will provide all copy.
 `;
 
   const startRule = index === 0
     ? "Use the approved solid-background studio still as the start image."
     : `Use the ACTUAL last frame extracted from the rendered ${source.scenes[index - 1].id} leg as the start image. Do not use the standalone ${scene.id} still as the start frame.`;
 
-  const leg = `Single continuous cinematic camera move, no cuts. Continue the same slow, steady forward glide. ${scene.move}. The camera travels through the connected studio toward ${scene.focalPoint}, revealing this environment: ${scene.subject} In the final second, settle back into a slow, steady forward glide toward ${scene.nextDirection}. ${source.styleTail} Smooth, graceful, slow motion, subtle architectural parallax. No text, no captions, no logos, no people.
+  const leg = `Single continuous cinematic camera move, no cuts. Continue the same slow, steady forward glide. Start position: ${scene.cameraStart} ${scene.move}. The camera travels through the connected studio toward ${scene.focalPoint}, revealing this environment: ${scene.subject} End position: ${scene.cameraEnd} Visual handoff to the next environment: ${scene.transition} In the final second, settle back into a slow, steady forward glide toward ${scene.nextDirection}. ${source.styleTail} Smooth, graceful, slow motion, subtle architectural parallax. No text, no captions, no logos, no numbers, no people.
 
 Frame handoff: ${startRule}
 Desktop render target: 16:9 landscape.

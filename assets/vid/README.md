@@ -14,3 +14,16 @@ Se a cadeia mobile 9:16 for aprovada:
 
 Não coloque renders brutos aqui. Guarde os masters fora da pasta pública e publique
 somente os encodes sem áudio, com faststart e GOP curto definidos na Skill.
+
+Os arquivos não existem nesta etapa e não devem ser substituídos por vídeos genéricos.
+Quando forem aprovados, a integração deve:
+
+- manter o SVG/still como poster até o primeiro frame decodificar;
+- buscar cada clipe como `Blob` para permitir seeking em hospedagem estática;
+- carregar somente o trecho atual e o próximo;
+- dirigir `currentTime` com scroll via `requestAnimationFrame`;
+- preservar conteúdo e navegação caso fetch, decode, seek ou JavaScript falhe;
+- não carregar vídeo com `prefers-reduced-motion`;
+- manter o fallback estático no mobile até uma cadeia 9:16 nativa ser aprovada.
+
+O contrato de câmera e as emendas estão em `docs/STORYBOARD.md`.

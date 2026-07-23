@@ -2,64 +2,135 @@
   "architecture": "A",
   "architectureName": "continuous-forward-flight",
   "aspectDesktop": "16:9",
-  "stylePreamble": "Cinematic stylized 3D architectural visualization of one connected futuristic creative studio suspended in a deep dark digital void. Premium mature art direction, bold geometric architecture, matte black and smoked-glass materials, precise metallic details, restrained electric purple #7C3AED and vivid blue #2563EB lighting with cyan #22D3EE accents, warm white #F5F5F7 practical lights, deep shadows, volumetric haze, strong contrast, elegant scale, sophisticated and technological rather than playful. Cohesive camera height, lens language, materials and lighting across the entire world. Highly detailed, centered focal composition with generous visual breathing room, absolutely no readable text, no letters, no numbers, no logos, no watermarks, no people.",
-  "styleTail": "Premium stylized 3D architectural studio, matte black and smoked glass, electric purple #7C3AED, vivid blue #2563EB, cyan #22D3EE, warm white #F5F5F7 practical lights, cinematic volumetric lighting, deep shadows, sophisticated mature mood.",
+  "stylePreamble": "Cinematic stylized 3D architectural visualization of one connected futuristic creative studio suspended in a deep dark digital void. Premium mature art direction, bold geometric architecture, matte black and smoked-glass materials, precise metallic details, restrained electric purple #7C3AED and vivid blue #2563EB lighting with cyan #22D3EE accents, warm white #F5F5F7 practical lights, deep shadows, volumetric haze, strong contrast, elegant scale, sophisticated and technological rather than playful. Neon is limited to wayfinding lines, portal edges and small focal accents, never broad glowing surfaces. Every room belongs to the same building and repeats a thin cyan floor route, one violet overhead structural rib and warm white practical lights. Cohesive camera height, 28mm lens language, materials and lighting across the entire world. Place the primary visual mass from center to center-right and preserve the left 42 percent as calmer low-detail negative space for HTML copy. Highly detailed, absolutely no readable text, no letters, no numbers, no logos, no watermarks, no people.",
+  "styleTail": "Premium stylized 3D architectural studio, matte black and smoked glass, restrained electric purple #7C3AED, vivid blue #2563EB and cyan #22D3EE accents, warm white #F5F5F7 practical lights, cinematic volumetric lighting, deep shadows, sophisticated mature mood. Preserve the thin cyan floor route, violet overhead rib and warm practical lights as continuity anchors. Keep the left 42 percent calm for HTML copy. No text or interface copy inside the image.",
+  "continuityAnchors": [
+    "thin cyan wayfinding line inlaid in the floor",
+    "single violet structural rib continuing overhead",
+    "warm white practical lights at human scale",
+    "matte black metal, smoked glass and dark stone materials",
+    "28mm cinematic lens with consistent camera height"
+  ],
+  "renderPolicy": {
+    "textInsideMedia": false,
+    "logosInsideMedia": false,
+    "peopleInsideMedia": false,
+    "neonUsage": "restrained accents only",
+    "desktopTextSafeArea": "left 42 percent",
+    "mobileFallback": "static scene poster with HTML copy below"
+  },
   "scenes": [
     {
       "id": "studio",
       "subject": "The exterior entrance to a floating digital design studio in a dark void, a bold modular structure with an illuminated cyan portal, suspended walkways, large glass walls, abstract interface screens with no readable content, architectural frames, subtle cables and distant luminous particles. The portal reveals a glimpse of the connected interior.",
+      "composition": "Three-quarter exterior view with the floating studio occupying the center-right, the entrance portal on the right third and layered walkways creating depth; the left side remains dark and quiet.",
+      "objects": ["modular floating studio", "cyan entrance portal", "suspended walkways", "smoked-glass walls", "abstract blank interface panels", "subtle cables and distant particles"],
+      "lighting": "Low-key void lighting, warm practical lights visible inside, a restrained cyan rim around the portal and a soft violet edge on the upper structure.",
       "focalPoint": "the illuminated cyan entrance portal",
+      "cameraStart": "High and far outside the studio, three-quarter view, slightly left of the building axis and looking toward the entrance.",
       "nextDirection": "the corridor leading toward the strategy room",
-      "move": "Make a slow half-orbit around the floating studio exterior to reveal its depth, then align with the entrance and move through it"
+      "move": "Make a slow half-orbit around the floating studio exterior to reveal its depth, then align with the entrance and move through it",
+      "cameraEnd": "Just inside the entrance, centered on the cyan floor route and drifting slowly toward the strategy corridor.",
+      "transition": "The cyan portal edge becomes the thin floor route; the violet exterior frame continues as the overhead rib of the corridor.",
+      "textSafeArea": "Keep the left 42 percent mostly deep void with only sparse particles; no cables, portal or high-contrast objects behind the HTML headline."
     },
     {
       "id": "strategy",
       "subject": "A futuristic strategy room inside the same studio, with a central planning table, layered journey maps represented by abstract lines, blank wireframe boards, data sculptures, organized notes without text, translucent glass panels and a clear doorway toward the visual lab.",
+      "composition": "Long room seen from its entrance, with a low planning table running diagonally through the center-right and transparent boards layered behind it; a glass doorway anchors the far-right depth.",
+      "objects": ["central planning table", "abstract journey paths", "blank wireframe boards", "data sculptures", "translucent glass partitions", "doorway to the visual lab"],
+      "lighting": "Warm task lighting over the table, subtle cyan lines embedded in its surface and a controlled violet wash on the far doorway.",
       "focalPoint": "the luminous central planning table",
+      "cameraStart": "At the strategy corridor threshold, camera at standing height and already continuing the forward drift from the studio entrance.",
       "nextDirection": "the glass doorway into the visual design laboratory",
-      "move": "Track low alongside the central strategy table, using foreground glass panels for parallax, then gently rise to reveal the full room"
+      "move": "Track low alongside the central strategy table, using foreground glass panels for parallax, then gently rise to reveal the full room",
+      "cameraEnd": "Aligned with the glass doorway, just beyond the end of the planning table, in a slow forward drift.",
+      "transition": "Abstract journey lines converge into the floor route and lead through the glass doorway; the overhead violet rib passes uninterrupted into the design lab.",
+      "textSafeArea": "Leave the left 42 percent as a dark wall and soft glass haze; keep the table, boards and doorway from center to right."
     },
     {
       "id": "design",
       "subject": "A visual design laboratory connected to the strategy room, filled with floating interface components, abstract typography blocks with no letters, color and material spheres, responsive layout frames, design tokens, prototype screens and a glowing path toward the development chamber.",
+      "composition": "A tall laboratory with a floating interface composition at center-right, material spheres orbiting at different depths and the development passage visible beyond the main prototype.",
+      "objects": ["floating blank UI components", "abstract typographic blocks without glyphs", "material and color spheres", "responsive device frames", "prototype planes", "passage to development"],
+      "lighting": "Neutral warm-white studio light for accurate materials, small cyan selection accents and a restrained violet backlight around the development passage.",
       "focalPoint": "the floating responsive interface composition",
+      "cameraStart": "Immediately beyond the strategy room glass doorway, following the same floor route at standing height.",
       "nextDirection": "the glowing passage into the development chamber",
-      "move": "Sweep in a slow half-orbit around the floating interface composition, keeping it centered, then continue past it"
+      "move": "Sweep in a slow half-orbit around the floating interface composition, keeping it centered, then continue past it",
+      "cameraEnd": "Past the main prototype cluster and aligned with the development passage, ending in a gentle forward glide.",
+      "transition": "The floating layout frames simplify into modular luminous blocks that visibly continue into the development chamber.",
+      "textSafeArea": "Keep floating components away from the left 42 percent; use only a low-contrast dark wall and faint volumetric haze behind HTML copy."
     },
     {
       "id": "development",
       "subject": "A technological development chamber where a website assembles from luminous modular blocks, clean component grids, abstract code-like light lines with no readable characters, device frames, subtle motion rigs and an opening toward a gallery of finished digital products.",
+      "composition": "Linear assembly chamber with components moving along a center-right rail, a nearly complete website structure as the focal layer and the service gallery framed in the distance.",
+      "objects": ["modular website blocks", "clean component grid", "non-readable code-like light paths", "desktop and mobile frames", "subtle assembly rigs", "opening to the services gallery"],
+      "lighting": "Cool white work lights reveal construction details; cyan appears only along active component edges and violet marks the distant gallery opening.",
       "focalPoint": "the website structure assembling from modular luminous blocks",
+      "cameraStart": "Inside the development passage, low enough to create foreground parallax while maintaining the incoming forward velocity.",
       "nextDirection": "the opening into the digital services gallery",
-      "move": "Track laterally along the assembly line of components with strong foreground parallax, then arc gently toward the completed structure"
+      "move": "Track laterally along the assembly line of components with strong foreground parallax, then arc gently toward the completed structure",
+      "cameraEnd": "Beside the completed modular structure, facing the services gallery opening and returning to a steady forward drift.",
+      "transition": "Completed modules become the architectural frames of the first service portals; the same floor route runs under the assembly line into the gallery.",
+      "textSafeArea": "Reserve the left 42 percent for a dark service wall with sparse low-contrast lines; keep the assembly rail and devices center-right."
     },
     {
       "id": "services",
       "subject": "A premium digital services gallery with eight distinct portal-like exhibits representing business websites, landing pages, portfolios, launch pages, redesign, maintenance, payment systems and interactive experiences, communicated only through shapes and objects with no text. A central route continues into a performance control room.",
+      "composition": "Museum-like gallery with eight portal exhibits distributed in depth along the center and right, avoiding a rigid grid; the central route draws the eye to the control room.",
+      "objects": ["eight distinct abstract service portals", "device sculptures", "launch plinth", "maintenance module", "payment-flow object", "interactive light sculpture", "control-room passage"],
+      "lighting": "Warm gallery spots identify each exhibit; limited cyan and violet edge lights provide hierarchy without turning the room into a neon arcade.",
       "focalPoint": "the central sequence of illuminated digital portals",
+      "cameraStart": "At the gallery threshold, slightly elevated from the development chamber and moving forward along the cyan floor route.",
       "nextDirection": "the passage into the performance control room",
-      "move": "Crane up slowly as the complete gallery reveals below, then descend along the central route between the portals"
+      "move": "Crane up slowly as the complete gallery reveals below, then descend along the central route between the portals",
+      "cameraEnd": "Low and centered between the final two exhibits, approaching the control-room passage in a slow forward glide.",
+      "transition": "Light paths from the eight exhibits merge into one neutral signal ribbon that enters the control room; no labels or icons are required to understand the route.",
+      "textSafeArea": "Keep the nearest portals and high-contrast exhibits from center to right; preserve the left 42 percent as open circulation space with subdued flooring."
     },
     {
       "id": "value",
       "subject": "A cinematic control room showing abstract performance, speed, responsive quality and conversion signals through gauges, light paths, device silhouettes and data sculptures without text or numbers. The systems converge into a bright line leading toward a project gallery.",
+      "composition": "Circular control room centered on a sculptural core at center-right, surrounded by abstract device silhouettes and qualitative signal paths; the project-gallery corridor is visible behind the core.",
+      "objects": ["central system core", "abstract qualitative gauges without scales", "responsive device silhouettes", "flowing signal paths", "modular data sculptures", "project-gallery corridor"],
+      "lighting": "A warm-white core supplies most illumination, with small cyan status points and a restrained violet rim defining the circular architecture.",
       "focalPoint": "the central performance core where all signals converge",
+      "cameraStart": "Entering along the merged signal ribbon from the services gallery, at standing height and with the core offset to the right.",
       "nextDirection": "the bright corridor toward the project gallery",
-      "move": "Push in close to the glowing performance core until it nearly fills the frame, then ease gently back and continue along the outgoing signal"
+      "move": "Push in close to the glowing performance core until it nearly fills the frame, then ease gently back and continue along the outgoing signal",
+      "cameraEnd": "Past the core, centered on the project-gallery corridor and settled into the shared forward drift.",
+      "transition": "The outgoing signal ribbon becomes a reflected floor line in the portfolio gallery; the circular core geometry echoes in the gallery arches.",
+      "textSafeArea": "Keep the core, devices and bright signals center-right; the left 42 percent should be a quiet dark wall with only dim ambient reflections."
     },
     {
       "id": "portfolio",
       "subject": "A futuristic project gallery with three monumental screens displaying abstract website compositions, clearly conceptual and with no client logos or readable text, polished floors, deep architectural arches and a luminous exit framing the final launch portal.",
+      "composition": "Long gallery with three monumental screens staggered on the right and center, each showing clearly abstract interface studies; polished floor reflections lead to the launch exit.",
+      "objects": ["three monumental project screens", "abstract website compositions", "polished dark floor", "deep architectural arches", "low display plinths", "luminous launch exit"],
+      "lighting": "Warm gallery illumination around each screen, soft cyan floor guidance and a distant violet-cyan portal glow, with no invented brand marks or result figures.",
       "focalPoint": "the central monumental project screen",
+      "cameraStart": "At the project-gallery entrance, following the reflected signal line and seeing all three screens layered in depth.",
       "nextDirection": "the luminous exit leading to the launch portal",
-      "move": "Glide steadily between the large project screens with rich foreground reflections, then rise slightly to reveal the final exit"
+      "move": "Glide steadily between the large project screens with rich foreground reflections, then rise slightly to reveal the final exit",
+      "cameraEnd": "Beyond the final screen, slightly elevated and aligned with the launch chamber doorway in a slow forward drift.",
+      "transition": "The last screen frame widens into the launch doorway; its cyan edge and the overhead violet rib lead directly to the final portal.",
+      "textSafeArea": "Place all screens from center to right and avoid bright reflections on the left 42 percent, which remains a dark gallery wall for HTML copy."
     },
     {
       "id": "launch",
       "subject": "The final launch chamber: a monumental circular portal of cyan and violet light suspended above a dark platform, connected to the previous gallery, with elegant energy rings, distant particles and a clear open center symbolizing the beginning of a new digital project.",
+      "composition": "Monumental chamber with the circular portal on the right third, a dark platform and converging floor route at center; the open horizon is visible through the portal.",
+      "objects": ["monumental circular portal", "dark launch platform", "restrained energy rings", "continuity floor route", "violet structural rib", "open luminous horizon"],
+      "lighting": "Warm platform lights ground the room; cyan defines the inner portal edge and a narrow violet rim shapes the outer ring, leaving the chamber mostly dark and premium.",
       "focalPoint": "the open center of the monumental launch portal",
+      "cameraStart": "Entering the chamber through the portfolio doorway, slightly elevated and offset left of the portal axis.",
       "nextDirection": "the open luminous horizon beyond the portal",
-      "move": "Make a restrained half-orbit around the launch portal, then align perfectly with its open center and glide forward into the luminous horizon"
+      "move": "Make a restrained half-orbit around the launch portal, then align perfectly with its open center and glide forward into the luminous horizon",
+      "cameraEnd": "Centered inside the portal opening, facing an uncluttered luminous horizon with a gentle forward drift that can hold under the final CTA.",
+      "transition": "The cyan floor route and violet rib converge into the portal rings; the open horizon provides a calm terminal frame rather than introducing a ninth scene.",
+      "textSafeArea": "Keep the portal and strongest glow on the right third; preserve the left 42 percent dark and low-detail for the final headline and CTA."
     }
   ]
 }

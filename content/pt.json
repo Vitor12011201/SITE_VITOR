@@ -131,6 +131,7 @@
   "reasons": {
     "eyebrow": "POR QUE NOS CONTRATAR",
     "title": "Um parceiro para pensar e construir.",
+    "indicators": ["Estratégia", "Clareza", "Evolução"],
     "items": [
       "Design pensado para sua marca",
       "Comunicação clara durante o projeto",
@@ -145,9 +146,33 @@
     "title": "Trabalhos em construção. Critério já em exibição.",
     "body": "Enquanto os primeiros cases reais são preparados, estes estudos demonstram direções visuais e capacidades — sem clientes ou resultados inventados.",
     "items": [
-      ["Projeto conceitual", "Atria Health", "Presença digital premium para uma clínica contemporânea.", "Identidade · UX · Site"],
-      ["Estudo de interface", "Northline", "Sistema visual modular para uma consultoria de crescimento.", "UI · Sistema · Motion"],
-      ["Experiência experimental", "Signal/01", "Narrativa interativa para o lançamento de um produto digital.", "3D · Scroll · Prototipagem"]
+      {
+        "type": "Projeto conceitual",
+        "title": "Clínica contemporânea",
+        "body": "Estudo de uma presença digital premium para o setor de saúde.",
+        "tags": "Identidade · UX · Site",
+        "image": "design",
+        "caseUrl": "",
+        "status": "concept"
+      },
+      {
+        "type": "Estudo de interface",
+        "title": "Consultoria modular",
+        "body": "Exploração de um sistema visual flexível para serviços profissionais.",
+        "tags": "UI · Sistema · Motion",
+        "image": "services",
+        "caseUrl": "",
+        "status": "concept"
+      },
+      {
+        "type": "Experiência experimental",
+        "title": "Lançamento digital",
+        "body": "Narrativa interativa para apresentar um produto digital.",
+        "tags": "3D · Scroll · Prototipagem",
+        "image": "portfolio",
+        "caseUrl": "",
+        "status": "concept"
+      }
     ]
   },
   "faq": {
