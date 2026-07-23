@@ -48,6 +48,41 @@
       "ctaButton": "Iniciar conversa"
     }
   },
+  "brandGravity": {
+    "aria": "Animação por scroll sobre a gravidade de uma marca memorável",
+    "eyebrow": "CENA 02",
+    "title": "Gravidade da marca",
+    "status": "Ruído digital encontra um centro de atenção",
+    "established": "Presença estabelecida",
+    "noise": [
+      "Mais uma solução",
+      "Descubra agora",
+      "Conheça nossos serviços",
+      "Resultados rápidos"
+    ],
+    "noiseBody": "Uma experiência para todos os negócios.",
+    "noiseCta": "Saiba mais",
+    "landing": {
+      "brand": "Nexora",
+      "nav": ["Soluções", "Projetos", "Estúdio"],
+      "navCta": "Iniciar projeto",
+      "eyebrow": "Estratégia • Design • Tecnologia",
+      "title": "Seu negócio merece ser",
+      "highlight": "impossível de ignorar.",
+      "body": "Criamos sites e landing pages que transformam ideias em experiências digitais marcantes.",
+      "primary": "Criar uma presença marcante",
+      "secondary": "Ver projetos",
+      "visualLabel": "Presença digital em movimento",
+      "cards": [
+        { "title": "Estratégia que conecta", "body": "Posicionamento e jornadas guiados por objetivos reais." },
+        { "title": "Design que comunica", "body": "Interfaces autorais que tornam sua marca reconhecível." },
+        { "title": "Tecnologia que impulsiona", "body": "Performance e estrutura para crescer com consistência." },
+        { "title": "Resultados que importam", "body": "Experiências que transformam atenção em ação." }
+      ],
+      "proof": "Presenças digitais para marcas em movimento.",
+      "proofBrands": ["Nexus", "CloudWave", "Innova", "Nextly", "Modular", "Bold"]
+    }
+  },
   "world": {
     "aria": "Uma jornada pelo processo de criação digital",
     "scrollHint": "Role para entrar no estúdio",

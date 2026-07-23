@@ -31,6 +31,14 @@ const requiredSelectors = [
   ".lumina-services",
   ".lumina-cta",
   ".build-scene__launch",
+  ".brand-gravity",
+  ".brand-gravity__stage",
+  ".noise-panel",
+  ".gravity-browser",
+  ".nexora-page",
+  ".nexora-hero",
+  ".nexora-cards",
+  ".nexora-proof",
   ".world-step",
   ".glass-panel",
   ".button",
@@ -68,6 +76,13 @@ if (!css.includes("min-height: 420vh") ||
     !css.includes("100svh")) {
   errors.push("scroll proof: missing 420vh sticky 100vh stage contract");
 }
+if (!css.includes("min-height: 470vh") ||
+    !css.includes(".brand-gravity__stage") ||
+    !css.includes(".noise-panel:nth-child(n + 6)") ||
+    !css.includes(".nexora-card:nth-child(n + 3)") ||
+    !css.includes("--brand-browser-opacity: 1")) {
+  errors.push("brand gravity: desktop, mobile or reduced-motion composition is incomplete");
+}
 if (!css.includes(".site-header.is-menu-open .primary-nav") ||
     !clientJs.includes('header.classList.toggle("is-menu-open")')) {
   errors.push("mobile navigation contract is incomplete");
@@ -81,6 +96,13 @@ if (!clientJs.includes("[data-scroll-proof]") ||
     !clientJs.includes("requestAnimationFrame(readScroll)") ||
     !clientJs.includes("setScrollProofProgress(clamp01(-rect.top / travel))")) {
   errors.push("scroll proof: missing normalized rAF scroll progress contract");
+}
+if (!clientJs.includes("[data-brand-gravity]") ||
+    !clientJs.includes("--brand-gravity-progress") ||
+    !clientJs.includes("--brand-attraction") ||
+    !clientJs.includes('classList.toggle("is-settled", progressValue >= 0.85)') ||
+    !clientJs.includes("setBrandGravityProgress(clamp01(-rect.top / travel))")) {
+  errors.push("brand gravity: missing continuous normalized rAF progress contract");
 }
 
 const storyboardFields = [
@@ -118,6 +140,8 @@ for (const locale of ["pt", "en"]) {
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
   if (!html.includes("data-scroll-proof")) errors.push(`${locale}: missing scroll proof section`);
   if (!html.includes("--scene-progress:0")) errors.push(`${locale}: missing exposed scene progress variable`);
+  if (!html.includes("data-brand-gravity")) errors.push(`${locale}: missing brand gravity section`);
+  if (!html.includes("--brand-gravity-progress:0")) errors.push(`${locale}: missing exposed brand gravity progress`);
   if (locale === "pt" && !html.includes("Espaços pensados para atravessar o tempo.")) {
     errors.push("pt: missing Lumina landing page hero title");
   }
@@ -134,6 +158,23 @@ for (const locale of ["pt", "en"]) {
   }
   if (html.includes("scroll-proof__final")) {
     errors.push(`${locale}: obsolete oversized final overlay is still present`);
+  }
+  if (locale === "pt" && (!html.includes("Seu negócio merece ser") || !html.includes("impossível de ignorar."))) {
+    errors.push("pt: missing Nexora hero title");
+  }
+  if (locale === "en" && (!html.includes("Your business deserves to be") || !html.includes("impossible to ignore."))) {
+    errors.push("en: missing Nexora hero title");
+  }
+  if (!html.includes("class=\"nexora-page\"") ||
+      !html.includes("class=\"nexora-cards\"") ||
+      !html.includes("class=\"nexora-proof gravity-component gravity-component--proof\"") ||
+      (html.match(/class="noise-panel noise-panel--/g) || []).length !== 12 ||
+      (html.match(/class="nexora-card gravity-component/g) || []).length !== 4) {
+    errors.push(`${locale}: brand gravity is missing contextual noise or the complete Nexora layout`);
+  }
+  if (!(html.indexOf("data-scroll-proof") < html.indexOf("data-brand-gravity") &&
+        html.indexOf("data-brand-gravity") < html.indexOf("class=\"world\""))) {
+    errors.push(`${locale}: brand gravity must remain between the first scroll proof and the 8-scene world`);
   }
   if ((html.match(/<article class="world-step/g) || []).length !== 8) errors.push(`${locale}: expected 8 scenes`);
   if ((html.match(/<details/g) || []).length !== 5) errors.push(`${locale}: expected 5 FAQ items`);
@@ -170,4 +211,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log("Checks passed: bilingual pages, scroll proof, 8 scenes, FAQ, language detection and motion fallback.");
+console.log("Checks passed: bilingual pages, 2 scroll proofs, 8 scenes, FAQ, language detection and motion fallbacks.");
