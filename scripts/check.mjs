@@ -9,6 +9,7 @@ const required = [
   "en/index.html",
   "assets/css/styles.css",
   "assets/js/site.js",
+  ".github/workflows/deploy-pages.yml",
   "prompts/generated/manifest.json"
 ];
 const errors = [];
@@ -83,6 +84,10 @@ for (const locale of ["pt", "en"]) {
   const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
   for (const reference of references) {
     if (/^(#|mailto:|https?:)/.test(reference)) continue;
+    const pagesUrl = new URL(reference, `https://example.test/SITE_VITOR/${locale}/`);
+    if (!pagesUrl.pathname.startsWith("/SITE_VITOR/")) {
+      errors.push(`${locale}: reference escapes GitHub Pages base path ${reference}`);
+    }
     const target = path.resolve(path.dirname(pagePath), reference);
     try { await access(target); }
     catch { errors.push(`${locale}: broken local reference ${reference}`); }
@@ -91,6 +96,12 @@ for (const locale of ["pt", "en"]) {
 
 const rootHtml = await readFile(path.join(root, "index.html"), "utf8");
 if (!rootHtml.includes("navigator.language")) errors.push("root: missing browser language detection");
+if (!rootHtml.includes('location.replace("./" + language + "/")')) {
+  errors.push("root: language redirect must remain relative to the GitHub Pages base path");
+}
+if (!rootHtml.includes('href="./pt/"') || !rootHtml.includes('href="./en/"')) {
+  errors.push("root: language fallback links must remain relative");
+}
 
 if (errors.length) {
   console.error(errors.join("\n"));

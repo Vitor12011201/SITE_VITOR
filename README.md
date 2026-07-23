@@ -15,6 +15,16 @@ npm run serve
 
 Abra `http://127.0.0.1:4173/pt/` ou `/en/`.
 
+## Publicação no GitHub Pages
+
+O workflow `.github/workflows/deploy-pages.yml` constrói, valida e publica somente os
+arquivos estáticos necessários. Depois do merge na `main`, o endereço esperado é:
+
+`https://vitor12011201.github.io/SITE_VITOR/`
+
+No GitHub, configure **Settings → Pages → Build and deployment → Source** como
+**GitHub Actions**. O workflow também pode ser executado manualmente pela aba Actions.
+
 ## Onde editar
 
 - `config/site.json`: nome, paleta, contatos e URLs;
