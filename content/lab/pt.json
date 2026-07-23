@@ -1,0 +1,87 @@
+{
+  "title": "Laboratório STANDLOUD",
+  "description": "Arquivo de conceitos experimentais preservados fora da Home comercial.",
+  "world": {
+    "aria": "Uma jornada experimental pelo processo de criação digital",
+    "scrollHint": "Role para entrar no estúdio",
+    "progress": "Progresso da experiência",
+    "scenes": [
+      {
+        "id": "studio",
+        "label": "Entrada",
+        "eyebrow": "DESIGN, CÓDIGO E ESTRATÉGIA",
+        "title": "Seu negócio merece ser impossível de ignorar.",
+        "body": "Criamos sites e landing pages que transformam ideias em experiências digitais marcantes.",
+        "tags": ["Sites autorais", "Landing pages", "Experiências digitais"],
+        "primary": "Começar um projeto",
+        "secondary": "Ver nossos serviços",
+        "alt": "Estúdio digital futurista flutuando em um espaço escuro"
+      },
+      {
+        "id": "strategy",
+        "label": "Estratégia",
+        "eyebrow": "ANTES DO DESIGN",
+        "title": "Primeiro entendemos o seu negócio.",
+        "body": "Cada projeto começa com uma análise dos seus objetivos, público e posicionamento.",
+        "tags": ["Estratégia", "Experiência do usuário", "Posicionamento"],
+        "alt": "Sala de estratégia com mapas de jornada, wireframes e dados"
+      },
+      {
+        "id": "design",
+        "label": "Design",
+        "eyebrow": "DESIGN AUTORAL",
+        "title": "Nada de sites com aparência genérica.",
+        "body": "Criamos uma identidade visual digital alinhada à personalidade e aos objetivos da sua marca.",
+        "tags": ["UI Design", "Responsividade", "Identidade visual"],
+        "alt": "Laboratório visual com componentes, tipografias e protótipos"
+      },
+      {
+        "id": "development",
+        "label": "Construção",
+        "eyebrow": "CONSTRUÇÃO",
+        "title": "Bonito por fora. Bem construído por dentro.",
+        "body": "Desenvolvemos sites rápidos, responsivos, organizados e preparados para funcionar em diferentes dispositivos.",
+        "tags": ["Performance", "Código organizado", "Mobile first"],
+        "alt": "Espaço tecnológico com um site sendo construído por blocos"
+      },
+      {
+        "id": "services",
+        "label": "Serviços",
+        "eyebrow": "O QUE CRIAMOS",
+        "title": "Soluções digitais para diferentes objetivos.",
+        "body": "Da presença institucional à página focada em conversão, cada entrega nasce para cumprir uma função real.",
+        "tags": ["Sites institucionais", "Landing pages", "Experiências interativas"],
+        "alt": "Galeria de portais e produtos digitais em exibição"
+      },
+      {
+        "id": "value",
+        "label": "Impacto",
+        "eyebrow": "MAIS DO QUE APARÊNCIA",
+        "title": "Um site precisa trabalhar pelo seu negócio.",
+        "body": "Combinamos estratégia, design e tecnologia para transmitir profissionalismo e conduzir o visitante para a ação.",
+        "tags": ["Foco no visitante", "Estrutura escalável", "Suporte pós-lançamento"],
+        "alt": "Central de controle com métricas, velocidade e responsividade"
+      },
+      {
+        "id": "portfolio",
+        "label": "Projetos",
+        "eyebrow": "PROJETOS",
+        "title": "Nosso trabalho fala através da experiência.",
+        "body": "Cada projeto é criado para resolver um problema real e apresentar uma marca da melhor maneira possível.",
+        "tags": ["Projeto conceitual", "Estudo de interface", "Experiência experimental"],
+        "alt": "Galeria futurista com grandes telas apresentando projetos"
+      },
+      {
+        "id": "launch",
+        "label": "Começar",
+        "eyebrow": "VAMOS CONSTRUIR",
+        "title": "Seu próximo projeto pode começar aqui.",
+        "body": "Conte um pouco sobre sua ideia e vamos conversar sobre como transformá-la em uma experiência digital.",
+        "tags": [],
+        "primary": "Solicitar orçamento",
+        "secondary": "Falar pelo WhatsApp",
+        "alt": "Portal iluminado representando o início de um novo projeto"
+      }
+    ]
+  }
+}

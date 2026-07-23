@@ -8,6 +8,10 @@ const locales = {
   pt: JSON.parse(await readFile(path.join(root, "content/pt.json"), "utf8")),
   en: JSON.parse(await readFile(path.join(root, "content/en.json"), "utf8"))
 };
+const labLocales = {
+  pt: JSON.parse(await readFile(path.join(root, "content/lab/pt.json"), "utf8")),
+  en: JSON.parse(await readFile(path.join(root, "content/lab/en.json"), "utf8"))
+};
 
 const esc = (value = "") =>
   String(value).replace(/[&<>"']/g, (char) => ({
@@ -47,55 +51,10 @@ function options(items) {
   ).join("");
 }
 
-function sceneStep(scene, index, locale) {
-  const cta = [];
-  if (scene.primary) {
-    cta.push(`<a class="button button--primary" href="#contact">${esc(scene.primary)}<span aria-hidden="true">↗</span></a>`);
-  }
-  if (scene.secondary) {
-    const target = scene.id === "studio" ? "#services" : site.contact.whatsappUrl;
-    cta.push(`<a class="button button--ghost" href="${target}">${esc(scene.secondary)}</a>`);
-  }
-  return `
-    <article class="world-step${index === 0 ? " is-active" : ""}" id="scene-${attr(scene.id)}"
-      data-scene="${index}" data-image="../assets/scenes/${attr(scene.id)}.svg"
-      aria-labelledby="scene-title-${attr(scene.id)}">
-      <div class="world-step__copy glass-panel">
-        <div class="scene-index" aria-hidden="true">${String(index + 1).padStart(2, "0")} / 08</div>
-        <p class="eyebrow">${esc(scene.eyebrow)}</p>
-        <h1 id="scene-title-${attr(scene.id)}">${esc(scene.title)}</h1>
-        <p class="scene-body">${esc(scene.body)}</p>
-        ${scene.tags.length ? `<ul class="tag-list">${scene.tags.map((tag) => `<li>${esc(tag)}</li>`).join("")}</ul>` : ""}
-        ${cta.length ? `<div class="button-row">${cta.join("")}</div>` : ""}
-      </div>
-      <img class="world-step__mobile-visual" src="../assets/scenes/${attr(scene.id)}.svg"
-        width="1600" height="900" loading="${index < 2 ? "eager" : "lazy"}"
-        decoding="async" alt="${attr(scene.alt)}">
-    </article>`;
-}
-
-function serviceCards(items) {
-  return items.map(([title, body], index) => `
-    <article class="service-card reveal">
-      <span class="service-card__num">${String(index + 1).padStart(2, "0")}</span>
-      <div class="service-card__icon" aria-hidden="true"><i></i><i></i></div>
-      <h3>${esc(title)}</h3>
-      <p>${esc(body)}</p>
-    </article>`).join("");
-}
-
-function projectCards(items) {
-  return items.map((item) => {
-    const tag = item.caseUrl ? "a" : "article";
-    const href = item.caseUrl ? ` href="${attr(item.caseUrl)}"` : "";
-    return `<${tag} class="project-card reveal${item.caseUrl ? " project-link" : ""}"${href} data-project-status="${attr(item.status)}">
-      <div class="project-card__visual">
-        <img src="../assets/scenes/${attr(item.image)}.svg" width="1600" height="900" loading="lazy" alt="">
-        <span>${esc(item.type)}</span>
-      </div>
-      <div class="project-card__content"><p class="eyebrow">${esc(item.type)}</p><h3>${esc(item.title)}</h3><p>${esc(item.body)}</p><small>${esc(item.tags)}</small></div>
-    </${tag}>`;
-  }).join("");
+function routeHref(locale, key) {
+  const route = site.routes[key];
+  if (!route) throw new Error(`Unknown route: ${key}`);
+  return route.implemented ? route[locale.locale] : route.fallback;
 }
 
 function scrollProof(locale) {
@@ -110,7 +69,7 @@ function scrollProof(locale) {
         <div class="scroll-proof__viewport">
           <div class="scroll-proof__copy">
             <p class="eyebrow">${esc(proof.eyebrow)}</p>
-            <h1 id="scroll-proof-title">${esc(proof.title)}</h1>
+            <h2 id="scroll-proof-title">${esc(proof.title)}</h2>
             <p>${esc(proof.body)}</p>
             <span class="scroll-proof__hint"><i aria-hidden="true"></i>${esc(proof.scrollHint)}</span>
           </div>
@@ -228,7 +187,7 @@ function brandGravity(locale) {
                 <p class="nexora-body gravity-component gravity-component--body">${esc(landing.body)}</p>
                 <div class="nexora-actions gravity-component gravity-component--actions">
                   <a class="nexora-button nexora-button--primary" href="#contact">${esc(landing.primary)}</a>
-                  <a class="nexora-button nexora-button--secondary" href="#work">${esc(landing.secondary)}</a>
+                  <a class="nexora-button nexora-button--secondary" href="#projects">${esc(landing.secondary)}</a>
                 </div>
               </div>
               <div class="nexora-visual gravity-component gravity-component--visual" role="img" aria-label="${esc(landing.visualLabel)}">
@@ -268,6 +227,279 @@ function brandGravity(locale) {
         <div class="brand-gravity__meter" aria-hidden="true"><span>${esc(gravity.title)}</span><i></i></div>
       </div>
     </section>`;
+}
+
+function heroSection(locale) {
+  return `<section class="commercial-hero section-shell" id="hero" aria-labelledby="hero-title">
+    <div class="commercial-hero__copy">
+      <p class="eyebrow">${esc(locale.hero.eyebrow)}</p>
+      <h1 id="hero-title">${esc(locale.hero.title)}</h1>
+      <p class="commercial-hero__body">${esc(locale.hero.body)}</p>
+      <div class="button-row">
+        <a class="button button--primary" href="#diagnostic">${esc(locale.hero.primary)}<span aria-hidden="true">↗</span></a>
+        <a class="button button--ghost" href="#projects">${esc(locale.hero.secondary)}</a>
+      </div>
+      <p class="commercial-hero__micro"><i aria-hidden="true"></i>${esc(locale.hero.micro)}</p>
+      <p class="commercial-hero__proof">${esc(locale.hero.proof)}</p>
+    </div>
+    <div class="commercial-hero__visual" aria-hidden="true">
+      <div class="hero-browser">
+        <div class="hero-browser__bar"><i></i><i></i><i></i><span>standloud.studio</span></div>
+        <div class="hero-browser__canvas">
+          <span class="hero-browser__eyebrow">STANDLOUD / PROCESS</span>
+          <div class="hero-process">
+            ${locale.hero.visual.map((step, index) => `<article class="hero-process__step" style="--step:${index}">
+              <span>${esc(step.number)} / ${esc(step.label)}</span>
+              <strong>${esc(step.body)}</strong>
+            </article>`).join("")}
+          </div>
+          <div class="hero-process__rail">
+            ${locale.hero.visual.map((step, index) => `<span style="--step:${index}"><i></i>${esc(step.number)} / ${esc(step.label)}</span>`).join("")}
+          </div>
+          <div class="hero-browser__signal"><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <span class="hero-orbit hero-orbit--a"></span>
+      <span class="hero-orbit hero-orbit--b"></span>
+    </div>
+  </section>`;
+}
+
+function quickProofSection(locale) {
+  return `<section class="quick-proof section-shell" aria-labelledby="quick-proof-title">
+    <div class="section-heading reveal">
+      <div><p class="eyebrow">${esc(locale.quickProof.eyebrow)}</p><h2 id="quick-proof-title">${esc(locale.quickProof.title)}</h2></div>
+      <p>${esc(locale.quickProof.process)}</p>
+    </div>
+    <div class="quick-proof__grid">
+      ${locale.quickProof.items.map((item, index) => `<article class="proof-card reveal">
+        <span>0${index + 1}</span>
+        <p class="eyebrow">${esc(item.type)}</p>
+        <h3>${esc(item.name)}</h3>
+        <p>${esc(item.body)}</p>
+      </article>`).join("")}
+    </div>
+  </section>`;
+}
+
+function problemsSection(locale) {
+  return `<section class="problems section-shell" aria-labelledby="problems-title">
+    <div class="problems__heading reveal">
+      <p class="eyebrow">${esc(locale.problems.eyebrow)}</p>
+      <h2 id="problems-title">${esc(locale.problems.title)}</h2>
+    </div>
+    <ol class="problems__list">
+      ${locale.problems.items.map((item, index) => `<li class="reveal"><span>0${index + 1}</span><p>${esc(item)}</p></li>`).join("")}
+    </ol>
+  </section>`;
+}
+
+function servicesSection(locale) {
+  return `<section class="services-commercial section-shell" id="services" aria-labelledby="services-title">
+    <div class="section-heading reveal">
+      <div><p class="eyebrow">${esc(locale.services.eyebrow)}</p><h2 id="services-title">${esc(locale.services.title)}</h2></div>
+      <p>${esc(locale.services.body)}</p>
+    </div>
+    <div class="service-offers">
+      ${locale.services.items.map((item, index) => `<article class="service-offer reveal">
+        <div class="service-offer__top"><span>0${index + 1}</span><i aria-hidden="true"></i></div>
+        <h3>${esc(item.title)}</h3>
+        <p>${esc(item.body)}</p>
+        <ul>${item.deliverables.map((deliverable) => `<li>${esc(deliverable)}</li>`).join("")}</ul>
+        <a href="#contact" data-service-choice="${attr(item.title)}">${esc(item.cta)}<span aria-hidden="true">↗</span></a>
+      </article>`).join("")}
+    </div>
+  </section>`;
+}
+
+function projectsSection(locale) {
+  const routeKeys = {
+    nuppac: "projectNuppac",
+    lumina: "projectLumina",
+    nexora: "projectNexora"
+  };
+  return `<section class="projects-commercial section-shell" id="projects" aria-labelledby="projects-title">
+    <div class="section-heading reveal">
+      <div><p class="eyebrow">${esc(locale.projects.eyebrow)}</p><h2 id="projects-title">${esc(locale.projects.title)}</h2></div>
+      <p>${esc(locale.projects.body)}</p>
+    </div>
+    <div class="project-showcase">
+      ${locale.projects.items.map((item, index) => `<article class="commercial-project commercial-project--${attr(item.id)} reveal">
+        <div class="commercial-project__visual" aria-hidden="true">
+          <span>0${index + 1}</span><i></i><i></i><i></i>
+        </div>
+        <div class="commercial-project__content">
+          <p class="eyebrow">${esc(item.type)}</p>
+          <h3>${esc(item.name)}</h3>
+          <p>${esc(item.body)}</p>
+          <ul>${item.scope.map((scope) => `<li>${esc(scope)}</li>`).join("")}</ul>
+          <a href="${attr(routeHref(locale, routeKeys[item.id]))}">${esc(locale.projects.linkLabel)}<span aria-hidden="true">↗</span></a>
+        </div>
+      </article>`).join("")}
+    </div>
+  </section>`;
+}
+
+function processSection(locale) {
+  return `<section class="process-commercial section-shell" id="process" aria-labelledby="process-title">
+    <div class="section-heading reveal">
+      <div><p class="eyebrow">${esc(locale.process.eyebrow)}</p><h2 id="process-title">${esc(locale.process.title)}</h2></div>
+      <p>${esc(locale.process.body)}</p>
+    </div>
+    <ol class="process-commercial__list">
+      ${locale.process.steps.map((step) => `<li class="reveal">
+        <span>${esc(step.number)}</span><h3>${esc(step.title)}</h3><p>${esc(step.body)}</p>
+      </li>`).join("")}
+    </ol>
+  </section>`;
+}
+
+function caseStudySection(locale) {
+  const caseStudy = locale.caseStudy;
+  return `<section class="case-study section-shell" id="case-nuppac" aria-labelledby="case-title">
+    <div class="case-study__header reveal">
+      <p class="eyebrow">${esc(caseStudy.eyebrow)}</p>
+      <h2 id="case-title">${esc(caseStudy.title)}</h2>
+      <p>${esc(caseStudy.intro)}</p>
+    </div>
+    <div class="case-study__body">
+      <div class="case-study__visual reveal" aria-hidden="true">
+        <div class="case-window"><span>NUPPAC</span><i></i><i></i><i></i></div>
+      </div>
+      <div class="case-study__details">
+        ${caseStudy.facts.map((fact) => `<article class="reveal"><h3>${esc(fact.label)}</h3><p>${esc(fact.body)}</p></article>`).join("")}
+      </div>
+    </div>
+    <div class="case-study__footer reveal">
+      <ul>${caseStudy.deliverables.map((item) => `<li>${esc(item)}</li>`).join("")}</ul>
+      <a class="button button--primary" href="#contact" data-service-choice="${attr(locale.services.items[1].title)}">${esc(caseStudy.cta)}<span aria-hidden="true">↗</span></a>
+    </div>
+  </section>`;
+}
+
+function differentialsSection(locale) {
+  return `<section class="differentials section-shell" aria-labelledby="differentials-title">
+    <div class="differentials__intro reveal">
+      <p class="eyebrow">${esc(locale.differentials.eyebrow)}</p>
+      <h2 id="differentials-title">${esc(locale.differentials.title)}</h2>
+    </div>
+    <ol class="differentials__list">
+      ${locale.differentials.items.map((item, index) => `<li class="reveal"><span>${String(index + 1).padStart(2, "0")}</span><p>${esc(item)}</p></li>`).join("")}
+    </ol>
+  </section>`;
+}
+
+function aboutSection(locale) {
+  return `<section class="about section-shell" id="about" aria-labelledby="about-title">
+    <div class="about__mark reveal" aria-hidden="true">${standloudSymbol("about", "about__symbol")}</div>
+    <div class="about__copy reveal">
+      <p class="eyebrow">${esc(locale.about.eyebrow)}</p>
+      <h2 id="about-title">${esc(locale.about.title)}</h2>
+      <p>${esc(locale.about.body)}</p>
+      <strong>${esc(locale.about.signature)}</strong>
+    </div>
+  </section>`;
+}
+
+function diagnosticSection(locale) {
+  return `<section class="diagnostic section-shell" id="diagnostic" aria-labelledby="diagnostic-title">
+    <div class="diagnostic__panel reveal">
+      <div>
+        <p class="eyebrow">${esc(locale.diagnostic.eyebrow)}</p>
+        <h2 id="diagnostic-title">${esc(locale.diagnostic.title)}</h2>
+        <p>${esc(locale.diagnostic.body)}</p>
+      </div>
+      <a class="button button--primary" href="#contact">${esc(locale.diagnostic.cta)}<span aria-hidden="true">↗</span></a>
+    </div>
+  </section>`;
+}
+
+function faqSection(locale) {
+  return `<section class="faq section-shell" id="faq">
+    <div class="faq__heading reveal"><p class="eyebrow">${esc(locale.faq.eyebrow)}</p><h2>${esc(locale.faq.title)}</h2></div>
+    <div class="faq-list">
+      ${locale.faq.items.map(([question, answer], index) => `<details class="reveal"${index === 0 ? " open" : ""}><summary><span>${esc(question)}</span><i aria-hidden="true"></i></summary><p>${esc(answer)}</p></details>`).join("")}
+    </div>
+  </section>`;
+}
+
+function contactSection(locale) {
+  const labels = locale.contact.labels;
+  return `<section class="contact section-shell" id="contact" aria-labelledby="contact-title">
+    <div class="contact__shell">
+      <div class="contact__intro reveal">
+        <p class="eyebrow">${esc(locale.contact.eyebrow)}</p>
+        <h2 id="contact-title">${esc(locale.contact.title)}</h2>
+        <p>${esc(locale.contact.body)}</p>
+        <div class="availability"><i></i>${esc(locale.contact.availability)}</div>
+      </div>
+      <form class="quote-form reveal" data-demo-form data-min-submit-delay="1600" novalidate>
+        <div class="field"><label for="name">${esc(labels.name)}</label><input id="name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="contact-channel">${esc(labels.contact)}</label><input id="contact-channel" name="contact" autocomplete="email" required></div>
+        <div class="field field--wide"><label for="business">${esc(labels.business)}</label><input id="business" name="business" autocomplete="organization" required></div>
+        <div class="field"><label for="service">${esc(labels.service)}</label><select id="service" name="service" required>${options(locale.contact.serviceOptions)}</select></div>
+        <div class="field"><label for="budget">${esc(labels.budget)}</label><select id="budget" name="budget" required>${options(locale.contact.budgetOptions)}</select></div>
+        <div class="field field--wide"><label for="current-link">${esc(labels.currentLink)}</label><input id="current-link" name="currentLink" type="url" inputmode="url" placeholder="https://"></div>
+        <div class="field field--wide"><label for="message">${esc(labels.message)}</label><textarea id="message" name="message" rows="5" minlength="20" required></textarea></div>
+        <div class="field field--trap" aria-hidden="true"><label for="website-confirmation">${esc(labels.honeypot)}</label><input id="website-confirmation" name="website" tabindex="-1" autocomplete="off"></div>
+        <button class="button button--primary form-submit" type="submit">${esc(labels.submit)}<span aria-hidden="true">↗</span></button>
+        <p class="form-status" role="status" aria-live="polite" data-form-status
+          data-loading="${attr(locale.contact.loading)}" data-success="${attr(locale.contact.success)}"
+          data-error="${attr(locale.contact.error)}"></p>
+      </form>
+    </div>
+  </section>`;
+}
+
+const homeSceneRenderers = {
+  lumina: scrollProof,
+  brandGravity
+};
+
+function configuredScene(locale, id) {
+  const scene = site.home.scenes.find((item) => item.id === id);
+  if (!scene || !scene.enabled) return "";
+  const renderer = homeSceneRenderers[id];
+  if (!renderer) throw new Error(`Enabled Home scene has no renderer: ${id}`);
+  const intro = locale.animationIntros[id];
+  const afterHref = id === "lumina" ? "#process" : "#diagnostic";
+  return `<div class="scene-experience scene-experience--${attr(id)}">
+    <section class="scene-intro section-shell" aria-labelledby="${attr(id)}-intro-title">
+      <p class="eyebrow">${esc(intro.eyebrow)}</p>
+      <h2 id="${attr(id)}-intro-title">${esc(intro.title)}</h2>
+      <p>${esc(intro.body)}</p>
+    </section>
+    ${renderer(locale)}
+    <div class="scene-outro section-shell">
+      <a class="button button--ghost" href="${afterHref}">${esc(intro.afterCta)}<span aria-hidden="true">↗</span></a>
+    </div>
+  </div>`;
+}
+
+function renderHome(locale) {
+  if (site.home.scenes.length > site.home.maxScenes || site.home.maxScenes > 4) {
+    throw new Error("Home supports a maximum of four configured scenes");
+  }
+  const sectionRenderers = {
+    hero: heroSection,
+    quickProof: quickProofSection,
+    problems: problemsSection,
+    services: servicesSection,
+    projects: projectsSection,
+    process: processSection,
+    "case:nuppac": caseStudySection,
+    differentials: differentialsSection,
+    about: aboutSection,
+    diagnostic: diagnosticSection,
+    faq: faqSection,
+    contact: contactSection
+  };
+  return site.home.sectionOrder.map((sectionId) => {
+    if (sectionId.startsWith("scene:")) return configuredScene(locale, sectionId.slice(6));
+    const renderer = sectionRenderers[sectionId];
+    if (!renderer) throw new Error(`Unknown Home section: ${sectionId}`);
+    return renderer(locale);
+  }).join("\n");
 }
 
 function page(locale) {
@@ -322,10 +554,11 @@ function page(locale) {
       <span></span><span></span><span class="sr-only">${isPt ? "Abrir menu" : "Open menu"}</span>
     </button>
     <nav class="primary-nav" id="primary-nav" aria-label="${isPt ? "Navegação principal" : "Primary navigation"}">
+      <a href="#projects">${esc(locale.nav.projects)}</a>
       <a href="#services">${esc(locale.nav.services)}</a>
       <a href="#process">${esc(locale.nav.process)}</a>
-      <a href="#work">${esc(locale.nav.work)}</a>
-      <a href="#faq">${esc(locale.nav.faq)}</a>
+      <a href="#about">${esc(locale.nav.about)}</a>
+      <a href="#contact">${esc(locale.nav.contact)}</a>
     </nav>
     <div class="header-actions">
       <div class="language-switcher" aria-label="${isPt ? "Selecionar idioma" : "Choose language"}">
@@ -333,115 +566,13 @@ function page(locale) {
         <i aria-hidden="true">|</i>
         <a href="${otherHref}" data-language="${otherLocale.toLowerCase()}">${otherLocale}</a>
       </div>
-      <a class="header-cta" href="#contact">${esc(locale.headerCta)}<span aria-hidden="true">↗</span></a>
+      <a class="header-cta" href="#diagnostic">${esc(locale.nav.diagnostic)}<span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
   <main id="main">
     <div id="top" aria-hidden="true"></div>
-    ${scrollProof(locale)}
-    ${brandGravity(locale)}
-    <section class="world" id="experience" aria-label="${attr(locale.world.aria)}">
-      <div class="world-stage" aria-hidden="true">
-        <div class="world-stage__halo"></div>
-        <div class="world-stage__grid"></div>
-        <img class="world-stage__image world-stage__image--a is-visible"
-          src="../assets/scenes/studio.svg" width="1600" height="900" alt="">
-        <img class="world-stage__image world-stage__image--b"
-          src="../assets/scenes/studio.svg" width="1600" height="900" alt="">
-        <div class="world-stage__vignette"></div>
-        <div class="world-stage__label"><span>SCROLL/WORLD</span><i></i><span>PREVIS 01</span></div>
-      </div>
-      <div class="world-progress" role="progressbar" aria-label="${attr(locale.world.progress)}"
-        aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
-      <nav class="world-route" aria-label="${isPt ? "Cenas da experiência" : "Experience scenes"}">
-        ${locale.world.scenes.map((scene, index) => `<a href="#scene-${attr(scene.id)}" data-route="${index}"${index === 0 ? " class=\"is-active\" aria-current=\"step\"" : ""}><i></i><span>${esc(scene.label)}</span></a>`).join("")}
-      </nav>
-      <div class="world-steps">
-        ${locale.world.scenes.map((scene, index) => sceneStep(scene, index, locale)).join("")}
-      </div>
-      <div class="scroll-hint" aria-hidden="true"><span>${esc(locale.world.scrollHint)}</span><i></i></div>
-    </section>
-
-    <section class="manifesto section-shell">
-      <div class="manifesto__orb" aria-hidden="true"><i></i><i></i><i></i></div>
-      <div class="section-intro reveal">
-        <p class="eyebrow">${esc(locale.manifesto.eyebrow)}</p>
-        <h2>${esc(locale.manifesto.title)}</h2>
-        <p>${esc(locale.manifesto.body)}</p>
-      </div>
-    </section>
-
-    <section class="services section-shell" id="services">
-      <div class="section-heading reveal">
-        <div><p class="eyebrow">${esc(locale.services.eyebrow)}</p><h2>${esc(locale.services.title)}</h2></div>
-        <p>${esc(locale.services.body)}</p>
-      </div>
-      <div class="services-grid">${serviceCards(locale.services.items)}</div>
-    </section>
-
-    <section class="process section-shell" id="process">
-      <div class="section-heading reveal">
-        <div><p class="eyebrow">${esc(locale.process.eyebrow)}</p><h2>${esc(locale.process.title)}</h2></div>
-      </div>
-      <ol class="process-list">
-        ${locale.process.steps.map(([num, title, body]) => `<li class="reveal"><span>${esc(num)}</span><h3>${esc(title)}</h3><p>${esc(body)}</p></li>`).join("")}
-      </ol>
-    </section>
-
-    <section class="reasons section-shell">
-      <div class="reasons__panel reveal">
-        <div class="reasons__visual" aria-hidden="true">
-          ${locale.reasons.indicators.map((indicator, index) => `<span class="metric metric--${["a", "b", "c"][index]}"><i></i>${esc(indicator)}</span>`).join("")}
-          <div class="core"><i></i><i></i><i></i></div>
-        </div>
-        <div class="reasons__copy">
-          <p class="eyebrow">${esc(locale.reasons.eyebrow)}</p>
-          <h2>${esc(locale.reasons.title)}</h2>
-          <ul>${locale.reasons.items.map((item) => `<li><span aria-hidden="true">↗</span>${esc(item)}</li>`).join("")}</ul>
-        </div>
-      </div>
-    </section>
-
-    <section class="portfolio section-shell" id="work">
-      <div class="section-heading reveal">
-        <div><p class="eyebrow">${esc(locale.portfolio.eyebrow)}</p><h2>${esc(locale.portfolio.title)}</h2></div>
-        <p>${esc(locale.portfolio.body)}</p>
-      </div>
-      <div class="portfolio-grid">
-        ${projectCards(locale.portfolio.items)}
-      </div>
-    </section>
-
-    <section class="faq section-shell" id="faq">
-      <div class="faq__heading reveal"><p class="eyebrow">${esc(locale.faq.eyebrow)}</p><h2>${esc(locale.faq.title)}</h2></div>
-      <div class="faq-list">
-        ${locale.faq.items.map(([question, answer], index) => `<details class="reveal"${index === 0 ? " open" : ""}><summary><span>${esc(question)}</span><i aria-hidden="true"></i></summary><p>${esc(answer)}</p></details>`).join("")}
-      </div>
-    </section>
-
-    <section class="contact section-shell" id="contact">
-      <div class="contact__shell">
-        <div class="contact__intro reveal">
-          <p class="eyebrow">${esc(locale.contact.eyebrow)}</p>
-          <h2>${esc(locale.contact.title)}</h2>
-          <p>${esc(locale.contact.body)}</p>
-          <div class="availability"><i></i>${esc(locale.contact.availability)}</div>
-          <a class="contact-email" href="mailto:${attr(site.contact.email)}">${esc(site.contact.email)}</a>
-        </div>
-        <form class="quote-form reveal" data-demo-form novalidate>
-          <div class="field"><label for="name">${esc(locale.contact.labels.name)}</label><input id="name" name="name" autocomplete="name" required></div>
-          <div class="field"><label for="email">${esc(locale.contact.labels.email)}</label><input id="email" name="email" type="email" autocomplete="email" required></div>
-          <div class="field field--wide"><label for="company">${esc(locale.contact.labels.company)}</label><input id="company" name="company" autocomplete="organization"></div>
-          <div class="field field--wide"><label for="service">${esc(locale.contact.labels.service)}</label><select id="service" name="service" required>${options(locale.contact.serviceOptions)}</select></div>
-          <div class="field field--wide"><label for="idea">${esc(locale.contact.labels.idea)}</label><textarea id="idea" name="idea" rows="5" required></textarea></div>
-          <div class="field"><label for="budget">${esc(locale.contact.labels.budget)}</label><select id="budget" name="budget">${options(locale.contact.budgetOptions)}</select></div>
-          <div class="field"><label for="timeline">${esc(locale.contact.labels.timeline)}</label><select id="timeline" name="timeline">${options(locale.contact.timelineOptions)}</select></div>
-          <button class="button button--primary form-submit" type="submit">${esc(locale.contact.labels.submit)}<span aria-hidden="true">↗</span></button>
-          <p class="form-status" role="status" aria-live="polite" data-form-status data-message="${attr(locale.contact.success)}"></p>
-        </form>
-      </div>
-    </section>
+    ${renderHome(locale)}
   </main>
 
   <footer class="site-footer">
@@ -454,11 +585,24 @@ function page(locale) {
         </span>
       </a>
       <p>${esc(locale.footer.line)}</p>
-      <a class="footer-back" href="#top">${esc(locale.footer.back)} ↑</a>
+      <div class="footer-navigation">
+        <nav aria-label="${isPt ? "Links principais" : "Main links"}">
+          <a href="#projects">${esc(locale.nav.projects)}</a>
+          <a href="#services">${esc(locale.nav.services)}</a>
+          <a href="#process">${esc(locale.nav.process)}</a>
+          <a href="#about">${esc(locale.nav.about)}</a>
+          <a href="#contact">${esc(locale.nav.contact)}</a>
+        </nav>
+        <a class="footer-back" href="#top">${esc(locale.footer.back)} ↑</a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>© <span data-year></span> ${esc(site.brand.legalName)}. ${esc(locale.footer.legal)}</span>
-      <nav aria-label="${attr(locale.footer.social)}">${socialLinks.map(([name, href]) => `<a href="${attr(href)}"${href === "#" ? " data-placeholder aria-disabled=\"true\"" : ""}>${esc(name)}</a>`).join("")}</nav>
+      <nav aria-label="${attr(locale.footer.social)}">${socialLinks.map(([name, href]) =>
+        href === "#"
+          ? `<span aria-disabled="true">${esc(name)}</span>`
+          : `<a href="${attr(href)}">${esc(name)}</a>`
+      ).join("")}</nav>
       <div class="language-switcher"><a href="../pt/"${isPt ? " aria-current=\"page\"" : ""}>PT</a><i>|</i><a href="../en/"${!isPt ? " aria-current=\"page\"" : ""}>EN</a></div>
     </div>
   </footer>
@@ -517,7 +661,7 @@ await mkdir(path.join(root, "assets/scenes"), { recursive: true });
 await writeFile(path.join(root, "pt/index.html"), page(locales.pt));
 await writeFile(path.join(root, "en/index.html"), page(locales.en));
 
-await Promise.all(locales.pt.world.scenes.map((scene, index) =>
+await Promise.all(labLocales.pt.world.scenes.map((scene, index) =>
   writeFile(path.join(root, `assets/scenes/${scene.id}.svg`), sceneSvg(scene.id, index))
 ));
 
@@ -537,4 +681,4 @@ const rootPage = `<!doctype html>
 </script></head><body><noscript><p><a href="./pt/">Português</a> · <a href="./en/">English</a></p></noscript></body></html>`;
 await writeFile(path.join(root, "index.html"), rootPage);
 
-console.log("Built PT/EN pages and 8 local scene placeholders.");
+console.log("Built PT/EN commercial Home and preserved 8 Lab scene assets.");

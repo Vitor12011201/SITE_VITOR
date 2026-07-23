@@ -1,0 +1,87 @@
+{
+  "title": "STANDLOUD Lab",
+  "description": "Experimental concepts preserved outside the commercial Home.",
+  "world": {
+    "aria": "An experimental journey through the digital creation process",
+    "scrollHint": "Scroll to enter the studio",
+    "progress": "Experience progress",
+    "scenes": [
+      {
+        "id": "studio",
+        "label": "Entrance",
+        "eyebrow": "DESIGN, CODE AND STRATEGY",
+        "title": "Your business deserves to be impossible to ignore.",
+        "body": "We create websites and landing pages that turn ideas into memorable digital experiences.",
+        "tags": ["Distinctive websites", "Landing pages", "Digital experiences"],
+        "primary": "Start a project",
+        "secondary": "Explore our services",
+        "alt": "Futuristic digital studio floating in a dark space"
+      },
+      {
+        "id": "strategy",
+        "label": "Strategy",
+        "eyebrow": "BEFORE THE DESIGN",
+        "title": "We start by understanding your business.",
+        "body": "Every project begins with a clear understanding of your goals, audience and positioning.",
+        "tags": ["Strategy", "User experience", "Positioning"],
+        "alt": "Strategy room with journey maps, wireframes and data"
+      },
+      {
+        "id": "design",
+        "label": "Design",
+        "eyebrow": "DISTINCTIVE DESIGN",
+        "title": "No generic-looking websites.",
+        "body": "We create a digital identity aligned with your brand’s personality and business goals.",
+        "tags": ["UI Design", "Responsive layouts", "Visual identity"],
+        "alt": "Visual laboratory with components, typography and prototypes"
+      },
+      {
+        "id": "development",
+        "label": "Build",
+        "eyebrow": "DEVELOPMENT",
+        "title": "Beautiful on the outside. Solid on the inside.",
+        "body": "We develop fast, responsive and reliable websites built to work across different devices.",
+        "tags": ["Performance", "Clean structure", "Mobile first"],
+        "alt": "Technology space with a website being assembled in modular blocks"
+      },
+      {
+        "id": "services",
+        "label": "Services",
+        "eyebrow": "WHAT WE CREATE",
+        "title": "Digital solutions built for different goals.",
+        "body": "From a business presence to a conversion-focused page, every deliverable is designed to perform a real job.",
+        "tags": ["Business websites", "Landing pages", "Interactive experiences"],
+        "alt": "Gallery of digital products and portals on display"
+      },
+      {
+        "id": "value",
+        "label": "Impact",
+        "eyebrow": "MORE THAN APPEARANCE",
+        "title": "Your website should work for your business.",
+        "body": "We combine strategy, design and technology to build trust and guide visitors toward action.",
+        "tags": ["Visitor focused", "Built to grow", "Post-launch support"],
+        "alt": "Control center showing speed, conversion and responsive quality"
+      },
+      {
+        "id": "portfolio",
+        "label": "Projects",
+        "eyebrow": "SELECTED WORK",
+        "title": "Our work speaks through the experience.",
+        "body": "Every project is designed to solve a real problem and present a brand at its best.",
+        "tags": ["Concept project", "Interface study", "Experimental experience"],
+        "alt": "Futuristic gallery with large screens presenting digital projects"
+      },
+      {
+        "id": "launch",
+        "label": "Start",
+        "eyebrow": "LET’S BUILD",
+        "title": "Your next project can start here.",
+        "body": "Tell us about your idea and let’s discuss how to turn it into a digital experience.",
+        "tags": [],
+        "primary": "Request a quote",
+        "secondary": "Contact on WhatsApp",
+        "alt": "Illuminated portal representing the start of a new project"
+      }
+    ]
+  }
+}

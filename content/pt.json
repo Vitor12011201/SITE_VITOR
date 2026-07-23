@@ -2,24 +2,93 @@
   "lang": "pt-BR",
   "locale": "pt",
   "seo": {
-    "title": "Sites e landing pages memoráveis",
-    "description": "Estúdio de criação de sites, landing pages e experiências digitais com estratégia, design autoral e desenvolvimento."
+    "title": "Sites e landing pages estratégicas",
+    "description": "A STANDLOUD cria sites, landing pages e experiências digitais que transformam atenção em oportunidades reais."
   },
   "skip": "Pular para o conteúdo",
   "nav": {
-    "world": "Experiência",
+    "projects": "Projetos",
     "services": "Serviços",
     "process": "Processo",
-    "work": "Portfólio",
-    "faq": "Dúvidas",
-    "contact": "Orçamento"
+    "about": "Sobre",
+    "contact": "Contato",
+    "diagnostic": "Solicitar diagnóstico"
   },
-  "headerCta": "Falar sobre um projeto",
+  "hero": {
+    "eyebrow": "WEBSITES • LANDING PAGES • DIGITAL EXPERIENCES",
+    "title": "Seu negócio merece ser impossível de ignorar.",
+    "body": "Criamos sites e landing pages estratégicas para marcas e especialistas que precisam transformar atenção em contatos, autoridade e oportunidades reais.",
+    "primary": "Solicitar diagnóstico",
+    "secondary": "Ver projetos",
+    "micro": "Design, desenvolvimento e publicação em um único processo.",
+    "proof": "Projeto real: NUPPAC • Experiência responsiva • Português e inglês",
+    "visual": [
+      { "number": "01", "label": "CLAREZA", "body": "Sua oferta é compreendida." },
+      { "number": "02", "label": "PRESENÇA", "body": "Sua marca conquista atenção." },
+      { "number": "03", "label": "AÇÃO", "body": "O visitante encontra o próximo passo." }
+    ]
+  },
+  "quickProof": {
+    "eyebrow": "PROVA EM CONTEXTO",
+    "title": "Projetos reais e estudos que mostram como pensamos.",
+    "items": [
+      {
+        "name": "NUPPAC",
+        "type": "Projeto real",
+        "body": "Site, cursos, pagamentos e publicação."
+      },
+      {
+        "name": "Lumina",
+        "type": "Projeto conceitual",
+        "body": "Direção editorial e experiência arquitetônica."
+      },
+      {
+        "name": "Nexora",
+        "type": "Projeto conceitual",
+        "body": "Presença de marca orientada pela atenção."
+      }
+    ],
+    "process": "Design, desenvolvimento e publicação realizados no mesmo processo."
+  },
+  "problems": {
+    "eyebrow": "O QUE PRECISA MUDAR",
+    "title": "Um site bonito não basta. Ele precisa conquistar atenção e orientar a próxima ação.",
+    "items": [
+      "Sua marca parece menor do que realmente é.",
+      "As pessoas entram, mas não entendem sua oferta.",
+      "O interesse não se transforma em contato."
+    ]
+  },
+  "services": {
+    "eyebrow": "SERVIÇOS",
+    "title": "A estrutura certa para o objetivo certo.",
+    "body": "Estratégia, design e desenvolvimento reunidos em entregas claras, sem tabelas de preço genéricas.",
+    "items": [
+      {
+        "title": "Landing Page Estratégica",
+        "body": "Uma página focada em apresentar uma oferta com clareza e conduzir o visitante até a próxima ação.",
+        "deliverables": ["Estratégia de página", "Copy e hierarquia", "Design responsivo", "Desenvolvimento e publicação"],
+        "cta": "Conversar sobre landing page"
+      },
+      {
+        "title": "Site Institucional",
+        "body": "Uma presença digital completa para comunicar posicionamento, serviços, projetos e diferenciais.",
+        "deliverables": ["Arquitetura de informação", "Direção visual", "Páginas institucionais", "SEO básico e publicação"],
+        "cta": "Conversar sobre site"
+      },
+      {
+        "title": "Experiência Digital Interativa",
+        "body": "Movimento e interação aplicados com intenção para marcas, lançamentos e apresentações especiais.",
+        "deliverables": ["Conceito narrativo", "Prototipagem", "Motion orientado ao scroll", "Implementação responsiva"],
+        "cta": "Conversar sobre experiência"
+      }
+    ]
+  },
   "scrollProof": {
-    "aria": "Prova de animação por scroll do rascunho ao lançamento",
+    "aria": "Animação por scroll do conceito ao lançamento",
     "eyebrow": "PROVA DE SCROLL",
     "title": "Do conceito ao projeto publicado.",
-    "body": "Ideias se transformam em experiências digitais enquanto cada parte de um site real encontra seu lugar.",
+    "body": "Ideias se transformam em experiências digitais enquanto cada parte de um site real encontra o seu lugar.",
     "scrollHint": "Role para montar o projeto",
     "launch": "Projeto publicado",
     "status": "Scroll controla a construção visual",
@@ -48,18 +117,56 @@
       "ctaButton": "Iniciar conversa"
     }
   },
+  "animationIntros": {
+    "lumina": {
+      "eyebrow": "DEMONSTRAÇÃO 01",
+      "title": "Do conceito ao projeto publicado.",
+      "body": "Estratégia, estrutura, design e desenvolvimento reunidos em uma experiência completa.",
+      "afterCta": "Conhecer nosso processo"
+    },
+    "brandGravity": {
+      "eyebrow": "DEMONSTRAÇÃO 02",
+      "title": "A maioria das marcas disputa atenção. Algumas criam sua própria gravidade.",
+      "body": "Veja como hierarquia, contraste e movimento transformam ruído em presença.",
+      "afterCta": "Quero fortalecer minha presença digital"
+    }
+  },
+  "projects": {
+    "eyebrow": "PROJETOS",
+    "title": "Trabalho real, conceitos honestos.",
+    "body": "Cada card identifica claramente o que já foi entregue e o que existe como estudo demonstrativo.",
+    "linkLabel": "Ver projeto",
+    "items": [
+      {
+        "id": "nuppac",
+        "name": "NUPPAC",
+        "type": "Projeto real",
+        "body": "Plataforma institucional com apresentação de cursos, integração de pagamentos e publicação responsiva.",
+        "scope": ["Estratégia", "UI", "Desenvolvimento", "Pagamentos", "Publicação"]
+      },
+      {
+        "id": "lumina",
+        "name": "Lumina Arquitetura",
+        "type": "Projeto conceitual",
+        "body": "Estudo editorial para um estúdio de arquitetura contemporânea.",
+        "scope": ["Direção visual", "UI", "Motion", "Responsividade"]
+      },
+      {
+        "id": "nexora",
+        "name": "Nexora",
+        "type": "Projeto conceitual",
+        "body": "Experimento de presença digital em que uma marca conquista o centro da atenção.",
+        "scope": ["Narrativa", "UI", "Scroll", "Interação"]
+      }
+    ]
+  },
   "brandGravity": {
     "aria": "Animação por scroll sobre a gravidade de uma marca memorável",
     "eyebrow": "CENA 02",
     "title": "Gravidade da marca",
     "status": "Ruído digital encontra um centro de atenção",
     "established": "Presença estabelecida",
-    "noise": [
-      "Mais uma solução",
-      "Descubra agora",
-      "Conheça nossos serviços",
-      "Resultados rápidos"
-    ],
+    "noise": ["Mais uma solução", "Descubra agora", "Conheça nossos serviços", "Resultados rápidos"],
     "noiseBody": "Uma experiência para todos os negócios.",
     "noiseCta": "Saiba mais",
     "landing": {
@@ -83,196 +190,88 @@
       "proofBrands": ["Nexus", "CloudWave", "Innova", "Nextly", "Modular", "Bold"]
     }
   },
-  "world": {
-    "aria": "Uma jornada pelo processo de criação digital",
-    "scrollHint": "Role para entrar no estúdio",
-    "progress": "Progresso da experiência",
-    "scenes": [
-      {
-        "id": "studio",
-        "label": "Entrada",
-        "eyebrow": "DESIGN, CÓDIGO E ESTRATÉGIA",
-        "title": "Seu negócio merece ser impossível de ignorar.",
-        "body": "Criamos sites e landing pages que transformam ideias em experiências digitais marcantes.",
-        "tags": ["Sites autorais", "Landing pages", "Experiências digitais"],
-        "primary": "Começar um projeto",
-        "secondary": "Ver nossos serviços",
-        "alt": "Estúdio digital futurista flutuando em um espaço escuro"
-      },
-      {
-        "id": "strategy",
-        "label": "Estratégia",
-        "eyebrow": "ANTES DO DESIGN",
-        "title": "Primeiro entendemos o seu negócio.",
-        "body": "Cada projeto começa com uma análise dos seus objetivos, público e posicionamento.",
-        "tags": ["Estratégia", "Experiência do usuário", "Posicionamento"],
-        "alt": "Sala de estratégia com mapas de jornada, wireframes e dados"
-      },
-      {
-        "id": "design",
-        "label": "Design",
-        "eyebrow": "DESIGN AUTORAL",
-        "title": "Nada de sites com aparência genérica.",
-        "body": "Criamos uma identidade visual digital alinhada à personalidade e aos objetivos da sua marca.",
-        "tags": ["UI Design", "Responsividade", "Identidade visual"],
-        "alt": "Laboratório visual com componentes, tipografias e protótipos"
-      },
-      {
-        "id": "development",
-        "label": "Construção",
-        "eyebrow": "CONSTRUÇÃO",
-        "title": "Bonito por fora. Bem construído por dentro.",
-        "body": "Desenvolvemos sites rápidos, responsivos, organizados e preparados para funcionar em diferentes dispositivos.",
-        "tags": ["Performance", "Código organizado", "Mobile first"],
-        "alt": "Espaço tecnológico com um site sendo construído por blocos"
-      },
-      {
-        "id": "services",
-        "label": "Serviços",
-        "eyebrow": "O QUE CRIAMOS",
-        "title": "Soluções digitais para diferentes objetivos.",
-        "body": "Da presença institucional à página focada em conversão, cada entrega nasce para cumprir uma função real.",
-        "tags": ["Sites institucionais", "Landing pages", "Experiências interativas"],
-        "alt": "Galeria de portais e produtos digitais em exibição"
-      },
-      {
-        "id": "value",
-        "label": "Impacto",
-        "eyebrow": "MAIS DO QUE APARÊNCIA",
-        "title": "Um site precisa trabalhar pelo seu negócio.",
-        "body": "Combinamos estratégia, design e tecnologia para transmitir profissionalismo e conduzir o visitante para a ação.",
-        "tags": ["Foco no visitante", "Estrutura escalável", "Suporte pós-lançamento"],
-        "alt": "Central de controle com métricas, velocidade e responsividade"
-      },
-      {
-        "id": "portfolio",
-        "label": "Projetos",
-        "eyebrow": "PROJETOS",
-        "title": "Nosso trabalho fala através da experiência.",
-        "body": "Cada projeto é criado para resolver um problema real e apresentar uma marca da melhor maneira possível.",
-        "tags": ["Projeto conceitual", "Estudo de interface", "Experiência experimental"],
-        "alt": "Galeria futurista com grandes telas apresentando projetos"
-      },
-      {
-        "id": "launch",
-        "label": "Começar",
-        "eyebrow": "VAMOS CONSTRUIR",
-        "title": "Seu próximo projeto pode começar aqui.",
-        "body": "Conte um pouco sobre sua ideia e vamos conversar sobre como transformá-la em uma experiência digital.",
-        "tags": [],
-        "primary": "Solicitar orçamento",
-        "secondary": "Falar pelo WhatsApp",
-        "alt": "Portal iluminado representando o início de um novo projeto"
-      }
-    ]
-  },
-  "manifesto": {
-    "eyebrow": "PRESENÇA QUE PERMANECE",
-    "title": "Criamos sites que não apenas apresentam uma empresa. Eles fazem a empresa ser lembrada.",
-    "body": "O design chama a atenção. A estratégia dá direção. O código transforma tudo em uma experiência rápida, clara e pronta para gerar oportunidades."
-  },
-  "services": {
-    "eyebrow": "SERVIÇOS",
-    "title": "O que podemos construir juntos.",
-    "body": "Escopo sob medida, sem pacotes genéricos. Escolhemos a solução certa para o momento do seu negócio.",
-    "items": [
-      ["Sites institucionais", "Uma presença profissional que comunica valor, organiza seus serviços e gera confiança."],
-      ["Landing pages", "Páginas focadas em uma oferta, com narrativa clara e caminhos de conversão."],
-      ["Portfólios profissionais", "Trabalhos, método e personalidade apresentados em uma experiência memorável."],
-      ["Páginas de lançamento", "Estruturas para produtos, cursos, eventos e novas ofertas chegarem ao mercado."],
-      ["Redesign de sites", "Uma evolução visual e técnica para sites antigos, lentos ou desalinhados."],
-      ["Manutenção e melhorias", "Ajustes, novas seções, performance e evolução contínua depois da publicação."],
-      ["Integrações com pagamentos", "Fluxos conectados às ferramentas de venda que fazem sentido para sua operação."],
-      ["Experiências interativas", "Movimento, profundidade e interações especiais para marcas que querem ir além."]
-    ]
-  },
   "process": {
-    "eyebrow": "COMO TRABALHAMOS",
-    "title": "Clareza em cada etapa.",
+    "eyebrow": "PROCESSO",
+    "title": "Do diagnóstico à publicação, sem etapas invisíveis.",
+    "body": "Cada fase tem um objetivo claro, uma entrega concreta e um ponto de aprovação.",
     "steps": [
-      ["01", "Descoberta", "Entendemos o negócio, o público, a oferta e o que o projeto precisa alcançar."],
-      ["02", "Direção", "Organizamos conteúdo, jornada, referências e uma direção visual própria."],
-      ["03", "Criação", "Desenhamos e desenvolvemos com revisões claras ao longo do processo."],
-      ["04", "Lançamento", "Testamos, publicamos e deixamos a estrutura preparada para evoluir."]
+      { "number": "01", "title": "Diagnóstico", "body": "Entendemos o negócio, a oferta, o público e o que precisa melhorar." },
+      { "number": "02", "title": "Estratégia", "body": "Definimos mensagem, estrutura, jornada e prioridades da página." },
+      { "number": "03", "title": "Design", "body": "Criamos a direção visual e validamos a experiência nas telas principais." },
+      { "number": "04", "title": "Desenvolvimento", "body": "Transformamos o design em uma implementação rápida, acessível e responsiva." },
+      { "number": "05", "title": "Publicação", "body": "Revisamos conteúdo, dispositivos e configuração antes de colocar o projeto no ar." }
     ]
   },
-  "reasons": {
-    "eyebrow": "POR QUE NOS CONTRATAR",
-    "title": "Um parceiro para pensar e construir.",
-    "indicators": ["Estratégia", "Clareza", "Evolução"],
+  "caseStudy": {
+    "eyebrow": "ESTUDO DE CASO REAL",
+    "title": "NUPPAC: uma presença digital para apresentar, ensinar e vender.",
+    "intro": "O projeto reuniu conteúdo institucional, cursos e uma jornada de pagamento em uma experiência responsiva.",
+    "facts": [
+      { "label": "Contexto", "body": "Organizar em um único ambiente a apresentação da instituição e sua oferta de cursos." },
+      { "label": "Desafio", "body": "Criar uma navegação clara entre conteúdo institucional, páginas de cursos e inscrição." },
+      { "label": "Solução", "body": "Estrutura de páginas, interface responsiva e fluxo conectado à integração de pagamentos." }
+    ],
+    "deliverables": ["Páginas institucionais", "Páginas de cursos", "Integração de pagamentos", "Experiência responsiva", "Publicação"],
+    "cta": "Conversar sobre um projeto semelhante"
+  },
+  "differentials": {
+    "eyebrow": "DIFERENCIAIS",
+    "title": "Decisões concretas em vez de promessas genéricas.",
     "items": [
-      "Design pensado para sua marca",
-      "Comunicação clara durante o projeto",
-      "Site responsivo",
-      "Foco na experiência do visitante",
-      "Estrutura preparada para crescer",
-      "Suporte após a entrega"
+      "Design e desenvolvimento no mesmo processo.",
+      "Criado para o negócio, sem apenas trocar conteúdo de template.",
+      "Mobile projetado como experiência própria.",
+      "Movimento usado para orientar atenção.",
+      "Escopo e etapas apresentados com clareza."
     ]
   },
-  "portfolio": {
-    "eyebrow": "PORTFÓLIO",
-    "title": "Trabalhos em construção. Critério já em exibição.",
-    "body": "Enquanto os primeiros cases reais são preparados, estes estudos demonstram direções visuais e capacidades — sem clientes ou resultados inventados.",
-    "items": [
-      {
-        "type": "Projeto conceitual",
-        "title": "Clínica contemporânea",
-        "body": "Estudo de uma presença digital premium para o setor de saúde.",
-        "tags": "Identidade · UX · Site",
-        "image": "design",
-        "caseUrl": "",
-        "status": "concept"
-      },
-      {
-        "type": "Estudo de interface",
-        "title": "Consultoria modular",
-        "body": "Exploração de um sistema visual flexível para serviços profissionais.",
-        "tags": "UI · Sistema · Motion",
-        "image": "services",
-        "caseUrl": "",
-        "status": "concept"
-      },
-      {
-        "type": "Experiência experimental",
-        "title": "Lançamento digital",
-        "body": "Narrativa interativa para apresentar um produto digital.",
-        "tags": "3D · Scroll · Prototipagem",
-        "image": "portfolio",
-        "caseUrl": "",
-        "status": "concept"
-      }
-    ]
+  "about": {
+    "eyebrow": "SOBRE",
+    "title": "Um estúdio enxuto, com visão completa do projeto.",
+    "body": "A STANDLOUD é um estúdio digital criado por Vitor Santana para desenvolver sites, landing pages e experiências interativas que ajudam negócios a se apresentar com mais clareza, presença e personalidade.",
+    "signature": "Estratégia, design e código trabalhando na mesma direção."
+  },
+  "diagnostic": {
+    "eyebrow": "PRIMEIRO PASSO",
+    "title": "Diagnóstico de presença digital",
+    "body": "Envie seu site, Instagram ou ideia de projeto. Analisamos sua apresentação atual e identificamos as principais oportunidades de melhoria.",
+    "cta": "Solicitar diagnóstico"
   },
   "faq": {
     "eyebrow": "PERGUNTAS FREQUENTES",
-    "title": "Antes de começarmos.",
+    "title": "O que você precisa saber antes de começar.",
     "items": [
-      ["Quanto custa criar um site?", "O valor depende do tamanho, das funcionalidades e da complexidade do projeto. Após entender suas necessidades, enviamos uma proposta personalizada."],
-      ["Quanto tempo demora?", "O prazo varia de acordo com o projeto. Uma landing page simples pode ser concluída mais rapidamente, enquanto sites maiores exigem mais etapas."],
-      ["O site funcionará no celular?", "Sim. Todos os projetos são desenvolvidos para funcionar em computadores, tablets e celulares."],
-      ["Vocês oferecem manutenção?", "Sim. Podemos cuidar de atualizações, ajustes, melhorias e suporte após a publicação."],
-      ["Posso solicitar alterações?", "Sim. O processo inclui etapas de revisão e aprovação."]
+      ["Quanto custa um site?", "O investimento depende do escopo, quantidade de páginas, conteúdo e integrações. Depois do diagnóstico, você recebe uma proposta adequada ao projeto."],
+      ["Quanto tempo demora?", "O prazo varia conforme o escopo e a velocidade das aprovações. A proposta apresenta as etapas e uma previsão antes do início."],
+      ["A STANDLOUD cria os textos?", "Podemos estruturar a mensagem, orientar o conteúdo e desenvolver a copy prevista no escopo. Materiais técnicos dependem da colaboração do cliente."],
+      ["O site funciona no celular?", "Sim. O mobile é projetado como uma experiência própria e validado em diferentes tamanhos de tela."],
+      ["Domínio e hospedagem estão incluídos?", "Podemos orientar e configurar esses serviços. Custos recorrentes de domínio, hospedagem ou plataformas são apresentados separadamente."],
+      ["Existe manutenção?", "Sim. Manutenção, melhorias e suporte pós-publicação podem ser contratados conforme a necessidade."],
+      ["Como funciona o pagamento?", "As condições são definidas na proposta de acordo com o escopo e o cronograma, antes do início do projeto."],
+      ["O projeto pertence ao cliente?", "Após a conclusão e o pagamento acordado, o cliente recebe os arquivos e acessos previstos em contrato." ]
     ]
   },
   "contact": {
     "eyebrow": "VAMOS CONVERSAR",
-    "title": "Conte a ideia. Nós ajudamos a dar forma.",
-    "body": "Preencha o briefing inicial. Nesta versão de projeto, o formulário funciona como demonstração e ainda não envia dados para um servidor.",
+    "title": "Conte o que precisa mudar.",
+    "body": "Este formulário prepara o diagnóstico inicial. Nesta versão, os dados são validados localmente e ainda não são enviados para serviços externos.",
     "availability": "Novos projetos",
     "labels": {
       "name": "Nome",
-      "email": "E-mail",
-      "company": "Empresa ou projeto",
-      "service": "Qual serviço você procura?",
-      "idea": "Conte um pouco sobre sua ideia",
-      "budget": "Orçamento estimado",
-      "timeline": "Prazo desejado",
-      "submit": "Enviar mensagem"
+      "contact": "E-mail ou WhatsApp",
+      "business": "Nome do negócio",
+      "service": "Serviço desejado",
+      "currentLink": "Site, Instagram ou link atual",
+      "budget": "Faixa de investimento",
+      "message": "Mensagem",
+      "submit": "Solicitar diagnóstico",
+      "honeypot": "Não preencha este campo"
     },
-    "serviceOptions": ["Selecione uma opção", "Site institucional", "Landing page", "Portfólio", "Redesign", "Manutenção", "Outro"],
-    "budgetOptions": ["Prefiro conversar", "Até R$ 3 mil", "R$ 3 mil–R$ 6 mil", "R$ 6 mil–R$ 12 mil", "Acima de R$ 12 mil"],
-    "timelineOptions": ["Sem prazo definido", "Até 30 dias", "1–2 meses", "2–4 meses", "Mais de 4 meses"],
-    "success": "Briefing validado. Conecte um serviço de formulários para habilitar o envio."
+    "serviceOptions": ["Selecione uma opção", "Landing Page Estratégica", "Site Institucional", "Experiência Digital Interativa", "Ainda não tenho certeza"],
+    "budgetOptions": ["Selecione uma faixa", "Ainda não definido", "Até R$ 5 mil", "R$ 5 mil a R$ 10 mil", "Acima de R$ 10 mil"],
+    "success": "Diagnóstico preparado. A integração de envio será conectada após sua autorização.",
+    "error": "Revise os campos indicados antes de continuar.",
+    "loading": "Preparando sua solicitação..."
   },
   "footer": {
     "line": "Experiências digitais criadas para marcas que não nasceram para passar despercebidas.",

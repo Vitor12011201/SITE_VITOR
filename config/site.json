@@ -14,6 +14,96 @@
     "blue": "#2563EB",
     "cyan": "#22D3EE"
   },
+  "home": {
+    "maxScenes": 4,
+    "scenes": [
+      {
+        "id": "lumina",
+        "enabled": true
+      },
+      {
+        "id": "brandGravity",
+        "enabled": true
+      },
+      {
+        "id": "attentionToAction",
+        "enabled": false
+      }
+    ],
+    "sectionOrder": [
+      "hero",
+      "quickProof",
+      "problems",
+      "services",
+      "scene:lumina",
+      "projects",
+      "scene:brandGravity",
+      "process",
+      "case:nuppac",
+      "scene:attentionToAction",
+      "differentials",
+      "about",
+      "diagnostic",
+      "faq",
+      "contact"
+    ]
+  },
+  "routes": {
+    "projects": {
+      "pt": "/pt/projetos/",
+      "en": "/en/projects/",
+      "implemented": false,
+      "fallback": "#projects"
+    },
+    "projectNuppac": {
+      "pt": "/pt/projetos/nuppac/",
+      "en": "/en/projects/nuppac/",
+      "implemented": false,
+      "fallback": "#case-nuppac"
+    },
+    "projectLumina": {
+      "pt": "/pt/projetos/lumina/",
+      "en": "/en/projects/lumina/",
+      "implemented": false,
+      "fallback": "#scroll-proof"
+    },
+    "projectNexora": {
+      "pt": "/pt/projetos/nexora/",
+      "en": "/en/projects/nexora/",
+      "implemented": false,
+      "fallback": "#brand-gravity"
+    },
+    "services": {
+      "pt": "/pt/servicos/",
+      "en": "/en/services/",
+      "implemented": false,
+      "fallback": "#services"
+    },
+    "process": {
+      "pt": "/pt/processo/",
+      "en": "/en/process/",
+      "implemented": false,
+      "fallback": "#process"
+    },
+    "about": {
+      "pt": "/pt/sobre/",
+      "en": "/en/about/",
+      "implemented": false,
+      "fallback": "#about"
+    },
+    "contact": {
+      "pt": "/pt/contato/",
+      "en": "/en/contact/",
+      "implemented": false,
+      "fallback": "#contact"
+    },
+    "lab": {
+      "pt": "/pt/lab/",
+      "en": "/en/lab/",
+      "implemented": false,
+      "fallback": "#projects"
+    }
+  },
   "contact": {
     "email": "hello@example.com",
     "whatsappUrl": "#contact",

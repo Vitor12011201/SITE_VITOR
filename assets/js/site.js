@@ -2,20 +2,11 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const header = document.querySelector("[data-header]");
   const menuButton = document.querySelector(".menu-toggle");
-  const world = document.querySelector(".world");
   const scrollProof = document.querySelector("[data-scroll-proof]");
   const proofBlocks = [...document.querySelectorAll(".wire-block")];
   const brandGravity = document.querySelector("[data-brand-gravity]");
   const gravityPanels = [...document.querySelectorAll(".noise-panel")];
   const gravityComponents = [...document.querySelectorAll(".gravity-component")];
-  const steps = [...document.querySelectorAll(".world-step")];
-  const stageImages = [...document.querySelectorAll(".world-stage__image")];
-  const routes = [...document.querySelectorAll("[data-route]")];
-  const progress = document.querySelector(".world-progress");
-  const progressBar = progress?.querySelector("span");
-  const routeNav = document.querySelector(".world-route");
-  let activeScene = 0;
-  let visibleLayer = 0;
   let frameRequested = false;
 
   const clamp01 = (value) => Math.min(1, Math.max(0, value));
@@ -63,27 +54,6 @@
     { x: 225, y: 195, z: 110, r: 6, s: 0.96 },
     { x: 120, y: 275, z: 150, r: -4, s: 0.98 }
   ];
-
-  const setScene = (index) => {
-    if (index === activeScene && steps[index]?.classList.contains("is-active")) return;
-    activeScene = index;
-    steps.forEach((step, i) => step.classList.toggle("is-active", i === index));
-    routes.forEach((route, i) => {
-      route.classList.toggle("is-active", i === index);
-      if (i === index) route.setAttribute("aria-current", "step");
-      else route.removeAttribute("aria-current");
-    });
-
-    if (!stageImages.length || window.innerWidth <= 760 || reducedMotion) return;
-    const nextLayer = visibleLayer === 0 ? 1 : 0;
-    const nextImage = stageImages[nextLayer];
-    nextImage.src = steps[index].dataset.image;
-    nextImage.onload = () => {
-      stageImages[visibleLayer].classList.remove("is-visible");
-      nextImage.classList.add("is-visible");
-      visibleLayer = nextLayer;
-    };
-  };
 
   const setScrollProofProgress = (value) => {
     if (!scrollProof) return;
@@ -208,14 +178,6 @@
       const travel = Math.max(1, brandGravity.offsetHeight - window.innerHeight);
       setBrandGravityProgress(clamp01(-rect.top / travel));
     }
-    if (world && progress && progressBar) {
-      const rect = world.getBoundingClientRect();
-      const travel = Math.max(1, world.offsetHeight - window.innerHeight);
-      const value = Math.min(1, Math.max(0, -rect.top / travel));
-      progressBar.style.transform = `scaleX(${value})`;
-      progress.setAttribute("aria-valuenow", String(Math.round(value * 100)));
-      routeNav?.classList.toggle("is-in-world", rect.top <= 0 && rect.bottom >= window.innerHeight);
-    }
     frameRequested = false;
   };
 
@@ -224,16 +186,6 @@
     frameRequested = true;
     requestAnimationFrame(readScroll);
   };
-
-  if ("IntersectionObserver" in window && steps.length) {
-    const sceneObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible) setScene(Number(visible.target.dataset.scene));
-    }, { rootMargin: "-20% 0px -20% 0px", threshold: [0.2, 0.4, 0.6] });
-    steps.forEach((step) => sceneObserver.observe(step));
-  }
 
   const revealItems = [...document.querySelectorAll(".reveal")];
   if (!reducedMotion && "IntersectionObserver" in window) {
@@ -268,20 +220,54 @@
     });
   });
 
-  document.querySelector("[data-demo-form]")?.addEventListener("submit", (event) => {
+  const form = document.querySelector("[data-demo-form]");
+  const formStartedAt = performance.now();
+  document.querySelectorAll("[data-service-choice]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const select = form?.querySelector("[name='service']");
+      if (!select) return;
+      select.value = link.dataset.serviceChoice;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  });
+
+  form?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const form = event.currentTarget;
     const status = form.querySelector("[data-form-status]");
+    const submit = form.querySelector("[type='submit']");
+    const trap = form.querySelector("[name='website']");
+    const minimumDelay = Number(form.dataset.minSubmitDelay || 0);
+    status.classList.remove("is-success", "is-error");
+
+    if (trap?.value || performance.now() - formStartedAt < minimumDelay) {
+      status.textContent = status.dataset.error;
+      status.classList.add("is-error");
+      return;
+    }
+
     if (!form.checkValidity()) {
+      status.textContent = status.dataset.error;
+      status.classList.add("is-error");
+      form.querySelector(":invalid")?.focus();
       form.reportValidity();
       return;
     }
-    status.textContent = status.dataset.message;
+
+    submit.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    form.classList.add("is-sending");
+    status.textContent = status.dataset.loading;
+
+    window.setTimeout(() => {
+      form.classList.remove("is-sending");
+      form.removeAttribute("aria-busy");
+      submit.disabled = false;
+      status.textContent = status.dataset.success;
+      status.classList.add("is-success");
+      form.reset();
+    }, reducedMotion ? 0 : 350);
   });
 
-  document.querySelectorAll("[data-placeholder]").forEach((link) => {
-    link.addEventListener("click", (event) => event.preventDefault());
-  });
   document.querySelectorAll("[data-year]").forEach((node) => {
     node.textContent = new Date().getFullYear();
   });
@@ -291,5 +277,4 @@
   if (scrollProof && reducedMotion) setScrollProofProgress(1);
   if (brandGravity && reducedMotion) setBrandGravityProgress(1);
   readScroll();
-  setScene(0);
 })();
