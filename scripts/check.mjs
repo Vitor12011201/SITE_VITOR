@@ -77,6 +77,7 @@ if (!clientJs.includes('localStorage.setItem("nova-frame-language"')) {
 }
 if (!clientJs.includes("[data-scroll-proof]") ||
     !clientJs.includes("--scene-progress") ||
+    !clientJs.includes('classList.toggle("is-settled", progressValue >= 0.82)') ||
     !clientJs.includes("requestAnimationFrame(readScroll)") ||
     !clientJs.includes("setScrollProofProgress(clamp01(-rect.top / travel))")) {
   errors.push("scroll proof: missing normalized rAF scroll progress contract");

@@ -83,7 +83,8 @@
     scrollProof.style.setProperty("--proof-glow", `${(polish * 1.4).toFixed(2)}rem`);
     scrollProof.style.setProperty("--proof-launch-offset", `${lerp(12, 0, launch).toFixed(1)}px`);
     scrollProof.style.setProperty("--proof-sheen-x", `${lerp(-145, 145, launch).toFixed(1)}%`);
-    scrollProof.style.setProperty("--proof-camera-transform", `translate3d(0, ${lerp(24, 0, cameraSettle).toFixed(1)}px, 0) rotateX(${lerp(isMobile ? 14 : 50, isMobile ? 0.5 : 2, cameraSettle).toFixed(2)}deg) rotateZ(${lerp(isMobile ? -1.5 : -7, 0, cameraSettle).toFixed(2)}deg) scale(${lerp(isMobile ? 0.9 : 0.8, isMobile ? 0.99 : 0.98, cameraSettle).toFixed(3)})`);
+    scrollProof.style.setProperty("--proof-camera-transform", `translate3d(0, ${lerp(24, 0, cameraSettle).toFixed(1)}px, 0) rotateX(${lerp(isMobile ? 14 : 50, isMobile ? 0.25 : 0.5, cameraSettle).toFixed(2)}deg) rotateZ(${lerp(isMobile ? -1.5 : -7, 0, cameraSettle).toFixed(2)}deg) scale(${lerp(isMobile ? 0.9 : 0.8, isMobile ? 0.995 : 0.99, cameraSettle).toFixed(3)})`);
+    scrollProof.classList.toggle("is-settled", progressValue >= 0.82);
     scrollProof.classList.toggle("is-complete", progressValue >= 0.985);
 
     proofBlocks.forEach((block, index) => {

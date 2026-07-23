@@ -270,7 +270,7 @@
     margin-inline: auto;
     position: relative;
     display: grid;
-    grid-template-columns: minmax(16rem, .58fr) minmax(36rem, 1.42fr);
+    grid-template-columns: minmax(15rem, .5fr) minmax(38rem, 1.5fr);
     align-items: center;
     gap: clamp(1.5rem, 3.5vw, 4.5rem);
   }
@@ -352,7 +352,7 @@
   .build-scene {
     position: relative;
     z-index: 2;
-    min-height: clamp(30rem, 68svh, 46rem);
+    min-height: clamp(34rem, 74svh, 50rem);
     perspective: 1250px;
     opacity: var(--proof-browser-opacity);
   }
@@ -825,8 +825,11 @@
     box-shadow: 0 0 .75rem color-mix(in srgb, #50e394 65%, transparent);
   }
   .build-scene__browser {
-    inset: 1% -1% 3%;
+    inset: 0 -2% 2%;
     pointer-events: none;
+  }
+  .scroll-proof.is-settled .lumina-page .wire-block {
+    transform: translate3d(0, 0, 0) rotate(0) scale(1) !important;
   }
   .scroll-proof.is-complete .build-scene__browser { pointer-events: auto; }
   .build-scene__browser::after {
@@ -841,9 +844,14 @@
     --lumina-muted: #70695f;
     --lumina-gold: #a57c46;
     --lumina-terra: #a75f43;
-    grid-template-rows: auto minmax(0, 1fr) auto auto auto;
-    gap: clamp(.35rem, .8vw, .7rem);
-    padding: clamp(.7rem, 1.25vw, 1.15rem);
+    grid-template-rows:
+      minmax(2.4rem, auto)
+      minmax(12.75rem, 1fr)
+      minmax(3.55rem, auto)
+      minmax(6.75rem, auto)
+      minmax(2.75rem, auto);
+    gap: clamp(.4rem, .7vw, .65rem);
+    padding: clamp(.65rem, 1.05vw, 1rem);
     color: var(--lumina-ink);
     background:
       radial-gradient(circle at 84% 12%, rgba(165, 124, 70, .08), transparent 28%),
@@ -863,7 +871,7 @@
   .lumina-header {
     position: relative;
     z-index: 2;
-    min-height: 2.5rem;
+    min-height: 2.4rem;
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -922,9 +930,9 @@
   }
   .lumina-menu { display: none; }
   .lumina-hero {
-    min-height: 0;
+    min-height: 12.75rem;
     display: grid;
-    grid-template-columns: 1.1fr .9fr;
+    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
     align-items: stretch;
     gap: clamp(.65rem, 1.25vw, 1.2rem);
   }
@@ -934,7 +942,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: clamp(.25rem, .7vw, .7rem) 0;
+    padding: clamp(.4rem, .7vw, .7rem) 0 clamp(.65rem, 1vw, 1rem);
   }
   .lumina-eyebrow {
     color: var(--lumina-terra);
@@ -944,19 +952,19 @@
     text-transform: uppercase;
   }
   .lumina-title {
-    max-width: 15.5ch;
-    margin-top: clamp(.35rem, .7vw, .7rem);
+    max-width: 15ch;
+    margin-top: clamp(.5rem, .75vw, .75rem);
     color: var(--lumina-ink);
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(1.5rem, 2.45vw, 2.85rem);
+    font-size: clamp(1.45rem, 2.2vw, 2.55rem);
     font-weight: 400;
     letter-spacing: -.045em;
     line-height: .92;
     text-wrap: balance;
   }
   .lumina-body {
-    max-width: 46ch;
-    margin-top: clamp(.45rem, .8vw, .85rem);
+    max-width: 42ch;
+    margin-top: clamp(.6rem, .85vw, .9rem);
     color: var(--lumina-muted);
     font-size: clamp(.48rem, .65vw, .68rem);
     line-height: 1.55;
@@ -965,7 +973,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: .45rem;
-    margin-top: clamp(.5rem, .9vw, .9rem);
+    margin-top: clamp(.7rem, 1vw, 1rem);
   }
   .lumina-button {
     min-height: clamp(1.65rem, 2.5vw, 2.25rem);
@@ -990,6 +998,7 @@
     border-radius: .15rem .15rem 2.4rem .15rem;
     background: linear-gradient(155deg, #d8d0c1 0 47%, #c3a989 48% 100%);
     box-shadow: 0 .8rem 2.2rem rgba(64, 49, 34, .14);
+    align-self: stretch;
   }
   .lumina-visual__sky {
     position: absolute;
@@ -1064,15 +1073,18 @@
   }
   .lumina-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    min-height: 3.55rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
     border-block: 1px solid rgba(41, 38, 33, .14);
   }
   .lumina-stat {
     min-width: 0;
     display: flex;
     align-items: center;
-    gap: clamp(.35rem, .7vw, .7rem);
-    padding: clamp(.3rem, .55vw, .55rem);
+    align-items: center;
+    gap: clamp(.45rem, .75vw, .75rem);
+    padding: clamp(.45rem, .65vw, .65rem) clamp(.5rem, .8vw, .8rem);
   }
   .lumina-stat + .lumina-stat { border-left: 1px solid rgba(41, 38, 33, .12); }
   .lumina-stat strong {
@@ -1089,11 +1101,13 @@
   }
   .lumina-services {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    min-height: 6.75rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
     gap: clamp(.35rem, .65vw, .6rem);
   }
   .lumina-service {
-    min-height: clamp(4.7rem, 7.6vw, 7.2rem);
+    min-height: 6.75rem;
     position: relative;
     padding: clamp(.45rem, .75vw, .75rem);
     border: 1px solid rgba(41, 38, 33, .13);
@@ -1129,7 +1143,7 @@
     font-style: normal;
   }
   .lumina-cta {
-    min-height: clamp(2.2rem, 3.6vw, 3.4rem);
+    min-height: 2.75rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -1540,6 +1554,12 @@
     .primary-nav { display: none; }
     .services-grid { grid-template-columns: repeat(2, 1fr); }
     .world-step__copy { width: min(54vw, 620px); }
+    .scroll-proof__viewport {
+      grid-template-columns: minmax(12rem, .46fr) minmax(27rem, 1.54fr);
+      gap: clamp(1rem, 2.5vw, 2rem);
+    }
+    .scroll-proof__copy h1 { font-size: clamp(2.35rem, 4vw, 3.8rem); }
+    .lumina-title { font-size: clamp(1.35rem, 2.35vw, 2.3rem); }
   }
 
   @media (max-width: 920px) {
@@ -1739,6 +1759,7 @@
       background: var(--lumina-ink);
     }
     .lumina-hero {
+      min-height: 0;
       grid-template-columns: 1fr;
       grid-template-rows: auto minmax(4.5rem, 1fr);
       gap: .3rem;
@@ -1765,7 +1786,10 @@
     }
     .lumina-visual { min-height: 4.5rem; border-radius: .1rem .1rem 1rem .1rem; }
     .lumina-visual small { left: .4rem; bottom: .32rem; font-size: .31rem; }
-    .lumina-stats { grid-template-columns: repeat(3, 1fr); }
+    .lumina-stats {
+      min-height: 2.35rem;
+      grid-template-columns: repeat(3, 1fr);
+    }
     .lumina-stat {
       display: grid;
       align-content: center;
@@ -1774,7 +1798,11 @@
     }
     .lumina-stat strong { font-size: .72rem; }
     .lumina-stat span { max-width: 12ch; font-size: .29rem; }
-    .lumina-services { grid-template-columns: repeat(2, 1fr); gap: .25rem; }
+    .lumina-services {
+      min-height: 3.45rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: .25rem;
+    }
     .lumina-service {
       min-height: 3.45rem;
       padding: .32rem;
@@ -1853,7 +1881,7 @@
     .scroll-proof__ambient { opacity: .42; }
     .scroll-proof__copy { opacity: .68; }
     .build-scene { opacity: 1; }
-    .build-scene__browser { pointer-events: auto; transform: translate3d(0, 0, 0) rotateX(1deg) rotateZ(0) scale(.98); box-shadow: 0 2rem 7rem color-mix(in srgb, var(--background) 76%, transparent), 0 0 1.4rem color-mix(in srgb, var(--cyan) 14%, transparent); }
+    .build-scene__browser { pointer-events: auto; transform: translate3d(0, 0, 0) rotateX(.25deg) rotateZ(0) scale(.995); box-shadow: 0 2rem 7rem color-mix(in srgb, var(--background) 76%, transparent), 0 0 1.4rem color-mix(in srgb, var(--cyan) 14%, transparent); }
     .build-scene__browser::after { opacity: 1; }
     .wire-block::after { opacity: 0; }
     .wire-block { opacity: 1 !important; transform: none !important; }
