@@ -1,6 +1,6 @@
-# NOVA//FRAME Studio
+# STANDLOUD
 
-Site institucional e portfólio bilíngue com um previz local da experiência
+Site institucional e portfólio bilíngue da STANDLOUD com um previz local da experiência
 `scroll-world`. Esta primeira etapa não usa Higgsfield, vídeos pagos nem APIs externas.
 
 ## Rodar localmente
@@ -53,6 +53,8 @@ usa `http://127.0.0.1:4173`.
 - `prompts/scroll-world.json`: direção artística e descrição das oito cenas;
 - `assets/css/styles.css`: identidade visual e responsividade;
 - `assets/js/site.js`: transições, navegação, idioma e formulário demonstrativo;
+- `assets/brand/`: símbolo, logo horizontal e assinatura completa da STANDLOUD;
+- `assets/images/standloud-logo-reference.png`: referência raster original, não publicada;
 - `docs/PLAN.md`: decisões, custos futuros e sequência de produção.
 - `docs/STORYBOARD.md`: enquadramento, câmera, continuidade e áreas livres das oito cenas.
 

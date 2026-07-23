@@ -1,4 +1,4 @@
-# Plano do site — NOVA//FRAME Studio
+# Plano do site — STANDLOUD
 
 ## 1. Objetivo e estratégia
 

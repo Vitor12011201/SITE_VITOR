@@ -1,13 +1,12 @@
 {
   "brand": {
-    "name": "NOVA//FRAME Studio",
-    "shortName": "N//F",
-    "legalName": "NOVA//FRAME Studio",
-    "taglinePt": "Sites que fazem marcas serem lembradas.",
-    "taglineEn": "Websites that make brands memorable."
+    "name": "STANDLOUD",
+    "shortName": "STANDLOUD",
+    "legalName": "STANDLOUD",
+    "tagline": "Built to be impossible to ignore."
   },
   "palette": {
-    "background": "#08080C",
+    "background": "#050508",
     "surface": "#11111A",
     "text": "#F5F5F7",
     "muted": "#A6A6B3",

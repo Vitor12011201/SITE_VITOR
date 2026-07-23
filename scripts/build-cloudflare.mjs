@@ -14,6 +14,7 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "_site");
 const allowedDirectories = [
+  ["assets/brand", "assets/brand", new Set([".svg"])],
   ["assets/css", "assets/css", new Set([".css"])],
   ["assets/js", "assets/js", new Set([".js"])],
   ["assets/scenes", "assets/scenes", new Set([".svg", ".png", ".webp", ".avif", ".jpg", ".jpeg"])],
@@ -119,6 +120,10 @@ async function validateOutput() {
     "en/index.html",
     "assets/css/styles.css",
     "assets/js/site.js",
+    "assets/brand/standloud-symbol.svg",
+    "assets/brand/standloud-symbol-mono.svg",
+    "assets/brand/standloud-logo-horizontal.svg",
+    "assets/brand/standloud-signature.svg",
     "favicon.svg",
     "robots.txt",
     "sitemap.xml"

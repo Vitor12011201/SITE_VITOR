@@ -23,6 +23,24 @@ const paletteStyle = Object.entries(site.palette)
   .map(([key, value]) => `--${key}:${value}`)
   .join(";");
 
+function standloudSymbol(instance, className = "brand__symbol") {
+  const gradientId = `standloud-gradient-${instance}`;
+  return `<svg class="${attr(className)}" viewBox="0 0 78 64" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="${gradientId}" x1="4" y1="58" x2="72" y2="5" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#7C3AED"/>
+        <stop offset=".52" stop-color="#2563EB"/>
+        <stop offset="1" stop-color="#22D3EE"/>
+      </linearGradient>
+    </defs>
+    <g fill="url(#${gradientId})">
+      <path class="standloud-bar standloud-bar--one" d="M4 58 13 50 17 35 26 28 21 58Z"/>
+      <path class="standloud-bar standloud-bar--two" d="M25 58 34 50 41 22 51 14 42 58Z"/>
+      <path class="standloud-bar standloud-bar--three" d="M46 58 54 50 61 10 72 3 63 45h12L61 58Z"/>
+    </g>
+  </svg>`;
+}
+
 function options(items) {
   return items.map((item, index) =>
     `<option value="${index ? attr(item) : ""}">${esc(item)}</option>`
@@ -191,7 +209,8 @@ function brandGravity(locale) {
         </div>
         <div class="brand-gravity__noise">${noisePanels}</div>
         <div class="brand-core" aria-hidden="true">
-          <i></i><i></i><i></i><span></span>
+          <i></i><i></i><i></i>
+          <span class="brand-core__symbol">${standloudSymbol("gravity", "brand-core__mark")}</span>
         </div>
         <div class="gravity-browser">
           <div class="gravity-browser__chrome" aria-hidden="true"><i></i><i></i><i></i><span>nexora.studio</span></div>
@@ -275,6 +294,7 @@ function page(locale) {
   <meta property="og:description" content="${attr(locale.seo.description)}">
   <meta property="og:image" content="../assets/scenes/studio.svg">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="../assets/brand/standloud-symbol-mono.svg" color="#7C3AED">
   <link rel="alternate" hreflang="pt-BR" href="../pt/">
   <link rel="alternate" hreflang="en" href="../en/">
   <link rel="alternate" hreflang="x-default" href="../pt/">
@@ -294,8 +314,8 @@ function page(locale) {
 <body data-locale="${attr(locale.locale)}">
   <a class="skip-link" href="#main">${esc(locale.skip)}</a>
   <header class="site-header" data-header>
-    <a class="brand" href="#top" aria-label="${attr(brand)}">
-      <span class="brand__mark" aria-hidden="true"><i></i><i></i></span>
+    <a class="brand brand--header" href="#top" aria-label="${attr(`${brand} — ${site.brand.tagline}`)}">
+      ${standloudSymbol("header")}
       <span class="brand__name">${esc(brand)}</span>
     </a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
@@ -426,7 +446,13 @@ function page(locale) {
 
   <footer class="site-footer">
     <div class="footer-top">
-      <a class="brand brand--footer" href="#top"><span class="brand__mark" aria-hidden="true"><i></i><i></i></span><span class="brand__name">${esc(brand)}</span></a>
+      <a class="brand brand--footer" href="#top" aria-label="${attr(`${brand} — ${site.brand.tagline}`)}">
+        ${standloudSymbol("footer")}
+        <span class="brand__lockup">
+          <strong class="brand__name">${esc(brand)}</strong>
+          <span class="brand__tagline">${esc(site.brand.tagline)}</span>
+        </span>
+      </a>
       <p>${esc(locale.footer.line)}</p>
       <a class="footer-back" href="#top">${esc(locale.footer.back)} ↑</a>
     </div>
@@ -503,7 +529,7 @@ const rootPage = `<!doctype html>
 <style>html{background:${site.palette.background};color:${site.palette.text};font-family:system-ui}body{min-height:100vh;display:grid;place-items:center;margin:0}a{color:${site.palette.cyan}}</style>
 <script>
   (() => {
-    const saved = localStorage.getItem("nova-frame-language");
+    const saved = localStorage.getItem("standloud-language");
     const detected = (navigator.language || "pt").toLowerCase().startsWith("pt") ? "pt" : "en";
     const language = saved || detected;
     location.replace("./" + language + "/");

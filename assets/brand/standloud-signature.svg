@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 112" role="img" aria-labelledby="title description">
+  <title id="title">STANDLOUD</title>
+  <desc id="description">Built to be impossible to ignore.</desc>
+  <defs>
+    <linearGradient id="standloud-signature-gradient" x1="5" y1="91" x2="98" y2="11" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7C3AED"/>
+      <stop offset=".52" stop-color="#2563EB"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(2 8) scale(1.35)" fill="url(#standloud-signature-gradient)">
+    <path d="M4 58 13 50 17 35 26 28 21 58Z"/>
+    <path d="M25 58 34 50 41 22 51 14 42 58Z"/>
+    <path d="M46 58 54 50 61 10 72 3 63 45h12L61 58Z"/>
+  </g>
+  <text x="116" y="58" fill="#F5F5F7" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="750" letter-spacing="4.5">STANDLOUD</text>
+  <text x="118" y="84" fill="#A6A6B3" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="600" letter-spacing="2">BUILT TO BE IMPOSSIBLE TO IGNORE.</text>
+</svg>

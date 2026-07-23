@@ -9,6 +9,10 @@ const required = [
   "en/index.html",
   "assets/css/styles.css",
   "assets/js/site.js",
+  "assets/brand/standloud-symbol.svg",
+  "assets/brand/standloud-symbol-mono.svg",
+  "assets/brand/standloud-logo-horizontal.svg",
+  "assets/brand/standloud-signature.svg",
   "favicon.svg",
   "prompts/generated/manifest.json"
 ];
@@ -39,6 +43,9 @@ const requiredSelectors = [
   ".nexora-hero",
   ".nexora-cards",
   ".nexora-proof",
+  ".brand__symbol",
+  ".brand__tagline",
+  ".brand-core__symbol",
   ".world-step",
   ".glass-panel",
   ".button",
@@ -87,8 +94,16 @@ if (!css.includes(".site-header.is-menu-open .primary-nav") ||
     !clientJs.includes('header.classList.toggle("is-menu-open")')) {
   errors.push("mobile navigation contract is incomplete");
 }
-if (!clientJs.includes('localStorage.setItem("nova-frame-language"')) {
+if (!clientJs.includes('localStorage.setItem("standloud-language"')) {
   errors.push("manual language selection persistence is missing");
+}
+if (!css.includes("@keyframes standloud-rise") ||
+    !css.includes("@keyframes standloud-name-in") ||
+    !css.includes("@media (max-width: 359px)") ||
+    !css.includes(".brand--header .brand__name { display: none; }") ||
+    !css.includes(".brand--header .standloud-bar,") ||
+    !css.includes("animation: none !important")) {
+  errors.push("STANDLOUD: missing one-time brand animation, narrow mobile mode or reduced-motion fallback");
 }
 if (!clientJs.includes("[data-scroll-proof]") ||
     !clientJs.includes("--scene-progress") ||
@@ -138,6 +153,15 @@ for (const locale of ["pt", "en"]) {
   const expectedLang = locale === "pt" ? "pt-BR" : "en";
   if (!html.includes(`<html lang="${expectedLang}">`)) errors.push(`${locale}: incorrect lang`);
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
+  if (!html.includes("class=\"brand brand--header\"") ||
+      !html.includes("class=\"brand brand--footer\"") ||
+      !html.includes("class=\"brand__tagline\">Built to be impossible to ignore.</span>") ||
+      !html.includes("aria-label=\"STANDLOUD — Built to be impossible to ignore.\"")) {
+    errors.push(`${locale}: missing accessible STANDLOUD header or full footer signature`);
+  }
+  if (html.includes("NOVA//FRAME") || html.includes("Nova Frame")) {
+    errors.push(`${locale}: contains obsolete institutional brand name`);
+  }
   if (!html.includes("data-scroll-proof")) errors.push(`${locale}: missing scroll proof section`);
   if (!html.includes("--scene-progress:0")) errors.push(`${locale}: missing exposed scene progress variable`);
   if (!html.includes("data-brand-gravity")) errors.push(`${locale}: missing brand gravity section`);
@@ -190,6 +214,9 @@ for (const locale of ["pt", "en"]) {
 
 const rootHtml = await readFile(path.join(root, "index.html"), "utf8");
 if (!rootHtml.includes("navigator.language")) errors.push("root: missing browser language detection");
+if (!rootHtml.includes('localStorage.getItem("standloud-language")')) {
+  errors.push("root: missing STANDLOUD language preference key");
+}
 if (!rootHtml.includes('location.replace("./" + language + "/")')) {
   errors.push("root: language redirect must remain relative");
 }
@@ -198,6 +225,13 @@ if (!rootHtml.includes('href="./pt/"') || !rootHtml.includes('href="./en/"')) {
 }
 if (!rootHtml.includes('href="./favicon.svg"')) {
   errors.push("root: missing relative favicon");
+}
+
+const favicon = await readFile(path.join(root, "favicon.svg"), "utf8");
+if (!favicon.includes("standloud-favicon-gradient") ||
+    (favicon.match(/<path/g) || []).length !== 3 ||
+    favicon.includes("<rect")) {
+  errors.push("favicon: expected the transparent three-part STANDLOUD symbol");
 }
 
 try {

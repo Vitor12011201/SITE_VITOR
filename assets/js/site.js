@@ -259,12 +259,12 @@
   }));
 
   document.querySelectorAll("[data-language]").forEach((link) => {
-    link.addEventListener("click", () => localStorage.setItem("nova-frame-language", link.dataset.language));
+    link.addEventListener("click", () => localStorage.setItem("standloud-language", link.dataset.language));
   });
   document.querySelectorAll(".footer-bottom .language-switcher a").forEach((link) => {
     link.addEventListener("click", () => {
       const value = link.textContent.trim().toLowerCase();
-      localStorage.setItem("nova-frame-language", value);
+      localStorage.setItem("standloud-language", value);
     });
   });
 
