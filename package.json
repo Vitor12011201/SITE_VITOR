@@ -7,7 +7,11 @@
     "build": "node scripts/build.mjs && node scripts/build-prompts.mjs",
     "build:cloudflare": "npm run build && npm run check && node scripts/build-cloudflare.mjs",
     "check": "node scripts/check.mjs",
+    "deploy:cloudflare": "wrangler deploy",
     "serve": "node scripts/serve.mjs",
     "serve:cloudflare": "node scripts/serve.mjs --root _site"
+  },
+  "devDependencies": {
+    "wrangler": "^4.113.0"
   }
 }

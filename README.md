@@ -15,7 +15,7 @@ npm run serve
 
 Abra `http://127.0.0.1:4173/pt/` ou `/en/`.
 
-## Publicação no Cloudflare Pages
+## Publicação no Cloudflare Worker com Static Assets
 
 O comando abaixo gera e valida as páginas, substitui `_site/` e copia para lá somente
 os arquivos públicos necessários:
@@ -25,23 +25,25 @@ npm run build:cloudflare
 npm run serve:cloudflare
 ```
 
-Configuração da integração Git no Cloudflare Pages:
+O deploy usa `wrangler.jsonc`, com `assets.directory` fixado em `./_site`.
+Não altere esse valor para `.`, pois isso faria o Wrangler tentar publicar arquivos
+internos do repositorio.
+
+Configuração da integração Git no Cloudflare:
 
 | Campo | Valor |
 | --- | --- |
-| Framework preset | `None` |
-| Production branch | `main` |
 | Build command | `npm run build:cloudflare` |
-| Build output directory | `_site` |
-| Root directory | deixar vazio |
+| Deploy command | `npx wrangler deploy` |
+| Root directory | `/` |
 
 O Cloudflare executa o build a partir da raiz do repositório. Arquivos públicos futuros
 podem ser colocados em `public/`; somente extensões permitidas pelo empacotador serão
 copiadas para a raiz de `_site/`. Vídeos públicos em `assets/vid/` são copiados apenas
 quando existirem. A versão do Node usada no build está fixada em `.node-version`. Para
-sitemap com domínio próprio, defina `SITE_URL` nas variáveis de ambiente do projeto;
-sem essa variável, o build usa `CF_PAGES_URL`, fornecida pelo Cloudflare, e no preview
-local usa `http://127.0.0.1:4173`.
+sitemap com domínio próprio, defina `SITE_URL` nas variáveis de ambiente do projeto.
+Sem essa variável, o build usa `CF_PAGES_URL` quando disponível e, no preview local,
+usa `http://127.0.0.1:4173`.
 
 ## Onde editar
 
