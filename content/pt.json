@@ -1,0 +1,190 @@
+{
+  "lang": "pt-BR",
+  "locale": "pt",
+  "seo": {
+    "title": "Sites e landing pages memoráveis",
+    "description": "Estúdio de criação de sites, landing pages e experiências digitais com estratégia, design autoral e desenvolvimento."
+  },
+  "skip": "Pular para o conteúdo",
+  "nav": {
+    "world": "Experiência",
+    "services": "Serviços",
+    "process": "Processo",
+    "work": "Portfólio",
+    "faq": "Dúvidas",
+    "contact": "Orçamento"
+  },
+  "headerCta": "Falar sobre um projeto",
+  "world": {
+    "aria": "Uma jornada pelo processo de criação digital",
+    "scrollHint": "Role para entrar no estúdio",
+    "progress": "Progresso da experiência",
+    "scenes": [
+      {
+        "id": "studio",
+        "label": "Entrada",
+        "eyebrow": "DESIGN, CÓDIGO E ESTRATÉGIA",
+        "title": "Seu negócio merece ser impossível de ignorar.",
+        "body": "Criamos sites e landing pages que transformam ideias em experiências digitais marcantes.",
+        "tags": ["Sites autorais", "Landing pages", "Experiências digitais"],
+        "primary": "Começar um projeto",
+        "secondary": "Ver nossos serviços",
+        "alt": "Estúdio digital futurista flutuando em um espaço escuro"
+      },
+      {
+        "id": "strategy",
+        "label": "Estratégia",
+        "eyebrow": "ANTES DO DESIGN",
+        "title": "Primeiro entendemos o seu negócio.",
+        "body": "Cada projeto começa com uma análise dos seus objetivos, público e posicionamento.",
+        "tags": ["Estratégia", "Experiência do usuário", "Posicionamento"],
+        "alt": "Sala de estratégia com mapas de jornada, wireframes e dados"
+      },
+      {
+        "id": "design",
+        "label": "Design",
+        "eyebrow": "DESIGN AUTORAL",
+        "title": "Nada de sites com aparência genérica.",
+        "body": "Criamos uma identidade visual digital alinhada à personalidade e aos objetivos da sua marca.",
+        "tags": ["UI Design", "Responsividade", "Identidade visual"],
+        "alt": "Laboratório visual com componentes, tipografias e protótipos"
+      },
+      {
+        "id": "development",
+        "label": "Construção",
+        "eyebrow": "CONSTRUÇÃO",
+        "title": "Bonito por fora. Bem construído por dentro.",
+        "body": "Desenvolvemos sites rápidos, responsivos, organizados e preparados para funcionar em diferentes dispositivos.",
+        "tags": ["Performance", "Código organizado", "Mobile first"],
+        "alt": "Espaço tecnológico com um site sendo construído por blocos"
+      },
+      {
+        "id": "services",
+        "label": "Serviços",
+        "eyebrow": "O QUE CRIAMOS",
+        "title": "Soluções digitais para diferentes objetivos.",
+        "body": "Da presença institucional à página focada em conversão, cada entrega nasce para cumprir uma função real.",
+        "tags": ["Sites institucionais", "Landing pages", "Experiências interativas"],
+        "alt": "Galeria de portais e produtos digitais em exibição"
+      },
+      {
+        "id": "value",
+        "label": "Impacto",
+        "eyebrow": "MAIS DO QUE APARÊNCIA",
+        "title": "Um site precisa trabalhar pelo seu negócio.",
+        "body": "Combinamos estratégia, design e tecnologia para transmitir profissionalismo e conduzir o visitante para a ação.",
+        "tags": ["Foco no visitante", "Estrutura escalável", "Suporte pós-lançamento"],
+        "alt": "Central de controle com métricas, velocidade e responsividade"
+      },
+      {
+        "id": "portfolio",
+        "label": "Projetos",
+        "eyebrow": "PROJETOS",
+        "title": "Nosso trabalho fala através da experiência.",
+        "body": "Cada projeto é criado para resolver um problema real e apresentar uma marca da melhor maneira possível.",
+        "tags": ["Projeto conceitual", "Estudo de interface", "Experiência experimental"],
+        "alt": "Galeria futurista com grandes telas apresentando projetos"
+      },
+      {
+        "id": "launch",
+        "label": "Começar",
+        "eyebrow": "VAMOS CONSTRUIR",
+        "title": "Seu próximo projeto pode começar aqui.",
+        "body": "Conte um pouco sobre sua ideia e vamos conversar sobre como transformá-la em uma experiência digital.",
+        "tags": [],
+        "primary": "Solicitar orçamento",
+        "secondary": "Falar pelo WhatsApp",
+        "alt": "Portal iluminado representando o início de um novo projeto"
+      }
+    ]
+  },
+  "manifesto": {
+    "eyebrow": "PRESENÇA QUE PERMANECE",
+    "title": "Criamos sites que não apenas apresentam uma empresa. Eles fazem a empresa ser lembrada.",
+    "body": "O design chama a atenção. A estratégia dá direção. O código transforma tudo em uma experiência rápida, clara e pronta para gerar oportunidades."
+  },
+  "services": {
+    "eyebrow": "SERVIÇOS",
+    "title": "O que podemos construir juntos.",
+    "body": "Escopo sob medida, sem pacotes genéricos. Escolhemos a solução certa para o momento do seu negócio.",
+    "items": [
+      ["Sites institucionais", "Uma presença profissional que comunica valor, organiza seus serviços e gera confiança."],
+      ["Landing pages", "Páginas focadas em uma oferta, com narrativa clara e caminhos de conversão."],
+      ["Portfólios profissionais", "Trabalhos, método e personalidade apresentados em uma experiência memorável."],
+      ["Páginas de lançamento", "Estruturas para produtos, cursos, eventos e novas ofertas chegarem ao mercado."],
+      ["Redesign de sites", "Uma evolução visual e técnica para sites antigos, lentos ou desalinhados."],
+      ["Manutenção e melhorias", "Ajustes, novas seções, performance e evolução contínua depois da publicação."],
+      ["Integrações com pagamentos", "Fluxos conectados às ferramentas de venda que fazem sentido para sua operação."],
+      ["Experiências interativas", "Movimento, profundidade e interações especiais para marcas que querem ir além."]
+    ]
+  },
+  "process": {
+    "eyebrow": "COMO TRABALHAMOS",
+    "title": "Clareza em cada etapa.",
+    "steps": [
+      ["01", "Descoberta", "Entendemos o negócio, o público, a oferta e o que o projeto precisa alcançar."],
+      ["02", "Direção", "Organizamos conteúdo, jornada, referências e uma direção visual própria."],
+      ["03", "Criação", "Desenhamos e desenvolvemos com revisões claras ao longo do processo."],
+      ["04", "Lançamento", "Testamos, publicamos e deixamos a estrutura preparada para evoluir."]
+    ]
+  },
+  "reasons": {
+    "eyebrow": "POR QUE NOS CONTRATAR",
+    "title": "Um parceiro para pensar e construir.",
+    "items": [
+      "Design pensado para sua marca",
+      "Comunicação clara durante o projeto",
+      "Site responsivo",
+      "Foco na experiência do visitante",
+      "Estrutura preparada para crescer",
+      "Suporte após a entrega"
+    ]
+  },
+  "portfolio": {
+    "eyebrow": "PORTFÓLIO",
+    "title": "Trabalhos em construção. Critério já em exibição.",
+    "body": "Enquanto os primeiros cases reais são preparados, estes estudos demonstram direções visuais e capacidades — sem clientes ou resultados inventados.",
+    "items": [
+      ["Projeto conceitual", "Atria Health", "Presença digital premium para uma clínica contemporânea.", "Identidade · UX · Site"],
+      ["Estudo de interface", "Northline", "Sistema visual modular para uma consultoria de crescimento.", "UI · Sistema · Motion"],
+      ["Experiência experimental", "Signal/01", "Narrativa interativa para o lançamento de um produto digital.", "3D · Scroll · Prototipagem"]
+    ]
+  },
+  "faq": {
+    "eyebrow": "PERGUNTAS FREQUENTES",
+    "title": "Antes de começarmos.",
+    "items": [
+      ["Quanto custa criar um site?", "O valor depende do tamanho, das funcionalidades e da complexidade do projeto. Após entender suas necessidades, enviamos uma proposta personalizada."],
+      ["Quanto tempo demora?", "O prazo varia de acordo com o projeto. Uma landing page simples pode ser concluída mais rapidamente, enquanto sites maiores exigem mais etapas."],
+      ["O site funcionará no celular?", "Sim. Todos os projetos são desenvolvidos para funcionar em computadores, tablets e celulares."],
+      ["Vocês oferecem manutenção?", "Sim. Podemos cuidar de atualizações, ajustes, melhorias e suporte após a publicação."],
+      ["Posso solicitar alterações?", "Sim. O processo inclui etapas de revisão e aprovação."]
+    ]
+  },
+  "contact": {
+    "eyebrow": "VAMOS CONVERSAR",
+    "title": "Conte a ideia. Nós ajudamos a dar forma.",
+    "body": "Preencha o briefing inicial. Nesta versão de projeto, o formulário funciona como demonstração e ainda não envia dados para um servidor.",
+    "availability": "Novos projetos",
+    "labels": {
+      "name": "Nome",
+      "email": "E-mail",
+      "company": "Empresa ou projeto",
+      "service": "Qual serviço você procura?",
+      "idea": "Conte um pouco sobre sua ideia",
+      "budget": "Orçamento estimado",
+      "timeline": "Prazo desejado",
+      "submit": "Enviar mensagem"
+    },
+    "serviceOptions": ["Selecione uma opção", "Site institucional", "Landing page", "Portfólio", "Redesign", "Manutenção", "Outro"],
+    "budgetOptions": ["Prefiro conversar", "Até R$ 3 mil", "R$ 3 mil–R$ 6 mil", "R$ 6 mil–R$ 12 mil", "Acima de R$ 12 mil"],
+    "timelineOptions": ["Sem prazo definido", "Até 30 dias", "1–2 meses", "2–4 meses", "Mais de 4 meses"],
+    "success": "Briefing validado. Conecte um serviço de formulários para habilitar o envio."
+  },
+  "footer": {
+    "line": "Design, código e estratégia para marcas que não querem passar despercebidas.",
+    "social": "Redes",
+    "legal": "Todos os direitos reservados.",
+    "back": "Voltar ao topo"
+  }
+}

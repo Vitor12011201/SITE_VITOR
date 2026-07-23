@@ -1,0 +1,190 @@
+{
+  "lang": "en",
+  "locale": "en",
+  "seo": {
+    "title": "Memorable websites and landing pages",
+    "description": "A creative studio for websites, landing pages and digital experiences built with strategy, distinctive design and development."
+  },
+  "skip": "Skip to content",
+  "nav": {
+    "world": "Experience",
+    "services": "Services",
+    "process": "Process",
+    "work": "Work",
+    "faq": "FAQ",
+    "contact": "Quote"
+  },
+  "headerCta": "Discuss a project",
+  "world": {
+    "aria": "A journey through the digital creation process",
+    "scrollHint": "Scroll to enter the studio",
+    "progress": "Experience progress",
+    "scenes": [
+      {
+        "id": "studio",
+        "label": "Entrance",
+        "eyebrow": "DESIGN, CODE AND STRATEGY",
+        "title": "Your business deserves to be impossible to ignore.",
+        "body": "We create websites and landing pages that turn ideas into memorable digital experiences.",
+        "tags": ["Distinctive websites", "Landing pages", "Digital experiences"],
+        "primary": "Start a project",
+        "secondary": "Explore our services",
+        "alt": "Futuristic digital studio floating in a dark space"
+      },
+      {
+        "id": "strategy",
+        "label": "Strategy",
+        "eyebrow": "BEFORE THE DESIGN",
+        "title": "We start by understanding your business.",
+        "body": "Every project begins with a clear understanding of your goals, audience and positioning.",
+        "tags": ["Strategy", "User experience", "Positioning"],
+        "alt": "Strategy room with journey maps, wireframes and data"
+      },
+      {
+        "id": "design",
+        "label": "Design",
+        "eyebrow": "DISTINCTIVE DESIGN",
+        "title": "No generic-looking websites.",
+        "body": "We create a digital identity aligned with your brand’s personality and business goals.",
+        "tags": ["UI Design", "Responsive layouts", "Visual identity"],
+        "alt": "Visual laboratory with components, typography and prototypes"
+      },
+      {
+        "id": "development",
+        "label": "Build",
+        "eyebrow": "DEVELOPMENT",
+        "title": "Beautiful on the outside. Solid on the inside.",
+        "body": "We develop fast, responsive and reliable websites built to work across different devices.",
+        "tags": ["Performance", "Clean structure", "Mobile first"],
+        "alt": "Technology space with a website being assembled in modular blocks"
+      },
+      {
+        "id": "services",
+        "label": "Services",
+        "eyebrow": "WHAT WE CREATE",
+        "title": "Digital solutions built for different goals.",
+        "body": "From a business presence to a conversion-focused page, every deliverable is designed to perform a real job.",
+        "tags": ["Business websites", "Landing pages", "Interactive experiences"],
+        "alt": "Gallery of digital products and portals on display"
+      },
+      {
+        "id": "value",
+        "label": "Impact",
+        "eyebrow": "MORE THAN APPEARANCE",
+        "title": "Your website should work for your business.",
+        "body": "We combine strategy, design and technology to build trust and guide visitors toward action.",
+        "tags": ["Visitor focused", "Built to grow", "Post-launch support"],
+        "alt": "Control center showing speed, conversion and responsive quality"
+      },
+      {
+        "id": "portfolio",
+        "label": "Projects",
+        "eyebrow": "SELECTED WORK",
+        "title": "Our work speaks through the experience.",
+        "body": "Every project is designed to solve a real problem and present a brand at its best.",
+        "tags": ["Concept project", "Interface study", "Experimental experience"],
+        "alt": "Futuristic gallery with large screens presenting digital projects"
+      },
+      {
+        "id": "launch",
+        "label": "Start",
+        "eyebrow": "LET’S BUILD",
+        "title": "Your next project can start here.",
+        "body": "Tell us about your idea and let’s discuss how to turn it into a digital experience.",
+        "tags": [],
+        "primary": "Request a quote",
+        "secondary": "Contact on WhatsApp",
+        "alt": "Illuminated portal representing the start of a new project"
+      }
+    ]
+  },
+  "manifesto": {
+    "eyebrow": "A PRESENCE THAT LASTS",
+    "title": "We build websites that do more than present a business. They make it memorable.",
+    "body": "Design earns attention. Strategy gives it direction. Code turns both into a fast, clear experience built to create opportunities."
+  },
+  "services": {
+    "eyebrow": "SERVICES",
+    "title": "What we can build together.",
+    "body": "Tailored scope, without generic packages. We choose the right solution for your business today.",
+    "items": [
+      ["Business websites", "A professional presence that communicates value, organizes your services and builds trust."],
+      ["Landing pages", "Focused pages with a clear narrative and intentional conversion paths."],
+      ["Professional portfolios", "Work, process and personality presented through a memorable experience."],
+      ["Product launch pages", "Structures for products, courses, events and new offers entering the market."],
+      ["Website redesign", "A visual and technical evolution for outdated, slow or misaligned websites."],
+      ["Maintenance and improvements", "Adjustments, new sections, performance and ongoing evolution after launch."],
+      ["Payment integrations", "Flows connected to the selling tools that make sense for your operation."],
+      ["Interactive experiences", "Motion, depth and special interactions for brands that want to go further."]
+    ]
+  },
+  "process": {
+    "eyebrow": "HOW WE WORK",
+    "title": "Clarity at every stage.",
+    "steps": [
+      ["01", "Discovery", "We understand the business, audience, offer and what the project needs to achieve."],
+      ["02", "Direction", "We organize content, journey, references and a distinctive visual direction."],
+      ["03", "Creation", "We design and develop with clear review points throughout the process."],
+      ["04", "Launch", "We test, publish and leave the structure ready to evolve."]
+    ]
+  },
+  "reasons": {
+    "eyebrow": "WHY WORK WITH US",
+    "title": "A partner to think and build.",
+    "items": [
+      "Design tailored to your brand",
+      "Clear communication",
+      "Responsive experience",
+      "Visitor-focused structure",
+      "Built to grow",
+      "Post-launch support"
+    ]
+  },
+  "portfolio": {
+    "eyebrow": "PORTFOLIO",
+    "title": "Work in progress. Standards already on display.",
+    "body": "While the first real cases are being prepared, these studies demonstrate visual directions and capabilities — without invented clients or results.",
+    "items": [
+      ["Concept project", "Atria Health", "A premium digital presence for a contemporary clinic.", "Identity · UX · Website"],
+      ["Interface study", "Northline", "A modular visual system for a growth consultancy.", "UI · System · Motion"],
+      ["Experimental experience", "Signal/01", "An interactive narrative for a digital product launch.", "3D · Scroll · Prototyping"]
+    ]
+  },
+  "faq": {
+    "eyebrow": "FREQUENTLY ASKED QUESTIONS",
+    "title": "Before we begin.",
+    "items": [
+      ["How much does a website cost?", "The price depends on the size, functionality and complexity of the project. After understanding your needs, we provide a custom proposal."],
+      ["How long does it take?", "The timeline depends on the scope. A simple landing page may be completed faster, while larger websites require more stages."],
+      ["Will the website work on mobile devices?", "Yes. Every project is designed to work across desktop, tablet and mobile devices."],
+      ["Do you provide maintenance?", "Yes. We can handle updates, adjustments, improvements and post-launch support."],
+      ["Can I request changes?", "Yes. The process includes review and approval stages."]
+    ]
+  },
+  "contact": {
+    "eyebrow": "LET’S TALK",
+    "title": "Share the idea. We’ll help shape it.",
+    "body": "Complete the initial brief. In this project version, the form is a demonstration and does not send data to a server yet.",
+    "availability": "Open for new projects",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "company": "Company or project",
+      "service": "Which service are you looking for?",
+      "idea": "Tell us about your idea",
+      "budget": "Estimated budget",
+      "timeline": "Desired timeline",
+      "submit": "Send message"
+    },
+    "serviceOptions": ["Select an option", "Business website", "Landing page", "Portfolio", "Redesign", "Maintenance", "Other"],
+    "budgetOptions": ["I’d rather discuss it", "Up to US$ 1,000", "US$ 1,000–US$ 2,500", "US$ 2,500–US$ 5,000", "Above US$ 5,000"],
+    "timelineOptions": ["No fixed deadline", "Within 30 days", "1–2 months", "2–4 months", "More than 4 months"],
+    "success": "Brief validated. Connect a form service to enable submissions."
+  },
+  "footer": {
+    "line": "Design, code and strategy for brands that refuse to go unnoticed.",
+    "social": "Social",
+    "legal": "All rights reserved.",
+    "back": "Back to top"
+  }
+}

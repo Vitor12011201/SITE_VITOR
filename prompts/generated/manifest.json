@@ -1,0 +1,8 @@
+{
+  "architecture": "continuous-forward-flight",
+  "sceneCount": 8,
+  "stillCount": 8,
+  "desktopVideoLegCount": 8,
+  "connectorCount": 0,
+  "mobileVideoLegCountIfApproved": 8
+}

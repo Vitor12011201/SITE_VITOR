@@ -1,0 +1,65 @@
+{
+  "architecture": "A",
+  "architectureName": "continuous-forward-flight",
+  "aspectDesktop": "16:9",
+  "stylePreamble": "Cinematic stylized 3D architectural visualization of one connected futuristic creative studio suspended in a deep dark digital void. Premium mature art direction, bold geometric architecture, matte black and smoked-glass materials, precise metallic details, restrained electric purple #7C3AED and vivid blue #2563EB lighting with cyan #22D3EE accents, warm white #F5F5F7 practical lights, deep shadows, volumetric haze, strong contrast, elegant scale, sophisticated and technological rather than playful. Cohesive camera height, lens language, materials and lighting across the entire world. Highly detailed, centered focal composition with generous visual breathing room, absolutely no readable text, no letters, no numbers, no logos, no watermarks, no people.",
+  "styleTail": "Premium stylized 3D architectural studio, matte black and smoked glass, electric purple #7C3AED, vivid blue #2563EB, cyan #22D3EE, warm white #F5F5F7 practical lights, cinematic volumetric lighting, deep shadows, sophisticated mature mood.",
+  "scenes": [
+    {
+      "id": "studio",
+      "subject": "The exterior entrance to a floating digital design studio in a dark void, a bold modular structure with an illuminated cyan portal, suspended walkways, large glass walls, abstract interface screens with no readable content, architectural frames, subtle cables and distant luminous particles. The portal reveals a glimpse of the connected interior.",
+      "focalPoint": "the illuminated cyan entrance portal",
+      "nextDirection": "the corridor leading toward the strategy room",
+      "move": "Make a slow half-orbit around the floating studio exterior to reveal its depth, then align with the entrance and move through it"
+    },
+    {
+      "id": "strategy",
+      "subject": "A futuristic strategy room inside the same studio, with a central planning table, layered journey maps represented by abstract lines, blank wireframe boards, data sculptures, organized notes without text, translucent glass panels and a clear doorway toward the visual lab.",
+      "focalPoint": "the luminous central planning table",
+      "nextDirection": "the glass doorway into the visual design laboratory",
+      "move": "Track low alongside the central strategy table, using foreground glass panels for parallax, then gently rise to reveal the full room"
+    },
+    {
+      "id": "design",
+      "subject": "A visual design laboratory connected to the strategy room, filled with floating interface components, abstract typography blocks with no letters, color and material spheres, responsive layout frames, design tokens, prototype screens and a glowing path toward the development chamber.",
+      "focalPoint": "the floating responsive interface composition",
+      "nextDirection": "the glowing passage into the development chamber",
+      "move": "Sweep in a slow half-orbit around the floating interface composition, keeping it centered, then continue past it"
+    },
+    {
+      "id": "development",
+      "subject": "A technological development chamber where a website assembles from luminous modular blocks, clean component grids, abstract code-like light lines with no readable characters, device frames, subtle motion rigs and an opening toward a gallery of finished digital products.",
+      "focalPoint": "the website structure assembling from modular luminous blocks",
+      "nextDirection": "the opening into the digital services gallery",
+      "move": "Track laterally along the assembly line of components with strong foreground parallax, then arc gently toward the completed structure"
+    },
+    {
+      "id": "services",
+      "subject": "A premium digital services gallery with eight distinct portal-like exhibits representing business websites, landing pages, portfolios, launch pages, redesign, maintenance, payment systems and interactive experiences, communicated only through shapes and objects with no text. A central route continues into a performance control room.",
+      "focalPoint": "the central sequence of illuminated digital portals",
+      "nextDirection": "the passage into the performance control room",
+      "move": "Crane up slowly as the complete gallery reveals below, then descend along the central route between the portals"
+    },
+    {
+      "id": "value",
+      "subject": "A cinematic control room showing abstract performance, speed, responsive quality and conversion signals through gauges, light paths, device silhouettes and data sculptures without text or numbers. The systems converge into a bright line leading toward a project gallery.",
+      "focalPoint": "the central performance core where all signals converge",
+      "nextDirection": "the bright corridor toward the project gallery",
+      "move": "Push in close to the glowing performance core until it nearly fills the frame, then ease gently back and continue along the outgoing signal"
+    },
+    {
+      "id": "portfolio",
+      "subject": "A futuristic project gallery with three monumental screens displaying abstract website compositions, clearly conceptual and with no client logos or readable text, polished floors, deep architectural arches and a luminous exit framing the final launch portal.",
+      "focalPoint": "the central monumental project screen",
+      "nextDirection": "the luminous exit leading to the launch portal",
+      "move": "Glide steadily between the large project screens with rich foreground reflections, then rise slightly to reveal the final exit"
+    },
+    {
+      "id": "launch",
+      "subject": "The final launch chamber: a monumental circular portal of cyan and violet light suspended above a dark platform, connected to the previous gallery, with elegant energy rings, distant particles and a clear open center symbolizing the beginning of a new digital project.",
+      "focalPoint": "the open center of the monumental launch portal",
+      "nextDirection": "the open luminous horizon beyond the portal",
+      "move": "Make a restrained half-orbit around the launch portal, then align perfectly with its open center and glide forward into the luminous horizon"
+    }
+  ]
+}

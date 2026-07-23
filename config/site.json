@@ -1,0 +1,30 @@
+{
+  "brand": {
+    "name": "NOVA//FRAME Studio",
+    "shortName": "N//F",
+    "legalName": "NOVA//FRAME Studio",
+    "taglinePt": "Sites que fazem marcas serem lembradas.",
+    "taglineEn": "Websites that make brands memorable."
+  },
+  "palette": {
+    "background": "#08080C",
+    "surface": "#11111A",
+    "text": "#F5F5F7",
+    "muted": "#A6A6B3",
+    "purple": "#7C3AED",
+    "blue": "#2563EB",
+    "cyan": "#22D3EE"
+  },
+  "contact": {
+    "email": "hello@example.com",
+    "whatsappUrl": "#contact",
+    "instagramUrl": "#",
+    "linkedinUrl": "#",
+    "behanceUrl": "#"
+  },
+  "site": {
+    "baseUrl": "",
+    "defaultLanguage": "pt",
+    "formEndpoint": ""
+  }
+}
