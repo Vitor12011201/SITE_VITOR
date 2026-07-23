@@ -1924,6 +1924,19 @@
     line-height: .94;
     text-wrap: balance;
   }
+  .hero-title__lead,
+  .hero-title__highlight { display: block; }
+  .hero-title__lead { color: #f5f5f7; }
+  .hero-title__highlight { color: #4d8ef0; }
+  @supports ((background-clip: text) or (-webkit-background-clip: text)) {
+    .hero-title__highlight {
+      background: linear-gradient(135deg, #7c3aed, #2563eb 52%, #22d3ee);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
+  }
   .commercial-hero__body {
     max-width: 59ch;
     margin-top: 1.25rem;

@@ -233,7 +233,7 @@ function heroSection(locale) {
   return `<section class="commercial-hero section-shell" id="hero" aria-labelledby="hero-title">
     <div class="commercial-hero__copy">
       <p class="eyebrow">${esc(locale.hero.eyebrow)}</p>
-      <h1 id="hero-title">${esc(locale.hero.title)}</h1>
+      <h1 id="hero-title"><span class="hero-title__lead">${esc(locale.hero.titleLead)}</span> <span class="hero-title__highlight">${esc(locale.hero.titleHighlight)}</span></h1>
       <p class="commercial-hero__body">${esc(locale.hero.body)}</p>
       <div class="button-row">
         <a class="button button--primary" href="#diagnostic">${esc(locale.hero.primary)}<span aria-hidden="true">↗</span></a>

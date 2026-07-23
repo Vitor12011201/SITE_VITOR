@@ -36,6 +36,7 @@ for (const file of required) {
 
 const selectors = [
   ".commercial-hero",
+  ".hero-title__highlight",
   ".quick-proof",
   ".problems",
   ".service-offers",
@@ -72,6 +73,12 @@ if (!css.includes("@media (prefers-reduced-motion: reduce)") ||
     !css.includes("--proof-content-opacity: 1") ||
     !css.includes("--brand-browser-opacity: 1")) {
   errors.push("CSS: reduced-motion final states are incomplete");
+}
+if (!css.includes("linear-gradient(135deg, #7c3aed, #2563eb 52%, #22d3ee)") ||
+    !css.includes("background-clip: text") ||
+    !css.includes("-webkit-text-fill-color: transparent") ||
+    !css.includes(".hero-title__lead { color: #f5f5f7; }")) {
+  errors.push("Hero: premium bilingual title gradient or readable fallback is incomplete");
 }
 if (!css.includes(".site-header.is-menu-open .primary-nav") ||
     !clientJs.includes('header.classList.toggle("is-menu-open")')) {
@@ -149,6 +156,8 @@ const expected = {
   pt: {
     lang: "pt-BR",
     hero: "Seu negócio merece ser impossível de ignorar.",
+    heroLead: "Seu negócio merece ser",
+    heroHighlight: "impossível de ignorar.",
     heroBody: "Criamos sites e landing pages estratégicas para marcas e especialistas",
     heroProof: "Projeto real: NUPPAC • Experiência responsiva • Português e inglês",
     lumina: "Espaços pensados para atravessar o tempo.",
@@ -159,6 +168,8 @@ const expected = {
   en: {
     lang: "en",
     hero: "Your business deserves to be impossible to ignore.",
+    heroLead: "Your business deserves to be",
+    heroHighlight: "impossible to ignore.",
     heroBody: "We create strategic websites and landing pages for brands and specialists",
     heroProof: "Real project: NUPPAC • Responsive experience • Portuguese and English",
     lumina: "Spaces designed to stand the test of time.",
@@ -188,7 +199,9 @@ for (const locale of ["pt", "en"]) {
   const pagePath = path.join(root, locale, "index.html");
   const html = await readFile(pagePath, "utf8");
   if (!html.includes(`<html lang="${expected[locale].lang}">`)) errors.push(`${locale}: incorrect lang`);
-  if ((html.match(/<h1(?:\s|>)/g) || []).length !== 1 || !html.includes(expected[locale].hero)) {
+  if ((html.match(/<h1(?:\s|>)/g) || []).length !== 1 ||
+      !html.includes(`class="hero-title__lead">${expected[locale].heroLead}</span>`) ||
+      !html.includes(`class="hero-title__highlight">${expected[locale].heroHighlight}</span>`)) {
     errors.push(`${locale}: Home must have one commercial hero h1 with the approved message`);
   }
   if (!html.includes(expected[locale].heroBody) ||
