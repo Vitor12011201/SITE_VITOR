@@ -153,6 +153,9 @@ for (const locale of ["pt", "en"]) {
   const expectedLang = locale === "pt" ? "pt-BR" : "en";
   if (!html.includes(`<html lang="${expectedLang}">`)) errors.push(`${locale}: incorrect lang`);
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
+  if (!html.includes('rel="icon" href="../assets/brand/standloud-symbol.svg"')) {
+    errors.push(`${locale}: favicon must use the cache-safe STANDLOUD symbol path`);
+  }
   if (!html.includes("class=\"brand brand--header\"") ||
       !html.includes("class=\"brand brand--footer\"") ||
       !html.includes("class=\"brand__tagline\">Built to be impossible to ignore.</span>") ||
@@ -223,8 +226,8 @@ if (!rootHtml.includes('location.replace("./" + language + "/")')) {
 if (!rootHtml.includes('href="./pt/"') || !rootHtml.includes('href="./en/"')) {
   errors.push("root: language fallback links must remain relative");
 }
-if (!rootHtml.includes('href="./favicon.svg"')) {
-  errors.push("root: missing relative favicon");
+if (!rootHtml.includes('rel="icon" href="./assets/brand/standloud-symbol.svg"')) {
+  errors.push("root: missing cache-safe STANDLOUD favicon path");
 }
 
 const favicon = await readFile(path.join(root, "favicon.svg"), "utf8");
