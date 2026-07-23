@@ -15,33 +15,31 @@
     "cyan": "#22D3EE"
   },
   "home": {
-    "maxScenes": 4,
+    "maxScenes": 3,
     "scenes": [
       {
-        "id": "lumina",
+        "id": "aquaform",
         "enabled": true
       },
       {
-        "id": "brandGravity",
+        "id": "brasa27",
         "enabled": true
       },
       {
-        "id": "attentionToAction",
-        "enabled": false
+        "id": "atlasVale",
+        "enabled": true
       }
     ],
     "sectionOrder": [
       "hero",
-      "quickProof",
       "problems",
       "services",
-      "scene:lumina",
+      "scene:aquaform",
       "projects",
-      "scene:brandGravity",
       "process",
-      "case:nuppac",
-      "scene:attentionToAction",
+      "scene:brasa27",
       "differentials",
+      "scene:atlasVale",
       "about",
       "diagnostic",
       "faq",
@@ -55,23 +53,23 @@
       "implemented": false,
       "fallback": "#projects"
     },
-    "projectNuppac": {
-      "pt": "/pt/projetos/nuppac/",
-      "en": "/en/projects/nuppac/",
+    "projectAquaform": {
+      "pt": "/pt/projetos/aquaform/",
+      "en": "/en/projects/aquaform/",
       "implemented": false,
-      "fallback": "#case-nuppac"
+      "fallback": "#projeto-aquaform"
     },
-    "projectLumina": {
-      "pt": "/pt/projetos/lumina/",
-      "en": "/en/projects/lumina/",
+    "projectBrasa27": {
+      "pt": "/pt/projetos/brasa-27/",
+      "en": "/en/projects/brasa-27/",
       "implemented": false,
-      "fallback": "#scroll-proof"
+      "fallback": "#projeto-brasa-27"
     },
-    "projectNexora": {
-      "pt": "/pt/projetos/nexora/",
-      "en": "/en/projects/nexora/",
+    "projectAtlasVale": {
+      "pt": "/pt/projetos/atlas-vale/",
+      "en": "/en/projects/atlas-vale/",
       "implemented": false,
-      "fallback": "#brand-gravity"
+      "fallback": "#projeto-atlas-vale"
     },
     "services": {
       "pt": "/pt/servicos/",

@@ -57,6 +57,16 @@ function routeHref(locale, key) {
   return route.implemented ? route[locale.locale] : route.fallback;
 }
 
+function projectClass(id) {
+  return id.replace(/[A-Z]/g, (char) => `-${char.toLowerCase()}`);
+}
+
+function featuredProject(locale, id) {
+  const project = locale.featuredProjects?.find((item) => item.id === id);
+  if (!project) throw new Error(`Unknown featured project: ${id}`);
+  return project;
+}
+
 function scrollProof(locale) {
   const proof = locale.scrollProof;
   const landing = proof.landing;
@@ -229,38 +239,176 @@ function brandGravity(locale) {
     </section>`;
 }
 
+function heroTitle(locale) {
+  const lines = locale.hero.titleLines || [
+    locale.hero.titleLead,
+    locale.hero.titleHighlight
+  ];
+  return lines.map((line, index) => {
+    const accent = index >= lines.length - 2 ? " hero-title-accent" : "";
+    return `<span class="hero-title-line${accent}">${esc(line)}</span>`;
+  }).join("");
+}
+
+function projectVisual(project) {
+  if (project.id === "aquaform") {
+    return `<figure class="project-site__visual project-site__visual--car" aria-hidden="true">
+      <svg viewBox="0 0 420 180" focusable="false">
+        <path d="M55 116C73 78 112 53 174 49h75c38 0 67 20 94 62l34 5c18 3 30 18 27 35H32c-3-20 5-31 23-35Z"/>
+        <path d="M128 58 102 97h196l-43-38Z"/>
+        <circle cx="116" cy="150" r="22"/><circle cx="318" cy="150" r="22"/>
+      </svg>
+      <i></i><b></b><em></em>
+    </figure>`;
+  }
+  if (project.id === "brasa27") {
+    return `<figure class="project-site__visual project-site__visual--plate" aria-hidden="true">
+      <span></span><i></i><i></i><i></i><b></b><em></em>
+    </figure>`;
+  }
+  return `<figure class="project-site__visual project-site__visual--law" aria-hidden="true">
+    <svg viewBox="0 0 360 260" focusable="false">
+      <path d="M58 204h244M86 178h188M112 151h126M80 56h204v122H80Z"/>
+      <path d="M106 137 166 86l42 36 48-54"/>
+      <circle cx="166" cy="86" r="6"/><circle cx="208" cy="122" r="6"/><circle cx="256" cy="68" r="6"/>
+    </svg>
+    <i></i><b></b>
+  </figure>`;
+}
+
+function projectSite(project, options = {}) {
+  const compact = options.compact ? " project-site--compact" : "";
+  const className = projectClass(project.id);
+  return `<article class="project-site project-site--${attr(className)}${compact}">
+    <header class="project-site__nav">
+      <a href="#${attr(project.anchor)}" class="project-site__brand">${esc(project.shortName)}</a>
+      <nav aria-label="${attr(project.shortName)}">${project.nav.map((item) => `<a href="#${attr(project.anchor)}">${esc(item)}</a>`).join("")}</nav>
+      <a class="project-site__nav-cta" href="#contact">${esc(project.primary)}</a>
+    </header>
+    <section class="project-site__hero">
+      <div class="project-site__copy">
+        <p class="project-site__eyebrow">${esc(project.eyebrow)}</p>
+        <h2>${esc(project.title)}</h2>
+        <p>${esc(project.body)}</p>
+        <div class="project-site__actions">
+          <a href="#contact">${esc(project.primary)}</a>
+          <a href="#${attr(project.anchor)}-details">${esc(project.secondary)}</a>
+        </div>
+      </div>
+      ${projectVisual(project)}
+    </section>
+    <section class="project-site__details" id="${attr(project.anchor)}-details" aria-label="${attr(project.segment)}">
+      ${project.services.slice(0, options.compact ? 4 : project.services.length).map((item, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(item)}</h3></article>`).join("")}
+    </section>
+    <section class="project-site__conversion">
+      <div><strong>${esc(project.signature)}</strong><span>${esc(project.hours)}</span></div>
+      <a href="#contact">${esc(project.planCta)}</a>
+    </section>
+  </article>`;
+}
+
+function projectPreviewFeature(locale, project) {
+  const isPt = locale.locale === "pt";
+  if (project.id === "aquaform") {
+    return `<div class="preview-before-after"><i></i><b></b></div><p>${isPt ? "Antes / depois técnico" : "Technical before / after"}</p>`;
+  }
+  if (project.id === "brasa27") {
+    return `<div class="preview-reservation"><span>${isPt ? "Data" : "Date"}</span><span>${isPt ? "Horário" : "Time"}</span><span>${isPt ? "Pessoas" : "Guests"}</span></div><p>${isPt ? "Reserva sem atrito" : "Frictionless booking"}</p>`;
+  }
+  return `<div class="preview-route"><i></i><i></i><i></i></div><p>${isPt ? "Direção clara" : "Clear direction"}</p>`;
+}
+
+function projectPreviewSite(locale, project) {
+  const className = projectClass(project.id);
+  const services = project.services.slice(0, project.id === "atlasVale" ? 6 : 4);
+  const plans = project.plans.slice(0, 4);
+  return `<article class="project-preview-site project-preview-site--${attr(className)}" aria-hidden="true">
+    <header class="preview-navbar">
+      <strong>${esc(project.shortName)}</strong>
+      <nav>${project.nav.slice(0, 4).map((item) => `<span>${esc(item)}</span>`).join("")}</nav>
+      <a href="#${attr(project.anchor)}" tabindex="-1">${esc(project.primary)}</a>
+    </header>
+    <section class="preview-hero">
+      <div>
+        <p>${esc(project.eyebrow)}</p>
+        <h2>${esc(project.title)}</h2>
+        <span>${esc(project.primary)}</span>
+      </div>
+      ${projectVisual(project)}
+    </section>
+    <section class="preview-services">
+      ${services.map((item, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(item)}</h3></article>`).join("")}
+    </section>
+    <section class="preview-feature">${projectPreviewFeature(locale, project)}</section>
+    <section class="preview-content-grid">
+      ${plans.map((item) => `<article>${esc(item)}</article>`).join("")}
+    </section>
+    <section class="preview-final-cta">
+      <strong>${esc(project.signature)}</strong>
+      <span>${esc(project.planCta)}</span>
+    </section>
+    <footer class="preview-footer"><span>${esc(project.location)}</span><span>${esc(project.hours)}</span></footer>
+  </article>`;
+}
+
+function selectedWorkPreview(locale, project) {
+  return `<div class="work-preview work-preview--${attr(projectClass(project.id))}">
+    ${projectPreviewSite(locale, project)}
+  </div>`;
+}
+
+function selectedWorkSlide(locale, item, index) {
+  const project = featuredProject(locale, item.id);
+  const active = index === 0;
+  return `<article class="selected-work__slide selected-work__slide--${attr(item.id)}${active ? " is-active" : ""}"
+            id="selected-work-${attr(locale.locale)}-${index + 1}"
+            data-selected-work-slide
+            data-address="${attr(item.address)}"
+            data-href="${attr(item.href)}"
+            aria-hidden="${active ? "false" : "true"}"${active ? "" : " inert"}>
+            <div class="selected-work__preview">${selectedWorkPreview(locale, project)}</div>
+          </article>`;
+}
+
 function heroSection(locale) {
   return `<section class="commercial-hero section-shell" id="hero" aria-labelledby="hero-title">
     <div class="commercial-hero__copy">
       <p class="eyebrow">${esc(locale.hero.eyebrow)}</p>
-      <h1 id="hero-title"><span class="hero-title__lead">${esc(locale.hero.titleLead)}</span> <span class="hero-title__highlight">${esc(locale.hero.titleHighlight)}</span></h1>
+      <h1 id="hero-title" class="hero-title">${heroTitle(locale)}</h1>
       <p class="commercial-hero__body">${esc(locale.hero.body)}</p>
       <div class="button-row">
         <a class="button button--primary" href="#diagnostic">${esc(locale.hero.primary)}<span aria-hidden="true">↗</span></a>
         <a class="button button--ghost" href="#projects">${esc(locale.hero.secondary)}</a>
       </div>
       <p class="commercial-hero__micro"><i aria-hidden="true"></i>${esc(locale.hero.micro)}</p>
-      <p class="commercial-hero__proof">${esc(locale.hero.proof)}</p>
     </div>
-    <div class="commercial-hero__visual" aria-hidden="true">
-      <div class="hero-browser">
-        <div class="hero-browser__bar"><i></i><i></i><i></i><span>standloud.studio</span></div>
-        <div class="hero-browser__canvas">
-          <span class="hero-browser__eyebrow">STANDLOUD / PROCESS</span>
-          <div class="hero-process">
-            ${locale.hero.visual.map((step, index) => `<article class="hero-process__step" style="--step:${index}">
-              <span>${esc(step.number)} / ${esc(step.label)}</span>
-              <strong>${esc(step.body)}</strong>
-            </article>`).join("")}
+    <div class="commercial-hero__visual">
+      <section class="project-showcase selected-work" data-selected-work aria-label="${attr(locale.hero.carouselLabel)}">
+        <div class="project-browser hero-browser">
+          <div class="hero-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span data-selected-work-address>${esc(locale.hero.visual[0].address)}</span></div>
+          <div class="hero-browser__canvas">
+          <div class="selected-work__viewport">
+            ${locale.hero.visual.map((item, index) => selectedWorkSlide(locale, item, index)).join("")}
           </div>
-          <div class="hero-process__rail">
-            ${locale.hero.visual.map((step, index) => `<span style="--step:${index}"><i></i>${esc(step.number)} / ${esc(step.label)}</span>`).join("")}
           </div>
-          <div class="hero-browser__signal"><i></i><i></i><i></i></div>
         </div>
-      </div>
-      <span class="hero-orbit hero-orbit--a"></span>
-      <span class="hero-orbit hero-orbit--b"></span>
+        <div class="project-action">
+          <a class="button button--primary selected-work__link" data-selected-work-action href="${attr(locale.hero.visual[0].href)}">${esc(locale.hero.viewProject)}<span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="project-carousel-controls">
+          <button class="selected-work__arrow" type="button" data-selected-work-prev aria-label="${attr(locale.hero.previousProject)}">‹</button>
+          <div class="selected-work__dots" role="tablist" aria-label="${attr(locale.hero.carouselLabel)}">
+            ${locale.hero.visual.map((item, index) => `<button type="button"
+              class="selected-work__dot${index === 0 ? " is-active" : ""}"
+              data-selected-work-dot="${index}"
+              role="tab"
+              aria-selected="${index === 0 ? "true" : "false"}"
+              aria-controls="selected-work-${attr(locale.locale)}-${index + 1}"
+              aria-label="${attr(item.name)}"></button>`).join("")}
+          </div>
+          <button class="selected-work__arrow" type="button" data-selected-work-next aria-label="${attr(locale.hero.nextProject)}">›</button>
+        </div>
+      </section>
     </div>
   </section>`;
 }
@@ -313,27 +461,22 @@ function servicesSection(locale) {
 }
 
 function projectsSection(locale) {
-  const routeKeys = {
-    nuppac: "projectNuppac",
-    lumina: "projectLumina",
-    nexora: "projectNexora"
-  };
   return `<section class="projects-commercial section-shell" id="projects" aria-labelledby="projects-title">
     <div class="section-heading reveal">
       <div><p class="eyebrow">${esc(locale.projects.eyebrow)}</p><h2 id="projects-title">${esc(locale.projects.title)}</h2></div>
       <p>${esc(locale.projects.body)}</p>
     </div>
-    <div class="project-showcase">
-      ${locale.projects.items.map((item, index) => `<article class="commercial-project commercial-project--${attr(item.id)} reveal">
+    <div class="project-card-showcase">
+      ${locale.featuredProjects.map((item, index) => `<article class="commercial-project commercial-project--${attr(projectClass(item.id))} reveal">
         <div class="commercial-project__visual" aria-hidden="true">
           <span>0${index + 1}</span><i></i><i></i><i></i>
         </div>
         <div class="commercial-project__content">
-          <p class="eyebrow">${esc(item.type)}</p>
+          <p class="eyebrow">${esc(item.badge)}</p>
           <h3>${esc(item.name)}</h3>
-          <p>${esc(item.body)}</p>
-          <ul>${item.scope.map((scope) => `<li>${esc(scope)}</li>`).join("")}</ul>
-          <a href="${attr(routeHref(locale, routeKeys[item.id]))}">${esc(locale.projects.linkLabel)}<span aria-hidden="true">↗</span></a>
+          <p>${esc(item.segment)}. ${esc(item.concept)}</p>
+          <ul>${item.services.slice(0, 4).map((scope) => `<li>${esc(scope)}</li>`).join("")}</ul>
+          <a href="${attr(routeHref(locale, item.routeKey))}">${esc(locale.projects.linkLabel)}<span aria-hidden="true">↗</span></a>
         </div>
       </article>`).join("")}
     </div>
@@ -451,7 +594,39 @@ function contactSection(locale) {
   </section>`;
 }
 
+function commercialProjectScene(locale, id) {
+  const project = featuredProject(locale, id);
+  const className = projectClass(project.id);
+  return `<section class="commercial-project-scene commercial-project-scene--${attr(className)}"
+      id="${attr(project.anchor)}"
+      data-commercial-project-scene
+      aria-labelledby="${attr(project.anchor)}-title"
+      tabindex="-1"
+      style="--project-progress:0;--project-phase-a:0;--project-phase-b:0;--project-phase-c:0;--project-phase-d:0">
+    <div class="commercial-project-scene__stage">
+      <div class="commercial-project-scene__intro">
+        <p class="eyebrow">${esc(project.badge)}</p>
+        <h2 id="${attr(project.anchor)}-title">${esc(project.name)}</h2>
+        <p>${esc(project.segment)}. ${esc(project.concept)}</p>
+      </div>
+      <div class="commercial-project-scene__workspace">
+        <div class="project-parts" aria-hidden="true">
+          ${project.services.slice(0, 6).map((item, index) => `<span style="--part:${index}">${esc(item)}</span>`).join("")}
+        </div>
+        <div class="commercial-project-scene__browser">
+          <div class="commercial-project-scene__bar" aria-hidden="true"><i></i><i></i><i></i><span>${esc(project.shortName.toLowerCase().replaceAll(" ", ""))}.concept</span></div>
+          ${projectSite(project)}
+        </div>
+        <div class="commercial-project-scene__final"><i aria-hidden="true"></i><span>${esc(project.finalMessage)}</span></div>
+      </div>
+    </div>
+  </section>`;
+}
+
 const homeSceneRenderers = {
+  aquaform: (locale) => commercialProjectScene(locale, "aquaform"),
+  brasa27: (locale) => commercialProjectScene(locale, "brasa27"),
+  atlasVale: (locale) => commercialProjectScene(locale, "atlasVale"),
   lumina: scrollProof,
   brandGravity
 };
@@ -462,6 +637,7 @@ function configuredScene(locale, id) {
   const renderer = homeSceneRenderers[id];
   if (!renderer) throw new Error(`Enabled Home scene has no renderer: ${id}`);
   const intro = locale.animationIntros[id];
+  if (!intro && locale.featuredProjects?.some((project) => project.id === id)) return renderer(locale);
   const afterHref = id === "lumina" ? "#process" : "#diagnostic";
   return `<div class="scene-experience scene-experience--${attr(id)}">
     <section class="scene-intro section-shell" aria-labelledby="${attr(id)}-intro-title">

@@ -36,23 +36,20 @@ for (const file of required) {
 
 const selectors = [
   ".commercial-hero",
-  ".hero-title__highlight",
+  ".hero-title-accent",
+  ".selected-work",
   ".quick-proof",
   ".problems",
   ".service-offers",
-  ".scene-intro",
-  ".scroll-proof",
-  ".build-scene__browser",
-  ".lumina-header",
-  ".lumina-hero",
-  ".lumina-stats",
-  ".lumina-services",
+  ".commercial-project-scene",
+  ".project-site",
   ".project-showcase",
-  ".brand-gravity",
-  ".gravity-browser",
-  ".nexora-page",
+  ".project-browser",
+  ".project-action",
+  ".project-carousel-controls",
+  ".project-preview-site",
+  ".project-card-showcase",
   ".process-commercial",
-  ".case-study",
   ".differentials",
   ".about",
   ".diagnostic",
@@ -70,14 +67,14 @@ for (const breakpoint of ["1100", "920", "760"]) {
   }
 }
 if (!css.includes("@media (prefers-reduced-motion: reduce)") ||
-    !css.includes("--proof-content-opacity: 1") ||
-    !css.includes("--brand-browser-opacity: 1")) {
+    !css.includes(".selected-work__slide { transition: none !important; }")) {
   errors.push("CSS: reduced-motion final states are incomplete");
 }
 if (!css.includes("linear-gradient(135deg, #7c3aed, #2563eb 52%, #22d3ee)") ||
     !css.includes("background-clip: text") ||
     !css.includes("-webkit-text-fill-color: transparent") ||
-    !css.includes(".hero-title__lead { color: #f5f5f7; }")) {
+    !css.includes(".hero-title-line") ||
+    !css.includes("overflow: visible")) {
   errors.push("Hero: premium bilingual title gradient or readable fallback is incomplete");
 }
 if (!css.includes(".site-header.is-menu-open .primary-nav") ||
@@ -94,14 +91,11 @@ if (site.home.maxScenes > 4 || site.home.scenes.length > site.home.maxScenes) {
   errors.push("Home scene configuration exceeds the four-scene limit");
 }
 const enabledScenes = site.home.scenes.filter((scene) => scene.enabled).map((scene) => scene.id);
-if (enabledScenes.join(",") !== "lumina,brandGravity") {
-  errors.push(`Home: expected only Lumina and Brand Gravity enabled, found ${enabledScenes.join(",")}`);
-}
-if (site.home.scenes.find((scene) => scene.id === "attentionToAction")?.enabled !== false) {
-  errors.push("Home: attentionToAction must remain configured but disabled");
+if (enabledScenes.join(",") !== "aquaform,brasa27,atlasVale") {
+  errors.push(`Home: expected only AQUAFORM, BRASA 27 and ATLAS & VALE enabled, found ${enabledScenes.join(",")}`);
 }
 const requiredRoutes = [
-  "projects", "projectNuppac", "projectLumina", "projectNexora",
+  "projects", "projectAquaform", "projectBrasa27", "projectAtlasVale",
   "services", "process", "about", "contact", "lab"
 ];
 for (const key of requiredRoutes) {
@@ -111,17 +105,18 @@ for (const key of requiredRoutes) {
   }
 }
 
-if (!clientJs.includes("[data-scroll-proof]") ||
-    !clientJs.includes("--scene-progress") ||
+if (!clientJs.includes("[data-commercial-project-scene]") ||
+    !clientJs.includes("--project-progress") ||
     !clientJs.includes("requestAnimationFrame(readScroll)") ||
-    !clientJs.includes("setScrollProofProgress(clamp01(-rect.top / travel))")) {
-  errors.push("Lumina: normalized reversible rAF scroll progress is incomplete");
+    !clientJs.includes("setCommercialProjectProgress(scene")) {
+  errors.push("Commercial project scenes: normalized reversible rAF scroll progress is incomplete");
 }
-if (!clientJs.includes("[data-brand-gravity]") ||
-    !clientJs.includes("--brand-gravity-progress") ||
-    !clientJs.includes("--brand-attraction") ||
-    !clientJs.includes("setBrandGravityProgress(clamp01(-rect.top / travel))")) {
-  errors.push("Brand Gravity: normalized reversible rAF scroll progress is incomplete");
+if (!clientJs.includes("[data-selected-work]") ||
+    !clientJs.includes("selectedWorkReady") ||
+    !clientJs.includes("visibilitychange") ||
+    !clientJs.includes("pointerdown") ||
+    !clientJs.includes("aria-hidden")) {
+  errors.push("Selected Work Carousel: accessible guarded runtime is incomplete");
 }
 if (clientJs.includes(".world-step") || clientJs.includes(".world-stage") ||
     clientJs.includes("setScene(") || clientJs.includes("sceneObserver")) {
@@ -156,39 +151,34 @@ const expected = {
   pt: {
     lang: "pt-BR",
     hero: "Seu negócio merece ser impossível de ignorar.",
-    heroLead: "Seu negócio merece ser",
-    heroHighlight: "impossível de ignorar.",
+    heroLines: ["Seu negócio", "merece ser", "impossível", "de ignorar."],
     heroBody: "Criamos sites e landing pages estratégicas para marcas e especialistas",
-    heroProof: "Projeto real: NUPPAC • Experiência responsiva • Português e inglês",
-    lumina: "Espaços pensados para atravessar o tempo.",
-    gravity: "A maioria das marcas disputa atenção. Algumas criam sua própria gravidade.",
-    real: "Projeto real",
+    selectedWork: "Trabalhos conceituais selecionados da STANDLOUD",
+    projects: ["AQUAFORM Auto Spa", "BRASA 27", "ATLAS &amp; VALE"],
+    anchors: ["projeto-aquaform", "projeto-brasa-27", "projeto-atlas-vale"],
     concept: "Projeto conceitual"
   },
   en: {
     lang: "en",
     hero: "Your business deserves to be impossible to ignore.",
-    heroLead: "Your business deserves to be",
-    heroHighlight: "impossible to ignore.",
+    heroLines: ["Your business", "deserves to be", "impossible", "to ignore."],
     heroBody: "We create strategic websites and landing pages for brands and specialists",
-    heroProof: "Real project: NUPPAC • Responsive experience • Portuguese and English",
-    lumina: "Spaces designed to stand the test of time.",
-    gravity: "Most brands compete for attention. Some create their own gravity.",
-    real: "Real project",
+    selectedWork: "Selected STANDLOUD concept work",
+    projects: ["AQUAFORM Auto Spa", "BRASA 27", "ATLAS &amp; VALE"],
+    anchors: ["projeto-aquaform", "projeto-brasa-27", "projeto-atlas-vale"],
     concept: "Concept project"
   }
 };
 const orderedMarkers = [
   'class="commercial-hero',
-  'class="quick-proof',
   'class="problems',
   'class="services-commercial',
-  'class="scene-experience scene-experience--lumina',
+  'class="commercial-project-scene commercial-project-scene--aquaform',
   'class="projects-commercial',
-  'class="scene-experience scene-experience--brandGravity',
   'class="process-commercial',
-  'class="case-study',
+  'class="commercial-project-scene commercial-project-scene--brasa27',
   'class="differentials',
+  'class="commercial-project-scene commercial-project-scene--atlas-vale',
   'class="about',
   'class="diagnostic',
   'class="faq',
@@ -200,33 +190,36 @@ for (const locale of ["pt", "en"]) {
   const html = await readFile(pagePath, "utf8");
   if (!html.includes(`<html lang="${expected[locale].lang}">`)) errors.push(`${locale}: incorrect lang`);
   if ((html.match(/<h1(?:\s|>)/g) || []).length !== 1 ||
-      !html.includes(`class="hero-title__lead">${expected[locale].heroLead}</span>`) ||
-      !html.includes(`class="hero-title__highlight">${expected[locale].heroHighlight}</span>`)) {
+      expected[locale].heroLines.some((line) => !html.includes(`>${line}</span>`))) {
     errors.push(`${locale}: Home must have one commercial hero h1 with the approved message`);
   }
   if (!html.includes(expected[locale].heroBody) ||
-      !html.includes(expected[locale].heroProof) ||
-      (html.match(/class="hero-process__step"/g) || []).length !== 3 ||
+      html.includes("Projeto real: NUPPAC • Experiência responsiva") ||
+      html.includes("Real project: NUPPAC • Responsive experience") ||
+      (html.match(/data-selected-work-slide/g) || []).length !== 3 ||
+      (html.match(/data-selected-work-dot=/g) || []).length !== 3 ||
+      (html.match(/data-selected-work-action/g) || []).length !== 1 ||
+      html.includes("project-meta") ||
+      !html.includes(expected[locale].selectedWork) ||
       !html.includes(`class="button button--primary" href="#diagnostic"`) ||
       !html.includes(`class="button button--ghost" href="#projects"`)) {
-    errors.push(`${locale}: compact Hero message, three-step visual or CTA targets are incomplete`);
+    errors.push(`${locale}: compact Hero message, selected-work carousel or CTA targets are incomplete`);
   }
-  if (!html.includes(expected[locale].lumina) ||
-      !html.includes("data-scroll-proof") ||
-      !html.includes("--scene-progress:0")) {
-    errors.push(`${locale}: Lumina scene is incomplete`);
+  for (const project of expected[locale].projects) {
+    if (!html.includes(project)) errors.push(`${locale}: missing featured project ${project}`);
   }
-  if (!html.includes(expected[locale].gravity) ||
-      !html.includes("data-brand-gravity") ||
-      !html.includes("--brand-gravity-progress:0")) {
-    errors.push(`${locale}: Brand Gravity scene is incomplete`);
+  for (const anchor of expected[locale].anchors) {
+    if (!html.includes(`id="${anchor}"`) || !html.includes(`href="#${anchor}"`)) {
+      errors.push(`${locale}: missing working anchor for ${anchor}`);
+    }
   }
-  if ((html.match(/data-scroll-proof/g) || []).length !== 1 ||
-      (html.match(/data-brand-gravity/g) || []).length !== 1) {
-    errors.push(`${locale}: expected exactly two active Home animations`);
+  if ((html.match(/data-commercial-project-scene/g) || []).length !== 3 ||
+      (html.match(/--project-progress:0/g) || []).length !== 3) {
+    errors.push(`${locale}: expected exactly three commercial project animations`);
   }
   if (html.includes("attentionToAction") || html.includes("Da atenção à ação") ||
-      html.includes("From attention to action") || html.includes("class=\"world\"") ||
+      html.includes("From attention to action") || html.includes("data-scroll-proof") ||
+      html.includes("data-brand-gravity") || html.includes("class=\"world\"") ||
       html.includes("world-step")) {
     errors.push(`${locale}: disabled or archived scenes are visible on the Home`);
   }
@@ -234,9 +227,8 @@ for (const locale of ["pt", "en"]) {
     errors.push(`${locale}: expected three commercial services`);
   }
   if ((html.match(/class="commercial-project /g) || []).length !== 3 ||
-      !html.includes("NUPPAC") || !html.includes(expected[locale].real) ||
-      (html.match(new RegExp(expected[locale].concept, "g")) || []).length < 2) {
-    errors.push(`${locale}: project showcase must distinguish NUPPAC from conceptual work`);
+      (html.match(new RegExp(expected[locale].concept, "g")) || []).length < 3) {
+    errors.push(`${locale}: project showcase must contain three clearly labeled concept projects`);
   }
   if ((html.match(/class="process-commercial__list"/g) || []).length !== 1 ||
       (html.match(/<li class="reveal">/g) || []).length < 5) {
@@ -305,4 +297,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log("Checks passed: commercial PT/EN Home, two active scenes, Lab archive, routes, form and motion fallbacks.");
+console.log("Checks passed: commercial PT/EN Home, three concept project scenes, Lab archive, routes, form and motion fallbacks.");

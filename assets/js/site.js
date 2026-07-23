@@ -7,11 +7,128 @@
   const brandGravity = document.querySelector("[data-brand-gravity]");
   const gravityPanels = [...document.querySelectorAll(".noise-panel")];
   const gravityComponents = [...document.querySelectorAll(".gravity-component")];
+  const commercialProjectScenes = [...document.querySelectorAll("[data-commercial-project-scene]")];
   let frameRequested = false;
 
   const clamp01 = (value) => Math.min(1, Math.max(0, value));
   const phase = (value, start, end) => clamp01((value - start) / (end - start));
   const lerp = (from, to, value) => from + (to - from) * value;
+  const setInert = (node, value) => {
+    if ("inert" in node) node.inert = value;
+    if (value) node.setAttribute("inert", "");
+    else node.removeAttribute("inert");
+  };
+
+  const initSelectedWorkCarousel = () => {
+    document.querySelectorAll("[data-selected-work]").forEach((carousel) => {
+      if (carousel.dataset.selectedWorkReady === "true") return;
+      carousel.dataset.selectedWorkReady = "true";
+
+      const slides = [...carousel.querySelectorAll("[data-selected-work-slide]")];
+      const dots = [...carousel.querySelectorAll("[data-selected-work-dot]")];
+      const previous = carousel.querySelector("[data-selected-work-prev]");
+      const next = carousel.querySelector("[data-selected-work-next]");
+      const address = carousel.querySelector("[data-selected-work-address]");
+      const action = carousel.querySelector("[data-selected-work-action]");
+      if (slides.length !== 3 || dots.length !== 3 || !action) return;
+
+      let activeIndex = Math.max(0, slides.findIndex((slide) => slide.classList.contains("is-active")));
+      let timer = 0;
+      let pausedByUser = false;
+      let pointerStartX = null;
+      const delay = 5600;
+
+      const stop = () => {
+        if (!timer) return;
+        window.clearTimeout(timer);
+        timer = 0;
+      };
+
+      const schedule = () => {
+        stop();
+        if (reducedMotion || pausedByUser || document.hidden) return;
+        timer = window.setTimeout(() => {
+          setActive(activeIndex + 1, { userInitiated: false });
+        }, delay);
+      };
+
+      function setActive(index, options = {}) {
+        activeIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === activeIndex;
+          slide.classList.toggle("is-active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+          setInert(slide, !active);
+        });
+        dots.forEach((dot, dotIndex) => {
+          const active = dotIndex === activeIndex;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-selected", String(active));
+          dot.tabIndex = active ? 0 : -1;
+        });
+        if (address) address.textContent = slides[activeIndex].dataset.address || "";
+        action.href = slides[activeIndex].dataset.href || "#projects";
+        if (options.userInitiated) {
+          pausedByUser = true;
+          window.setTimeout(() => {
+            pausedByUser = false;
+            schedule();
+          }, delay);
+        }
+        schedule();
+      }
+
+      const pause = () => {
+        pausedByUser = true;
+        stop();
+      };
+      const resume = () => {
+        pausedByUser = false;
+        schedule();
+      };
+      const interact = (index) => setActive(index, { userInitiated: true });
+
+      previous?.addEventListener("click", () => interact(activeIndex - 1));
+      next?.addEventListener("click", () => interact(activeIndex + 1));
+      dots.forEach((dot, index) => dot.addEventListener("click", () => interact(index)));
+      carousel.addEventListener("mouseenter", pause);
+      carousel.addEventListener("mouseleave", resume);
+      carousel.addEventListener("focusin", pause);
+      carousel.addEventListener("focusout", () => {
+        window.setTimeout(() => {
+          if (!carousel.contains(document.activeElement)) resume();
+        }, 0);
+      });
+      carousel.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          interact(activeIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          interact(activeIndex + 1);
+        }
+      });
+      carousel.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse") return;
+        pointerStartX = event.clientX;
+      }, { passive: true });
+      carousel.addEventListener("pointerup", (event) => {
+        if (pointerStartX === null) return;
+        const delta = event.clientX - pointerStartX;
+        pointerStartX = null;
+        if (Math.abs(delta) < 36) return;
+        interact(activeIndex + (delta < 0 ? 1 : -1));
+      }, { passive: true });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stop();
+        else schedule();
+      });
+
+      setActive(activeIndex);
+    });
+  };
+
   const blockOrigins = [
     { x: -160, y: -115, z: 90, r: -8, s: 0.94 },
     { x: -125, y: -40, z: 125, r: -6, s: 0.96 },
@@ -166,6 +283,20 @@
     });
   };
 
+  const setCommercialProjectProgress = (scene, value) => {
+    const progressValue = reducedMotion ? 1 : value;
+    const structure = phase(progressValue, 0, 0.2);
+    const assemble = phase(progressValue, 0.2, 0.45);
+    const polish = phase(progressValue, 0.45, 0.7);
+    const final = phase(progressValue, 0.7, 1);
+    scene.style.setProperty("--project-progress", progressValue.toFixed(4));
+    scene.style.setProperty("--project-phase-a", structure.toFixed(4));
+    scene.style.setProperty("--project-phase-b", assemble.toFixed(4));
+    scene.style.setProperty("--project-phase-c", polish.toFixed(4));
+    scene.style.setProperty("--project-phase-d", final.toFixed(4));
+    scene.classList.toggle("is-complete", progressValue >= 0.985);
+  };
+
   const readScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 24);
     if (scrollProof) {
@@ -178,6 +309,12 @@
       const travel = Math.max(1, brandGravity.offsetHeight - window.innerHeight);
       setBrandGravityProgress(clamp01(-rect.top / travel));
     }
+    commercialProjectScenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) return;
+      const travel = Math.max(1, scene.offsetHeight - window.innerHeight);
+      setCommercialProjectProgress(scene, clamp01(-rect.top / travel));
+    });
     frameRequested = false;
   };
 
@@ -209,6 +346,13 @@
     header?.classList.remove("is-menu-open");
     menuButton?.setAttribute("aria-expanded", "false");
   }));
+  document.querySelectorAll(".selected-work__link").forEach((link) => {
+    link.addEventListener("click", () => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target) return;
+      window.setTimeout(() => target.focus({ preventScroll: true }), reducedMotion ? 0 : 550);
+    });
+  });
 
   document.querySelectorAll("[data-language]").forEach((link) => {
     link.addEventListener("click", () => localStorage.setItem("standloud-language", link.dataset.language));
@@ -274,6 +418,10 @@
 
   addEventListener("scroll", requestRead, { passive: true });
   addEventListener("resize", requestRead, { passive: true });
+  initSelectedWorkCarousel();
+  commercialProjectScenes.forEach((scene) => {
+    if (reducedMotion) setCommercialProjectProgress(scene, 1);
+  });
   if (scrollProof && reducedMotion) setScrollProofProgress(1);
   if (brandGravity && reducedMotion) setBrandGravityProgress(1);
   readScroll();
