@@ -9,10 +9,12 @@ const required = [
   "en/index.html",
   "assets/css/styles.css",
   "assets/js/site.js",
+  "favicon.svg",
   "prompts/generated/manifest.json"
 ];
 const errors = [];
 const css = await readFile(path.join(root, "assets/css/styles.css"), "utf8");
+const clientJs = await readFile(path.join(root, "assets/js/site.js"), "utf8");
 const storyboardSource = JSON.parse(
   await readFile(path.join(root, "prompts/scroll-world.json"), "utf8")
 );
@@ -42,6 +44,13 @@ if (!css.includes("@media (max-width: 1100px)") ||
 }
 if (!css.includes("@media (prefers-reduced-motion: reduce)")) {
   errors.push("CSS: missing reduced-motion support");
+}
+if (!css.includes(".site-header.is-menu-open .primary-nav") ||
+    !clientJs.includes('header.classList.toggle("is-menu-open")')) {
+  errors.push("mobile navigation contract is incomplete");
+}
+if (!clientJs.includes('localStorage.setItem("nova-frame-language"')) {
+  errors.push("manual language selection persistence is missing");
 }
 
 const storyboardFields = [
@@ -91,6 +100,22 @@ for (const locale of ["pt", "en"]) {
 
 const rootHtml = await readFile(path.join(root, "index.html"), "utf8");
 if (!rootHtml.includes("navigator.language")) errors.push("root: missing browser language detection");
+if (!rootHtml.includes('location.replace("./" + language + "/")')) {
+  errors.push("root: language redirect must remain relative");
+}
+if (!rootHtml.includes('href="./pt/"') || !rootHtml.includes('href="./en/"')) {
+  errors.push("root: language fallback links must remain relative");
+}
+if (!rootHtml.includes('href="./favicon.svg"')) {
+  errors.push("root: missing relative favicon");
+}
+
+try {
+  await access(path.join(root, ".github/workflows/deploy-pages.yml"));
+  errors.push("unexpected GitHub Pages deployment workflow");
+} catch {
+  // Expected: Cloudflare Pages deploys through its Git integration.
+}
 
 if (errors.length) {
   console.error(errors.join("\n"));
