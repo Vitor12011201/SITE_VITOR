@@ -15,6 +15,15 @@
     "contact": "Quote"
   },
   "headerCta": "Discuss a project",
+  "scrollProof": {
+    "aria": "Scroll animation proof from sketch to launch",
+    "eyebrow": "SCROLL PROOF",
+    "title": "From rough idea to launch.",
+    "body": "Watch an idea become a wireframe, an interface and a finished page as the scroll moves.",
+    "final": "Ideas become digital experiences.",
+    "launch": "Launch ready",
+    "status": "Scroll controls the visual build"
+  },
   "world": {
     "aria": "A journey through the digital creation process",
     "scrollHint": "Scroll to enter the studio",

@@ -15,6 +15,15 @@
     "contact": "Orçamento"
   },
   "headerCta": "Falar sobre um projeto",
+  "scrollProof": {
+    "aria": "Prova de animação por scroll do rascunho ao lançamento",
+    "eyebrow": "PROVA DE SCROLL",
+    "title": "Do rascunho ao lançamento.",
+    "body": "Acompanhe uma ideia se organizando em wireframe, interface e página pronta conforme o scroll avança.",
+    "final": "Ideias se transformam em experiências digitais.",
+    "launch": "Lançamento pronto",
+    "status": "Scroll controla a construção visual"
+  },
   "world": {
     "aria": "Uma jornada pelo processo de criação digital",
     "scrollHint": "Role para entrar no estúdio",

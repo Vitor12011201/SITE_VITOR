@@ -80,6 +80,55 @@ function projectCards(items) {
   }).join("");
 }
 
+function scrollProof(locale) {
+  const proof = locale.scrollProof;
+  const wireBlocks = [
+    ["nav", "01"],
+    ["hero", "02"],
+    ["copy", "03"],
+    ["cta", "04"],
+    ["media", "05"],
+    ["card-a", "06"],
+    ["card-b", "07"],
+    ["card-c", "08"]
+  ];
+
+  return `<section class="scroll-proof" id="scroll-proof" data-scroll-proof aria-labelledby="scroll-proof-title" style="--scene-progress:0;--scene-phase-a:0;--scene-phase-b:0;--scene-phase-c:0;--scene-phase-d:0;--scene-phase-e:0">
+      <div class="scroll-proof__stage">
+        <div class="scroll-proof__ambient" aria-hidden="true">
+          <i></i><i></i><i></i><i></i><i></i><i></i>
+        </div>
+        <div class="scroll-proof__viewport">
+          <div class="scroll-proof__copy">
+            <p class="eyebrow">${esc(proof.eyebrow)}</p>
+            <h1 id="scroll-proof-title">${esc(proof.title)}</h1>
+            <p>${esc(proof.body)}</p>
+          </div>
+          <div class="build-scene" aria-hidden="true">
+            <div class="build-scene__floor"></div>
+            <div class="build-scene__browser">
+              <div class="build-scene__bar"><span></span><span></span><span></span><i></i></div>
+              <div class="landing-page">
+                ${wireBlocks.map(([name, num]) => `<div class="wire-block wire-block--${name}" style="--block-index:${num}"><span></span><i></i></div>`).join("")}
+              </div>
+            </div>
+            <div class="build-scene__launch">
+              <span></span><i></i>
+            </div>
+          </div>
+          <div class="scroll-proof__final">
+            <p>${esc(proof.final)}</p>
+            <span><i aria-hidden="true"></i>${esc(proof.launch)}</span>
+          </div>
+          <div class="scroll-proof__meter" aria-hidden="true">
+            <span>${esc(proof.status)}</span>
+            <i></i>
+          </div>
+        </div>
+      </div>
+    </section>`;
+}
+
 function page(locale) {
   const isPt = locale.locale === "pt";
   const otherLocale = isPt ? "EN" : "PT";
@@ -148,6 +197,7 @@ function page(locale) {
 
   <main id="main">
     <div id="top" aria-hidden="true"></div>
+    ${scrollProof(locale)}
     <section class="world" id="experience" aria-label="${attr(locale.world.aria)}">
       <div class="world-stage" aria-hidden="true">
         <div class="world-stage__halo"></div>

@@ -209,6 +209,319 @@
   .menu-toggle > span:not(.sr-only) { display: block; width: 1rem; height: 1px; margin: .28rem auto; background: currentColor; }
 
   .world { position: relative; min-height: 800vh; background: var(--background); }
+
+  .scroll-proof {
+    --proof-ambient-opacity: .08;
+    --proof-browser-opacity: .04;
+    --proof-copy-opacity: 1;
+    --proof-final-opacity: 0;
+    --proof-polish: 0;
+    --proof-launch: 0;
+    --proof-glow: 0rem;
+    --proof-launch-offset: 16px;
+    --proof-final-offset: 20px;
+    --proof-camera-transform: translate3d(0, 28px, 0) rotateX(58deg) rotateZ(-10deg) scale(.82);
+    min-height: 420vh;
+    position: relative;
+    background:
+      radial-gradient(circle at 76% 36%, color-mix(in srgb, var(--blue) 16%, transparent), transparent 26rem),
+      radial-gradient(circle at 18% 18%, color-mix(in srgb, var(--purple) 15%, transparent), transparent 24rem),
+      var(--background);
+    isolation: isolate;
+  }
+  .scroll-proof__stage {
+    position: sticky;
+    top: 0;
+    min-height: 100svh;
+    overflow: hidden;
+    display: grid;
+    align-items: center;
+    padding: calc(var(--header-h) + 1.5rem) var(--page-pad) 2rem;
+  }
+  .scroll-proof__stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background:
+      linear-gradient(90deg, var(--background), color-mix(in srgb, var(--background) 88%, transparent) 34%, transparent 64%),
+      linear-gradient(0deg, var(--background), transparent 24%);
+    pointer-events: none;
+  }
+  .scroll-proof__stage::after {
+    content: "";
+    position: absolute;
+    inset: auto -10% -22% -10%;
+    z-index: -1;
+    height: 46svh;
+    opacity: .42;
+    transform: perspective(620px) rotateX(64deg);
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--cyan) 15%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--cyan) 15%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(circle at 66% 20%, black, transparent 72%);
+  }
+  .scroll-proof__viewport {
+    width: min(100%, var(--content));
+    min-height: calc(100svh - var(--header-h) - 3.5rem);
+    margin-inline: auto;
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(18rem, .72fr) minmax(34rem, 1.28fr);
+    align-items: center;
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+  .scroll-proof__copy {
+    position: relative;
+    z-index: 5;
+    opacity: var(--proof-copy-opacity);
+    transition: opacity .12s linear;
+  }
+  .scroll-proof__copy h1 {
+    max-width: 9ch;
+    margin-top: 1.15rem;
+    text-wrap: balance;
+  }
+  .scroll-proof__copy > p:last-child {
+    max-width: 42ch;
+    margin-top: 1.4rem;
+    color: var(--muted);
+    font-size: clamp(1rem, 1.15vw, 1.18rem);
+  }
+  .scroll-proof__ambient {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    opacity: var(--proof-ambient-opacity);
+    pointer-events: none;
+  }
+  .scroll-proof__ambient i {
+    position: absolute;
+    width: .42rem;
+    height: .42rem;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 1.2rem color-mix(in srgb, var(--cyan) 68%, transparent);
+  }
+  .scroll-proof__ambient i:nth-child(1) { left: 15%; top: 28%; }
+  .scroll-proof__ambient i:nth-child(2) { left: 31%; top: 72%; background: var(--purple); }
+  .scroll-proof__ambient i:nth-child(3) { left: 55%; top: 18%; }
+  .scroll-proof__ambient i:nth-child(4) { left: 71%; top: 75%; background: var(--blue); }
+  .scroll-proof__ambient i:nth-child(5) { left: 87%; top: 34%; }
+  .scroll-proof__ambient i:nth-child(6) { left: 47%; top: 53%; background: var(--purple); }
+  .build-scene {
+    position: relative;
+    z-index: 2;
+    min-height: clamp(31rem, 67svh, 48rem);
+    perspective: 1100px;
+    opacity: var(--proof-browser-opacity);
+  }
+  .build-scene__floor {
+    position: absolute;
+    left: 6%;
+    right: 2%;
+    bottom: 3%;
+    height: 28%;
+    border: 1px solid color-mix(in srgb, var(--cyan) 18%, transparent);
+    transform: perspective(620px) rotateX(66deg);
+    background:
+      linear-gradient(90deg, transparent, color-mix(in srgb, var(--cyan) 11%, transparent), transparent),
+      color-mix(in srgb, var(--surface) 36%, transparent);
+    box-shadow: 0 2rem 8rem color-mix(in srgb, var(--blue) 12%, transparent);
+  }
+  .build-scene__browser {
+    position: absolute;
+    inset: 7% 2% 7% 4%;
+    border: 1px solid color-mix(in srgb, var(--text) 13%, transparent);
+    border-radius: 1.2rem;
+    overflow: hidden;
+    transform: var(--proof-camera-transform);
+    transform-style: preserve-3d;
+    background:
+      linear-gradient(135deg, color-mix(in srgb, var(--surface) 88%, transparent), color-mix(in srgb, var(--background) 74%, transparent)),
+      var(--surface);
+    box-shadow:
+      0 2rem 7rem color-mix(in srgb, var(--background) 76%, transparent),
+      0 0 var(--proof-glow) color-mix(in srgb, var(--cyan) 18%, transparent);
+    will-change: transform, opacity;
+  }
+  .build-scene__browser::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: var(--proof-polish);
+    background:
+      radial-gradient(circle at 22% 22%, color-mix(in srgb, var(--purple) 24%, transparent), transparent 24rem),
+      linear-gradient(140deg, transparent, color-mix(in srgb, var(--cyan) 5%, transparent));
+    pointer-events: none;
+  }
+  .build-scene__bar {
+    height: 3.25rem;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    padding: 0 1rem;
+    border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+    background: color-mix(in srgb, var(--background) 62%, transparent);
+  }
+  .build-scene__bar span {
+    width: .62rem;
+    height: .62rem;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--muted) 65%, transparent);
+  }
+  .build-scene__bar span:nth-child(2) { background: color-mix(in srgb, var(--blue) 55%, transparent); }
+  .build-scene__bar span:nth-child(3) { background: color-mix(in srgb, var(--cyan) 70%, transparent); }
+  .build-scene__bar i {
+    flex: 1;
+    height: .72rem;
+    margin-left: .7rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--text) 8%, transparent);
+  }
+  .landing-page {
+    position: relative;
+    height: calc(100% - 3.25rem);
+    padding: clamp(1rem, 2vw, 1.55rem);
+  }
+  .wire-block {
+    position: absolute;
+    border: 1px solid color-mix(in srgb, var(--cyan) 32%, var(--text) 10%);
+    border-radius: .7rem;
+    opacity: 0;
+    background: color-mix(in srgb, var(--text) 5%, transparent);
+    box-shadow: 0 .8rem 2.2rem color-mix(in srgb, var(--background) 42%, transparent);
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+  }
+  .wire-block::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    opacity: var(--proof-polish);
+    border-radius: inherit;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--purple) 26%, transparent), color-mix(in srgb, var(--blue) 18%, transparent));
+  }
+  .wire-block span,
+  .wire-block i {
+    position: absolute;
+    display: block;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--text) 24%, transparent);
+  }
+  .wire-block span { left: 12%; top: 22%; width: 44%; height: .48rem; }
+  .wire-block i { left: 12%; top: 45%; width: 70%; height: .38rem; opacity: .62; }
+  .wire-block--nav { left: 4%; top: 5%; width: 92%; height: 9%; }
+  .wire-block--nav span { width: 18%; }
+  .wire-block--nav i { left: auto; right: 4%; top: 32%; width: 30%; }
+  .wire-block--hero { left: 5%; top: 18%; width: 48%; height: 31%; border-color: color-mix(in srgb, var(--purple) 48%, var(--text) 8%); }
+  .wire-block--hero span { width: 76%; height: .65rem; }
+  .wire-block--hero i { top: 53%; width: 58%; }
+  .wire-block--copy { left: 5%; top: 53%; width: 33%; height: 15%; }
+  .wire-block--cta { left: 5%; top: 72%; width: 22%; height: 8%; background: color-mix(in srgb, var(--cyan) 9%, transparent); }
+  .wire-block--media { right: 5%; top: 18%; width: 37%; height: 37%; border-color: color-mix(in srgb, var(--cyan) 48%, var(--text) 8%); }
+  .wire-block--media::after {
+    content: "";
+    position: absolute;
+    inset: 18%;
+    opacity: calc(.15 + var(--proof-polish));
+    border: 1px solid color-mix(in srgb, var(--cyan) 45%, transparent);
+    border-radius: 50%;
+    background: radial-gradient(circle, color-mix(in srgb, var(--cyan) 26%, transparent), transparent 60%);
+  }
+  .wire-block--card-a,
+  .wire-block--card-b,
+  .wire-block--card-c { top: 71%; width: 26%; height: 18%; }
+  .wire-block--card-a { left: 34%; }
+  .wire-block--card-b { left: 62%; }
+  .wire-block--card-c { left: 5%; top: 84%; width: 82%; height: 7%; }
+  .build-scene__launch {
+    position: absolute;
+    z-index: 4;
+    right: 5%;
+    bottom: 9%;
+    width: 5.2rem;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    opacity: var(--proof-launch);
+    transform: translateY(var(--proof-launch-offset));
+  }
+  .build-scene__launch span {
+    width: 3.3rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 1px solid color-mix(in srgb, var(--cyan) 70%, transparent);
+    background: color-mix(in srgb, var(--cyan) 12%, var(--surface));
+    box-shadow: 0 0 2rem color-mix(in srgb, var(--cyan) 30%, transparent);
+  }
+  .build-scene__launch i {
+    position: absolute;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-top: 2px solid var(--text);
+    border-right: 2px solid var(--text);
+    transform: translate(-.15rem, .1rem) rotate(45deg);
+  }
+  .scroll-proof__final {
+    position: absolute;
+    z-index: 7;
+    right: 0;
+    bottom: clamp(2rem, 8svh, 5rem);
+    width: min(45rem, 58vw);
+    opacity: var(--proof-final-opacity);
+    transform: translateY(var(--proof-final-offset));
+    pointer-events: none;
+  }
+  .scroll-proof__final p {
+    max-width: 16ch;
+    font-family: var(--display);
+    font-size: clamp(2.4rem, 4.8vw, 5.5rem);
+    font-weight: 680;
+    letter-spacing: -.045em;
+    line-height: .98;
+    text-wrap: balance;
+  }
+  .scroll-proof__final span {
+    display: inline-flex;
+    align-items: center;
+    gap: .65rem;
+    margin-top: 1rem;
+    color: var(--cyan);
+    font-size: .75rem;
+    font-weight: 750;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+  .scroll-proof__final i {
+    width: .54rem;
+    height: .54rem;
+    border-radius: 50%;
+    background: #50e394;
+    box-shadow: 0 0 1rem #50e394;
+  }
+  .scroll-proof__meter {
+    position: absolute;
+    z-index: 8;
+    left: 0;
+    bottom: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: color-mix(in srgb, var(--muted) 70%, transparent);
+    font-family: monospace;
+    font-size: .62rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .scroll-proof__meter i {
+    width: min(18rem, 28vw);
+    height: 1px;
+    background: linear-gradient(90deg, var(--purple), var(--cyan));
+    transform: scaleX(var(--scene-progress));
+    transform-origin: left;
+  }
   .world-stage {
     position: sticky;
     z-index: 1;
@@ -603,6 +916,65 @@
     .site-header.is-menu-open .primary-nav { visibility: visible; opacity: 1; transform: none; }
     .primary-nav a { padding: .8rem; font-size: .9rem; }
 
+    .scroll-proof { min-height: 380vh; }
+    .scroll-proof__stage {
+      align-items: start;
+      padding: calc(var(--header-h) + 1.1rem) 1rem 1.2rem;
+    }
+    .scroll-proof__stage::before {
+      background:
+        linear-gradient(0deg, var(--background), color-mix(in srgb, var(--background) 86%, transparent) 38%, transparent),
+        radial-gradient(circle at 50% 30%, color-mix(in srgb, var(--blue) 14%, transparent), transparent 22rem);
+    }
+    .scroll-proof__viewport {
+      min-height: calc(100svh - var(--header-h) - 2.3rem);
+      display: block;
+    }
+    .scroll-proof__copy {
+      max-width: 22rem;
+      padding-top: .3rem;
+    }
+    .scroll-proof__copy h1 {
+      max-width: 10ch;
+      font-size: clamp(2.6rem, 12vw, 4.1rem);
+    }
+    .scroll-proof__copy > p:last-child { max-width: 30ch; font-size: .95rem; }
+    .build-scene {
+      min-height: 54svh;
+      margin-top: -1rem;
+      perspective: 780px;
+    }
+    .build-scene__browser {
+      inset: 7% 0 4%;
+      border-radius: 1rem;
+    }
+    .landing-page { padding: .8rem; }
+    .wire-block { border-radius: .52rem; }
+    .wire-block--hero { width: 52%; height: 30%; }
+    .wire-block--media { width: 37%; height: 34%; }
+    .wire-block--card-a,
+    .wire-block--card-b { top: 70%; width: 27%; height: 16%; }
+    .wire-block--card-c { top: 86%; height: 6%; }
+    .scroll-proof__final {
+      left: 0;
+      right: auto;
+      bottom: 4.4rem;
+      width: min(100%, 24rem);
+    }
+    .scroll-proof__final p {
+      max-width: 13ch;
+      font-size: clamp(2.25rem, 11vw, 3.7rem);
+    }
+    .scroll-proof__meter {
+      left: 0;
+      right: 0;
+      bottom: .4rem;
+      justify-content: space-between;
+      gap: .75rem;
+    }
+    .scroll-proof__meter span { max-width: 14rem; }
+    .scroll-proof__meter i { width: 35vw; }
+
     .world { min-height: auto; }
     .world-stage, .world-progress, .world-route, .scroll-hint { display: none; }
     .world-steps { margin-top: 0; }
@@ -646,6 +1018,16 @@
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     .js .reveal { opacity: 1; transform: none; }
+    .scroll-proof { min-height: 100svh; }
+    .scroll-proof__ambient { opacity: .42; }
+    .scroll-proof__copy { opacity: .18; }
+    .scroll-proof__final { opacity: 1; transform: none; }
+    .build-scene { opacity: 1; }
+    .build-scene__browser { transform: translate3d(0, -10px, 0) rotateX(44deg) rotateZ(-2deg) scale(1.08); box-shadow: 0 2rem 7rem color-mix(in srgb, var(--background) 76%, transparent), 0 0 3rem color-mix(in srgb, var(--cyan) 18%, transparent); }
+    .build-scene__browser::after,
+    .wire-block::before { opacity: 1; }
+    .wire-block { opacity: 1 !important; transform: none !important; }
+    .build-scene__launch { opacity: 1; transform: none; }
     .world-stage__image { transition: none; transform: none; }
   }
 }

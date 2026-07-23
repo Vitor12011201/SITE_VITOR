@@ -19,6 +19,10 @@ const storyboardSource = JSON.parse(
   await readFile(path.join(root, "prompts/scroll-world.json"), "utf8")
 );
 const requiredSelectors = [
+  ".scroll-proof",
+  ".scroll-proof__stage",
+  ".build-scene__browser",
+  ".wire-block",
   ".world-step",
   ".glass-panel",
   ".button",
@@ -45,12 +49,24 @@ if (!css.includes("@media (max-width: 1100px)") ||
 if (!css.includes("@media (prefers-reduced-motion: reduce)")) {
   errors.push("CSS: missing reduced-motion support");
 }
+if (!css.includes("min-height: 420vh") ||
+    !css.includes(".scroll-proof__stage") ||
+    !css.includes("position: sticky") ||
+    !css.includes("100svh")) {
+  errors.push("scroll proof: missing 420vh sticky 100vh stage contract");
+}
 if (!css.includes(".site-header.is-menu-open .primary-nav") ||
     !clientJs.includes('header.classList.toggle("is-menu-open")')) {
   errors.push("mobile navigation contract is incomplete");
 }
 if (!clientJs.includes('localStorage.setItem("nova-frame-language"')) {
   errors.push("manual language selection persistence is missing");
+}
+if (!clientJs.includes("[data-scroll-proof]") ||
+    !clientJs.includes("--scene-progress") ||
+    !clientJs.includes("requestAnimationFrame(readScroll)") ||
+    !clientJs.includes("setScrollProofProgress(clamp01(-rect.top / travel))")) {
+  errors.push("scroll proof: missing normalized rAF scroll progress contract");
 }
 
 const storyboardFields = [
@@ -86,6 +102,14 @@ for (const locale of ["pt", "en"]) {
   const expectedLang = locale === "pt" ? "pt-BR" : "en";
   if (!html.includes(`<html lang="${expectedLang}">`)) errors.push(`${locale}: incorrect lang`);
   if (!html.includes("class=\"language-switcher\"")) errors.push(`${locale}: missing language switcher`);
+  if (!html.includes("data-scroll-proof")) errors.push(`${locale}: missing scroll proof section`);
+  if (!html.includes("--scene-progress:0")) errors.push(`${locale}: missing exposed scene progress variable`);
+  if (locale === "pt" && !html.includes("Ideias se transformam em experiências digitais.")) {
+    errors.push("pt: missing final scroll proof phrase");
+  }
+  if (locale === "en" && !html.includes("Ideas become digital experiences.")) {
+    errors.push("en: missing final scroll proof phrase");
+  }
   if ((html.match(/<article class="world-step/g) || []).length !== 8) errors.push(`${locale}: expected 8 scenes`);
   if ((html.match(/<details/g) || []).length !== 5) errors.push(`${locale}: expected 5 FAQ items`);
   if (/(>98<|>1\.2s<|>AA<)/.test(html)) errors.push(`${locale}: contains unverified performance metrics`);
@@ -121,4 +145,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log("Checks passed: bilingual pages, 8 scenes, FAQ, language detection and motion fallback.");
+console.log("Checks passed: bilingual pages, scroll proof, 8 scenes, FAQ, language detection and motion fallback.");
