@@ -2,21 +2,132 @@
   "lang": "en",
   "locale": "en",
   "seo": {
-    "title": "Memorable websites and landing pages",
-    "description": "A creative studio for websites, landing pages and digital experiences built with strategy, distinctive design and development."
+    "title": "Strategic websites and landing pages",
+    "description": "STANDLOUD creates websites, landing pages and digital experiences that transform attention into real opportunities."
   },
   "skip": "Skip to content",
   "nav": {
-    "world": "Experience",
+    "projects": "Projects",
     "services": "Services",
     "process": "Process",
-    "work": "Work",
-    "faq": "FAQ",
-    "contact": "Quote"
+    "about": "About",
+    "contact": "Contact",
+    "diagnostic": "Request a review"
   },
-  "headerCta": "Discuss a project",
+  "hero": {
+    "eyebrow": "WEBSITES • LANDING PAGES • DIGITAL EXPERIENCES",
+    "title": "Your business deserves to be impossible to ignore.",
+    "titleLead": "Your business deserves to be",
+    "titleHighlight": "impossible to ignore.",
+    "titleLines": ["Your business", "deserves to be", "impossible", "to ignore."],
+    "body": "We create strategic websites and landing pages for brands and specialists that need to turn attention into contacts, authority and real opportunities.",
+    "primary": "Request a review",
+    "secondary": "View projects",
+    "micro": "Design, development and launch in one complete process.",
+    "carouselLabel": "Selected STANDLOUD concept work",
+    "previousProject": "Previous project",
+    "nextProject": "Next project",
+    "viewProject": "View project",
+    "visual": [
+      {
+        "id": "aquaform",
+        "number": "01",
+        "label": "AUTO SPA",
+        "sector": "Premium car wash and automotive detailing",
+        "concept": "From a forgotten surface to a finish impossible to ignore.",
+        "name": "AQUAFORM Auto Spa",
+        "type": "CONCEPT PROJECT",
+        "body": "A premium presence designed to turn automotive services into bookings.",
+        "address": "aquaform.studio",
+        "href": "#projeto-aquaform",
+        "previewLabel": "HTML preview of the AQUAFORM Auto Spa project"
+      },
+      {
+        "id": "brasa27",
+        "number": "02",
+        "label": "RESTAURANT",
+        "sector": "Contemporary restaurant",
+        "concept": "From first desire to a reserved table.",
+        "name": "BRASA 27",
+        "type": "CONCEPT PROJECT",
+        "body": "An editorial experience built to create appetite and make reservations easy.",
+        "address": "brasa27.restaurant",
+        "href": "#projeto-brasa-27",
+        "previewLabel": "HTML preview of the BRASA 27 project"
+      },
+      {
+        "id": "atlasVale",
+        "number": "03",
+        "label": "LAW",
+        "sector": "Business and wealth law",
+        "concept": "From complexity to direction.",
+        "name": "ATLAS & VALE",
+        "type": "CONCEPT PROJECT",
+        "body": "An institutional site built to communicate authority, clarity and trust.",
+        "address": "atlasvale.law",
+        "href": "#projeto-atlas-vale",
+        "previewLabel": "HTML preview of the ATLAS & VALE project"
+      }
+    ]
+  },
+  "quickProof": {
+    "eyebrow": "PROOF IN CONTEXT",
+    "title": "Real work and honest studies that show how we think.",
+    "items": [
+      {
+        "name": "NUPPAC",
+        "type": "Real project",
+        "body": "Website, courses, payments and launch."
+      },
+      {
+        "name": "Lumina",
+        "type": "Concept project",
+        "body": "Editorial direction and architectural experience."
+      },
+      {
+        "name": "Nexora",
+        "type": "Concept project",
+        "body": "Brand presence guided by attention."
+      }
+    ],
+    "process": "Design, development and launch delivered through one process."
+  },
+  "problems": {
+    "eyebrow": "WHAT NEEDS TO CHANGE",
+    "title": "A beautiful website is not enough. It needs to earn attention and guide the next action.",
+    "items": [
+      "Your brand looks smaller than it really is.",
+      "People visit, but do not understand your offer.",
+      "Interest does not turn into contact."
+    ]
+  },
+  "services": {
+    "eyebrow": "SERVICES",
+    "title": "The right structure for the right objective.",
+    "body": "Strategy, design and development brought together in clear deliverables, without generic pricing tables.",
+    "items": [
+      {
+        "title": "Strategic Landing Page",
+        "body": "A focused page designed to present an offer clearly and guide visitors toward the next action.",
+        "deliverables": ["Page strategy", "Copy and hierarchy", "Responsive design", "Development and launch"],
+        "cta": "Discuss a landing page"
+      },
+      {
+        "title": "Corporate Website",
+        "body": "A complete digital presence for communicating positioning, services, projects and differentiators.",
+        "deliverables": ["Information architecture", "Visual direction", "Corporate pages", "Basic SEO and launch"],
+        "cta": "Discuss a website"
+      },
+      {
+        "title": "Interactive Digital Experience",
+        "body": "Intentional motion and interaction for brands, launches and special presentations.",
+        "deliverables": ["Narrative concept", "Prototyping", "Scroll-led motion", "Responsive implementation"],
+        "cta": "Discuss an experience"
+      }
+    ]
+  },
   "scrollProof": {
-    "aria": "Scroll animation proof from sketch to launch",
+    "aria": "Scroll animation from concept to launch",
     "eyebrow": "SCROLL PROOF",
     "title": "From concept to published project.",
     "body": "Ideas become digital experiences as every part of a real website finds its place.",
@@ -48,18 +159,130 @@
       "ctaButton": "Start a conversation"
     }
   },
+  "animationIntros": {
+    "lumina": {
+      "eyebrow": "DEMONSTRATION 01",
+      "title": "From concept to launch.",
+      "body": "Strategy, structure, design and development brought together in one complete experience.",
+      "afterCta": "Explore our process"
+    },
+    "brandGravity": {
+      "eyebrow": "DEMONSTRATION 02",
+      "title": "Most brands compete for attention. Some create their own gravity.",
+      "body": "See how hierarchy, contrast and motion turn noise into presence.",
+      "afterCta": "I want to strengthen my digital presence"
+    }
+  },
+  "featuredProjects": [
+    {
+      "id": "aquaform",
+      "anchor": "projeto-aquaform",
+      "routeKey": "projectAquaform",
+      "name": "AQUAFORM Auto Spa",
+      "shortName": "AQUAFORM",
+      "segment": "Premium car wash and automotive detailing",
+      "badge": "Concept project",
+      "signature": "Precision in every detail.",
+      "concept": "From a forgotten surface to a finish impossible to ignore.",
+      "finalMessage": "Ready to turn heads again.",
+      "eyebrow": "AUTO SPA & DETAILING",
+      "title": "Your car deserves to turn heads again.",
+      "body": "Professional washing, interior cleaning and detailing designed to protect, restore and enhance every part of your vehicle.",
+      "primary": "Book a service",
+      "secondary": "Explore services",
+      "nav": ["Services", "Results", "Plans", "Location"],
+      "services": ["Technical wash", "Interior cleaning", "Polishing and protection", "Complete detailing"],
+      "plans": ["Essential", "Premium", "Signature"],
+      "planCta": "Request pricing",
+      "location": "Concept Avenue, 120 • Concept project",
+      "hours": "Monday to Saturday, 8am to 7pm",
+      "notice": "Address and service flow are demonstrative for this concept presentation."
+    },
+    {
+      "id": "brasa27",
+      "anchor": "projeto-brasa-27",
+      "routeKey": "projectBrasa27",
+      "name": "BRASA 27",
+      "shortName": "BRASA 27",
+      "segment": "Contemporary restaurant",
+      "badge": "Concept project",
+      "signature": "Fire, time and memory.",
+      "concept": "From first desire to a reserved table.",
+      "finalMessage": "The experience begins before the first plate.",
+      "eyebrow": "CONTEMPORARY CUISINE",
+      "title": "Fire transforms. The table brings us together.",
+      "body": "A dining experience built around seasonal ingredients, technique and the unmistakable character of open fire.",
+      "primary": "Reserve a table",
+      "secondary": "Explore the menu",
+      "nav": ["Concept", "Menu", "Experience", "Location"],
+      "services": ["Charred pumpkin", "Fish, brown butter and lemon", "Short rib, roots and wine", "Chocolate, coffee and salt"],
+      "plans": ["Open kitchen", "Seasonal menu", "Local ingredients", "Limited reservations"],
+      "planCta": "Reserve",
+      "location": "Brasa Street, 27 • Concept project",
+      "hours": "Tuesday to Sunday, 6pm to 11pm",
+      "notice": "Visual reservation flow only, with no external integration at this stage."
+    },
+    {
+      "id": "atlasVale",
+      "anchor": "projeto-atlas-vale",
+      "routeKey": "projectAtlasVale",
+      "name": "ATLAS & VALE",
+      "shortName": "ATLAS & VALE",
+      "segment": "Business and wealth law",
+      "badge": "Concept project",
+      "signature": "Clarity for important decisions.",
+      "concept": "From complexity to direction.",
+      "finalMessage": "Clarity for important decisions.",
+      "eyebrow": "BUSINESS & WEALTH LAW",
+      "title": "Complex decisions require clear direction.",
+      "body": "Strategic legal counsel for businesses, partners and families seeking to protect assets, reduce risk and move forward with confidence.",
+      "primary": "Request a consultation",
+      "secondary": "Explore practice areas",
+      "nav": ["Firm", "Practice", "Method", "Insights", "Contact"],
+      "services": ["Business law", "Contracts", "Wealth planning", "Corporate matters", "Conflict prevention", "Strategic counsel"],
+      "plans": ["Understanding", "Strategy", "Guidance", "Follow-up"],
+      "planCta": "Request a consultation",
+      "location": "Institutional Avenue, 410 • Concept project",
+      "hours": "Consultations by appointment",
+      "notice": "Visual form only, with no backend at this stage."
+    }
+  ],
+  "projects": {
+    "eyebrow": "PROJECTS",
+    "title": "Real work, honest concepts.",
+    "body": "Every card clearly identifies what has been delivered and what exists as a demonstration study.",
+    "linkLabel": "View project",
+    "items": [
+      {
+        "id": "nuppac",
+        "name": "NUPPAC",
+        "type": "Real project",
+        "body": "A corporate platform with course presentation, payment integration and responsive launch.",
+        "scope": ["Strategy", "UI", "Development", "Payments", "Launch"]
+      },
+      {
+        "id": "lumina",
+        "name": "Lumina Architecture",
+        "type": "Concept project",
+        "body": "An editorial study for a contemporary architecture studio.",
+        "scope": ["Visual direction", "UI", "Motion", "Responsive design"]
+      },
+      {
+        "id": "nexora",
+        "name": "Nexora",
+        "type": "Concept project",
+        "body": "A digital presence experiment in which a brand earns the center of attention.",
+        "scope": ["Narrative", "UI", "Scroll", "Interaction"]
+      }
+    ]
+  },
   "brandGravity": {
     "aria": "Scroll animation about the gravity of a memorable brand",
     "eyebrow": "SCENE 02",
     "title": "Brand gravity",
     "status": "Digital noise finds a center of attention",
     "established": "Presence established",
-    "noise": [
-      "Another solution",
-      "Discover now",
-      "Explore our services",
-      "Fast results"
-    ],
+    "noise": ["Another solution", "Discover now", "Explore our services", "Fast results"],
     "noiseBody": "An experience built for every business.",
     "noiseCta": "Learn more",
     "landing": {
@@ -83,199 +306,91 @@
       "proofBrands": ["Nexus", "CloudWave", "Innova", "Nextly", "Modular", "Bold"]
     }
   },
-  "world": {
-    "aria": "A journey through the digital creation process",
-    "scrollHint": "Scroll to enter the studio",
-    "progress": "Experience progress",
-    "scenes": [
-      {
-        "id": "studio",
-        "label": "Entrance",
-        "eyebrow": "DESIGN, CODE AND STRATEGY",
-        "title": "Your business deserves to be impossible to ignore.",
-        "body": "We create websites and landing pages that turn ideas into memorable digital experiences.",
-        "tags": ["Distinctive websites", "Landing pages", "Digital experiences"],
-        "primary": "Start a project",
-        "secondary": "Explore our services",
-        "alt": "Futuristic digital studio floating in a dark space"
-      },
-      {
-        "id": "strategy",
-        "label": "Strategy",
-        "eyebrow": "BEFORE THE DESIGN",
-        "title": "We start by understanding your business.",
-        "body": "Every project begins with a clear understanding of your goals, audience and positioning.",
-        "tags": ["Strategy", "User experience", "Positioning"],
-        "alt": "Strategy room with journey maps, wireframes and data"
-      },
-      {
-        "id": "design",
-        "label": "Design",
-        "eyebrow": "DISTINCTIVE DESIGN",
-        "title": "No generic-looking websites.",
-        "body": "We create a digital identity aligned with your brand’s personality and business goals.",
-        "tags": ["UI Design", "Responsive layouts", "Visual identity"],
-        "alt": "Visual laboratory with components, typography and prototypes"
-      },
-      {
-        "id": "development",
-        "label": "Build",
-        "eyebrow": "DEVELOPMENT",
-        "title": "Beautiful on the outside. Solid on the inside.",
-        "body": "We develop fast, responsive and reliable websites built to work across different devices.",
-        "tags": ["Performance", "Clean structure", "Mobile first"],
-        "alt": "Technology space with a website being assembled in modular blocks"
-      },
-      {
-        "id": "services",
-        "label": "Services",
-        "eyebrow": "WHAT WE CREATE",
-        "title": "Digital solutions built for different goals.",
-        "body": "From a business presence to a conversion-focused page, every deliverable is designed to perform a real job.",
-        "tags": ["Business websites", "Landing pages", "Interactive experiences"],
-        "alt": "Gallery of digital products and portals on display"
-      },
-      {
-        "id": "value",
-        "label": "Impact",
-        "eyebrow": "MORE THAN APPEARANCE",
-        "title": "Your website should work for your business.",
-        "body": "We combine strategy, design and technology to build trust and guide visitors toward action.",
-        "tags": ["Visitor focused", "Built to grow", "Post-launch support"],
-        "alt": "Control center showing speed, conversion and responsive quality"
-      },
-      {
-        "id": "portfolio",
-        "label": "Projects",
-        "eyebrow": "SELECTED WORK",
-        "title": "Our work speaks through the experience.",
-        "body": "Every project is designed to solve a real problem and present a brand at its best.",
-        "tags": ["Concept project", "Interface study", "Experimental experience"],
-        "alt": "Futuristic gallery with large screens presenting digital projects"
-      },
-      {
-        "id": "launch",
-        "label": "Start",
-        "eyebrow": "LET’S BUILD",
-        "title": "Your next project can start here.",
-        "body": "Tell us about your idea and let’s discuss how to turn it into a digital experience.",
-        "tags": [],
-        "primary": "Request a quote",
-        "secondary": "Contact on WhatsApp",
-        "alt": "Illuminated portal representing the start of a new project"
-      }
-    ]
-  },
-  "manifesto": {
-    "eyebrow": "A PRESENCE THAT LASTS",
-    "title": "We build websites that do more than present a business. They make it memorable.",
-    "body": "Design earns attention. Strategy gives it direction. Code turns both into a fast, clear experience built to create opportunities."
-  },
-  "services": {
-    "eyebrow": "SERVICES",
-    "title": "What we can build together.",
-    "body": "Tailored scope, without generic packages. We choose the right solution for your business today.",
-    "items": [
-      ["Business websites", "A professional presence that communicates value, organizes your services and builds trust."],
-      ["Landing pages", "Focused pages with a clear narrative and intentional conversion paths."],
-      ["Professional portfolios", "Work, process and personality presented through a memorable experience."],
-      ["Product launch pages", "Structures for products, courses, events and new offers entering the market."],
-      ["Website redesign", "A visual and technical evolution for outdated, slow or misaligned websites."],
-      ["Maintenance and improvements", "Adjustments, new sections, performance and ongoing evolution after launch."],
-      ["Payment integrations", "Flows connected to the selling tools that make sense for your operation."],
-      ["Interactive experiences", "Motion, depth and special interactions for brands that want to go further."]
-    ]
-  },
   "process": {
-    "eyebrow": "HOW WE WORK",
-    "title": "Clarity at every stage.",
+    "eyebrow": "PROCESS",
+    "title": "From discovery to launch, with no invisible stages.",
+    "body": "Every phase has a clear objective, a concrete deliverable and an approval point.",
     "steps": [
-      ["01", "Discovery", "We understand the business, audience, offer and what the project needs to achieve."],
-      ["02", "Direction", "We organize content, journey, references and a distinctive visual direction."],
-      ["03", "Creation", "We design and develop with clear review points throughout the process."],
-      ["04", "Launch", "We test, publish and leave the structure ready to evolve."]
+      { "number": "01", "title": "Discovery", "body": "We understand the business, offer, audience and what needs to improve." },
+      { "number": "02", "title": "Strategy", "body": "We define the message, structure, journey and priorities for the page." },
+      { "number": "03", "title": "Design", "body": "We create the visual direction and validate the experience across key screens." },
+      { "number": "04", "title": "Development", "body": "We turn the design into a fast, accessible and responsive implementation." },
+      { "number": "05", "title": "Launch", "body": "We review content, devices and configuration before putting the project live." }
     ]
   },
-  "reasons": {
-    "eyebrow": "WHY WORK WITH US",
-    "title": "A partner to think and build.",
-    "indicators": ["Strategy", "Clarity", "Evolution"],
+  "caseStudy": {
+    "eyebrow": "REAL CASE STUDY",
+    "title": "NUPPAC: a digital presence built to present, teach and sell.",
+    "intro": "The project brought together corporate content, courses and a payment journey in a responsive experience.",
+    "facts": [
+      { "label": "Context", "body": "Bring the institution’s presentation and course offering together in one environment." },
+      { "label": "Challenge", "body": "Create clear navigation across corporate content, course pages and registration." },
+      { "label": "Solution", "body": "A page system, responsive interface and flow connected to payment integration." }
+    ],
+    "deliverables": ["Corporate pages", "Course pages", "Payment integration", "Responsive experience", "Launch"],
+    "cta": "Discuss a similar project"
+  },
+  "differentials": {
+    "eyebrow": "WHY STANDLOUD",
+    "title": "Concrete decisions instead of generic promises.",
     "items": [
-      "Design tailored to your brand",
-      "Clear communication",
-      "Responsive experience",
-      "Visitor-focused structure",
-      "Built to grow",
-      "Post-launch support"
+      "Design and development in one process.",
+      "Built for the business, not just a template with different content.",
+      "Mobile designed as its own experience.",
+      "Motion used to guide attention.",
+      "Scope and stages presented clearly."
     ]
   },
-  "portfolio": {
-    "eyebrow": "PORTFOLIO",
-    "title": "Work in progress. Standards already on display.",
-    "body": "While the first real cases are being prepared, these studies demonstrate visual directions and capabilities — without invented clients or results.",
-    "items": [
-      {
-        "type": "Concept project",
-        "title": "Contemporary clinic",
-        "body": "A study for a premium digital presence in the healthcare sector.",
-        "tags": "Identity · UX · Website",
-        "image": "design",
-        "caseUrl": "",
-        "status": "concept"
-      },
-      {
-        "type": "Interface study",
-        "title": "Modular consultancy",
-        "body": "An exploration of a flexible visual system for professional services.",
-        "tags": "UI · System · Motion",
-        "image": "services",
-        "caseUrl": "",
-        "status": "concept"
-      },
-      {
-        "type": "Experimental experience",
-        "title": "Digital launch",
-        "body": "An interactive narrative designed to present a digital product.",
-        "tags": "3D · Scroll · Prototyping",
-        "image": "portfolio",
-        "caseUrl": "",
-        "status": "concept"
-      }
-    ]
+  "about": {
+    "eyebrow": "ABOUT",
+    "title": "A focused studio with a complete view of the project.",
+    "body": "STANDLOUD is a digital studio created by Vitor Santana to build websites, landing pages and interactive experiences that help businesses present themselves with greater clarity, presence and personality.",
+    "signature": "Strategy, design and code working in the same direction."
+  },
+  "diagnostic": {
+    "eyebrow": "FIRST STEP",
+    "title": "Digital presence review",
+    "body": "Send us your website, Instagram profile or project idea. We review your current presentation and identify its main opportunities for improvement.",
+    "cta": "Request a review"
   },
   "faq": {
     "eyebrow": "FREQUENTLY ASKED QUESTIONS",
-    "title": "Before we begin.",
+    "title": "What you need to know before starting.",
     "items": [
-      ["How much does a website cost?", "The price depends on the size, functionality and complexity of the project. After understanding your needs, we provide a custom proposal."],
-      ["How long does it take?", "The timeline depends on the scope. A simple landing page may be completed faster, while larger websites require more stages."],
-      ["Will the website work on mobile devices?", "Yes. Every project is designed to work across desktop, tablet and mobile devices."],
-      ["Do you provide maintenance?", "Yes. We can handle updates, adjustments, improvements and post-launch support."],
-      ["Can I request changes?", "Yes. The process includes review and approval stages."]
+      ["How much does a website cost?", "The investment depends on scope, number of pages, content and integrations. After discovery, you receive a proposal suited to the project."],
+      ["How long does it take?", "The timeline depends on scope and approval speed. The proposal presents the stages and an estimate before work begins."],
+      ["Does STANDLOUD write the content?", "We can structure the message, guide the content and develop the copy included in scope. Technical materials depend on client collaboration."],
+      ["Will the website work on mobile?", "Yes. Mobile is designed as its own experience and validated across different screen sizes."],
+      ["Are domain and hosting included?", "We can advise on and configure these services. Recurring domain, hosting or platform costs are presented separately."],
+      ["Is maintenance available?", "Yes. Maintenance, improvements and post-launch support can be contracted according to need."],
+      ["How does payment work?", "Terms are defined in the proposal according to scope and schedule, before the project begins."],
+      ["Does the project belong to the client?", "After completion and agreed payment, the client receives the files and access credentials specified in the contract."]
     ]
   },
   "contact": {
     "eyebrow": "LET’S TALK",
-    "title": "Share the idea. We’ll help shape it.",
-    "body": "Complete the initial brief. In this project version, the form is a demonstration and does not send data to a server yet.",
+    "title": "Tell us what needs to change.",
+    "body": "This form prepares the initial review. In this version, data is validated locally and is not sent to external services.",
     "availability": "Open for new projects",
     "labels": {
       "name": "Name",
-      "email": "Email",
-      "company": "Company or project",
-      "service": "Which service are you looking for?",
-      "idea": "Tell us about your idea",
-      "budget": "Estimated budget",
-      "timeline": "Desired timeline",
-      "submit": "Send message"
+      "contact": "Email or WhatsApp",
+      "business": "Business name",
+      "service": "Desired service",
+      "currentLink": "Current website, Instagram or link",
+      "budget": "Investment range",
+      "message": "Message",
+      "submit": "Request a review",
+      "honeypot": "Do not fill in this field"
     },
-    "serviceOptions": ["Select an option", "Business website", "Landing page", "Portfolio", "Redesign", "Maintenance", "Other"],
-    "budgetOptions": ["I’d rather discuss it", "Up to US$ 1,000", "US$ 1,000–US$ 2,500", "US$ 2,500–US$ 5,000", "Above US$ 5,000"],
-    "timelineOptions": ["No fixed deadline", "Within 30 days", "1–2 months", "2–4 months", "More than 4 months"],
-    "success": "Brief validated. Connect a form service to enable submissions."
+    "serviceOptions": ["Select an option", "Strategic Landing Page", "Corporate Website", "Interactive Digital Experience", "I am not sure yet"],
+    "budgetOptions": ["Select a range", "Not defined yet", "Up to US$ 1,000", "US$ 1,000 to US$ 2,500", "Above US$ 2,500"],
+    "success": "Review prepared. The sending integration will be connected after your authorization.",
+    "error": "Review the indicated fields before continuing.",
+    "loading": "Preparing your request..."
   },
   "footer": {
-    "line": "Design, code and strategy for brands that refuse to go unnoticed.",
+    "line": "Digital experiences built for brands that were never meant to be overlooked.",
     "social": "Social",
     "legal": "All rights reserved.",
     "back": "Back to top"

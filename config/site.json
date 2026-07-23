@@ -1,19 +1,106 @@
 {
   "brand": {
-    "name": "NOVA//FRAME Studio",
-    "shortName": "N//F",
-    "legalName": "NOVA//FRAME Studio",
-    "taglinePt": "Sites que fazem marcas serem lembradas.",
-    "taglineEn": "Websites that make brands memorable."
+    "name": "STANDLOUD",
+    "shortName": "STANDLOUD",
+    "legalName": "STANDLOUD",
+    "tagline": "Built to be impossible to ignore."
   },
   "palette": {
-    "background": "#08080C",
+    "background": "#050508",
     "surface": "#11111A",
     "text": "#F5F5F7",
     "muted": "#A6A6B3",
     "purple": "#7C3AED",
     "blue": "#2563EB",
     "cyan": "#22D3EE"
+  },
+  "home": {
+    "maxScenes": 3,
+    "scenes": [
+      {
+        "id": "aquaform",
+        "enabled": true
+      },
+      {
+        "id": "brasa27",
+        "enabled": true
+      },
+      {
+        "id": "atlasVale",
+        "enabled": true
+      }
+    ],
+    "sectionOrder": [
+      "hero",
+      "problems",
+      "services",
+      "scene:aquaform",
+      "projects",
+      "process",
+      "scene:brasa27",
+      "differentials",
+      "scene:atlasVale",
+      "about",
+      "diagnostic",
+      "faq",
+      "contact"
+    ]
+  },
+  "routes": {
+    "projects": {
+      "pt": "/pt/projetos/",
+      "en": "/en/projects/",
+      "implemented": false,
+      "fallback": "#projects"
+    },
+    "projectAquaform": {
+      "pt": "/pt/projetos/aquaform/",
+      "en": "/en/projects/aquaform/",
+      "implemented": false,
+      "fallback": "#projeto-aquaform"
+    },
+    "projectBrasa27": {
+      "pt": "/pt/projetos/brasa-27/",
+      "en": "/en/projects/brasa-27/",
+      "implemented": false,
+      "fallback": "#projeto-brasa-27"
+    },
+    "projectAtlasVale": {
+      "pt": "/pt/projetos/atlas-vale/",
+      "en": "/en/projects/atlas-vale/",
+      "implemented": false,
+      "fallback": "#projeto-atlas-vale"
+    },
+    "services": {
+      "pt": "/pt/servicos/",
+      "en": "/en/services/",
+      "implemented": false,
+      "fallback": "#services"
+    },
+    "process": {
+      "pt": "/pt/processo/",
+      "en": "/en/process/",
+      "implemented": false,
+      "fallback": "#process"
+    },
+    "about": {
+      "pt": "/pt/sobre/",
+      "en": "/en/about/",
+      "implemented": false,
+      "fallback": "#about"
+    },
+    "contact": {
+      "pt": "/pt/contato/",
+      "en": "/en/contact/",
+      "implemented": false,
+      "fallback": "#contact"
+    },
+    "lab": {
+      "pt": "/pt/lab/",
+      "en": "/en/lab/",
+      "implemented": false,
+      "fallback": "#projects"
+    }
   },
   "contact": {
     "email": "hello@example.com",

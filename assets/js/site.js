@@ -2,25 +2,133 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const header = document.querySelector("[data-header]");
   const menuButton = document.querySelector(".menu-toggle");
-  const world = document.querySelector(".world");
   const scrollProof = document.querySelector("[data-scroll-proof]");
   const proofBlocks = [...document.querySelectorAll(".wire-block")];
   const brandGravity = document.querySelector("[data-brand-gravity]");
   const gravityPanels = [...document.querySelectorAll(".noise-panel")];
   const gravityComponents = [...document.querySelectorAll(".gravity-component")];
-  const steps = [...document.querySelectorAll(".world-step")];
-  const stageImages = [...document.querySelectorAll(".world-stage__image")];
-  const routes = [...document.querySelectorAll("[data-route]")];
-  const progress = document.querySelector(".world-progress");
-  const progressBar = progress?.querySelector("span");
-  const routeNav = document.querySelector(".world-route");
-  let activeScene = 0;
-  let visibleLayer = 0;
+  const commercialProjectScenes = [...document.querySelectorAll("[data-commercial-project-scene]")];
   let frameRequested = false;
 
   const clamp01 = (value) => Math.min(1, Math.max(0, value));
   const phase = (value, start, end) => clamp01((value - start) / (end - start));
   const lerp = (from, to, value) => from + (to - from) * value;
+  const setInert = (node, value) => {
+    if ("inert" in node) node.inert = value;
+    if (value) node.setAttribute("inert", "");
+    else node.removeAttribute("inert");
+  };
+
+  const initSelectedWorkCarousel = () => {
+    document.querySelectorAll("[data-selected-work]").forEach((carousel) => {
+      if (carousel.dataset.selectedWorkReady === "true") return;
+      carousel.dataset.selectedWorkReady = "true";
+
+      const slides = [...carousel.querySelectorAll("[data-selected-work-slide]")];
+      const dots = [...carousel.querySelectorAll("[data-selected-work-dot]")];
+      const previous = carousel.querySelector("[data-selected-work-prev]");
+      const next = carousel.querySelector("[data-selected-work-next]");
+      const address = carousel.querySelector("[data-selected-work-address]");
+      const action = carousel.querySelector("[data-selected-work-action]");
+      if (slides.length !== 3 || dots.length !== 3 || !action) return;
+
+      let activeIndex = Math.max(0, slides.findIndex((slide) => slide.classList.contains("is-active")));
+      let timer = 0;
+      let pausedByUser = false;
+      let pointerStartX = null;
+      const delay = 5600;
+
+      const stop = () => {
+        if (!timer) return;
+        window.clearTimeout(timer);
+        timer = 0;
+      };
+
+      const schedule = () => {
+        stop();
+        if (reducedMotion || pausedByUser || document.hidden) return;
+        timer = window.setTimeout(() => {
+          setActive(activeIndex + 1, { userInitiated: false });
+        }, delay);
+      };
+
+      function setActive(index, options = {}) {
+        activeIndex = (index + slides.length) % slides.length;
+        slides.forEach((slide, slideIndex) => {
+          const active = slideIndex === activeIndex;
+          slide.classList.toggle("is-active", active);
+          slide.setAttribute("aria-hidden", String(!active));
+          setInert(slide, !active);
+        });
+        dots.forEach((dot, dotIndex) => {
+          const active = dotIndex === activeIndex;
+          dot.classList.toggle("is-active", active);
+          dot.setAttribute("aria-selected", String(active));
+          dot.tabIndex = active ? 0 : -1;
+        });
+        if (address) address.textContent = slides[activeIndex].dataset.address || "";
+        action.href = slides[activeIndex].dataset.href || "#projects";
+        if (options.userInitiated) {
+          pausedByUser = true;
+          window.setTimeout(() => {
+            pausedByUser = false;
+            schedule();
+          }, delay);
+        }
+        schedule();
+      }
+
+      const pause = () => {
+        pausedByUser = true;
+        stop();
+      };
+      const resume = () => {
+        pausedByUser = false;
+        schedule();
+      };
+      const interact = (index) => setActive(index, { userInitiated: true });
+
+      previous?.addEventListener("click", () => interact(activeIndex - 1));
+      next?.addEventListener("click", () => interact(activeIndex + 1));
+      dots.forEach((dot, index) => dot.addEventListener("click", () => interact(index)));
+      carousel.addEventListener("mouseenter", pause);
+      carousel.addEventListener("mouseleave", resume);
+      carousel.addEventListener("focusin", pause);
+      carousel.addEventListener("focusout", () => {
+        window.setTimeout(() => {
+          if (!carousel.contains(document.activeElement)) resume();
+        }, 0);
+      });
+      carousel.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          interact(activeIndex - 1);
+        }
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          interact(activeIndex + 1);
+        }
+      });
+      carousel.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse") return;
+        pointerStartX = event.clientX;
+      }, { passive: true });
+      carousel.addEventListener("pointerup", (event) => {
+        if (pointerStartX === null) return;
+        const delta = event.clientX - pointerStartX;
+        pointerStartX = null;
+        if (Math.abs(delta) < 36) return;
+        interact(activeIndex + (delta < 0 ? 1 : -1));
+      }, { passive: true });
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) stop();
+        else schedule();
+      });
+
+      setActive(activeIndex);
+    });
+  };
+
   const blockOrigins = [
     { x: -160, y: -115, z: 90, r: -8, s: 0.94 },
     { x: -125, y: -40, z: 125, r: -6, s: 0.96 },
@@ -63,27 +171,6 @@
     { x: 225, y: 195, z: 110, r: 6, s: 0.96 },
     { x: 120, y: 275, z: 150, r: -4, s: 0.98 }
   ];
-
-  const setScene = (index) => {
-    if (index === activeScene && steps[index]?.classList.contains("is-active")) return;
-    activeScene = index;
-    steps.forEach((step, i) => step.classList.toggle("is-active", i === index));
-    routes.forEach((route, i) => {
-      route.classList.toggle("is-active", i === index);
-      if (i === index) route.setAttribute("aria-current", "step");
-      else route.removeAttribute("aria-current");
-    });
-
-    if (!stageImages.length || window.innerWidth <= 760 || reducedMotion) return;
-    const nextLayer = visibleLayer === 0 ? 1 : 0;
-    const nextImage = stageImages[nextLayer];
-    nextImage.src = steps[index].dataset.image;
-    nextImage.onload = () => {
-      stageImages[visibleLayer].classList.remove("is-visible");
-      nextImage.classList.add("is-visible");
-      visibleLayer = nextLayer;
-    };
-  };
 
   const setScrollProofProgress = (value) => {
     if (!scrollProof) return;
@@ -196,6 +283,20 @@
     });
   };
 
+  const setCommercialProjectProgress = (scene, value) => {
+    const progressValue = reducedMotion ? 1 : value;
+    const structure = phase(progressValue, 0, 0.2);
+    const assemble = phase(progressValue, 0.2, 0.45);
+    const polish = phase(progressValue, 0.45, 0.7);
+    const final = phase(progressValue, 0.7, 1);
+    scene.style.setProperty("--project-progress", progressValue.toFixed(4));
+    scene.style.setProperty("--project-phase-a", structure.toFixed(4));
+    scene.style.setProperty("--project-phase-b", assemble.toFixed(4));
+    scene.style.setProperty("--project-phase-c", polish.toFixed(4));
+    scene.style.setProperty("--project-phase-d", final.toFixed(4));
+    scene.classList.toggle("is-complete", progressValue >= 0.985);
+  };
+
   const readScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 24);
     if (scrollProof) {
@@ -208,14 +309,12 @@
       const travel = Math.max(1, brandGravity.offsetHeight - window.innerHeight);
       setBrandGravityProgress(clamp01(-rect.top / travel));
     }
-    if (world && progress && progressBar) {
-      const rect = world.getBoundingClientRect();
-      const travel = Math.max(1, world.offsetHeight - window.innerHeight);
-      const value = Math.min(1, Math.max(0, -rect.top / travel));
-      progressBar.style.transform = `scaleX(${value})`;
-      progress.setAttribute("aria-valuenow", String(Math.round(value * 100)));
-      routeNav?.classList.toggle("is-in-world", rect.top <= 0 && rect.bottom >= window.innerHeight);
-    }
+    commercialProjectScenes.forEach((scene) => {
+      const rect = scene.getBoundingClientRect();
+      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) return;
+      const travel = Math.max(1, scene.offsetHeight - window.innerHeight);
+      setCommercialProjectProgress(scene, clamp01(-rect.top / travel));
+    });
     frameRequested = false;
   };
 
@@ -224,16 +323,6 @@
     frameRequested = true;
     requestAnimationFrame(readScroll);
   };
-
-  if ("IntersectionObserver" in window && steps.length) {
-    const sceneObserver = new IntersectionObserver((entries) => {
-      const visible = entries
-        .filter((entry) => entry.isIntersecting)
-        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-      if (visible) setScene(Number(visible.target.dataset.scene));
-    }, { rootMargin: "-20% 0px -20% 0px", threshold: [0.2, 0.4, 0.6] });
-    steps.forEach((step) => sceneObserver.observe(step));
-  }
 
   const revealItems = [...document.querySelectorAll(".reveal")];
   if (!reducedMotion && "IntersectionObserver" in window) {
@@ -257,39 +346,83 @@
     header?.classList.remove("is-menu-open");
     menuButton?.setAttribute("aria-expanded", "false");
   }));
+  document.querySelectorAll(".selected-work__link").forEach((link) => {
+    link.addEventListener("click", () => {
+      const target = document.querySelector(link.getAttribute("href"));
+      if (!target) return;
+      window.setTimeout(() => target.focus({ preventScroll: true }), reducedMotion ? 0 : 550);
+    });
+  });
 
   document.querySelectorAll("[data-language]").forEach((link) => {
-    link.addEventListener("click", () => localStorage.setItem("nova-frame-language", link.dataset.language));
+    link.addEventListener("click", () => localStorage.setItem("standloud-language", link.dataset.language));
   });
   document.querySelectorAll(".footer-bottom .language-switcher a").forEach((link) => {
     link.addEventListener("click", () => {
       const value = link.textContent.trim().toLowerCase();
-      localStorage.setItem("nova-frame-language", value);
+      localStorage.setItem("standloud-language", value);
     });
   });
 
-  document.querySelector("[data-demo-form]")?.addEventListener("submit", (event) => {
+  const form = document.querySelector("[data-demo-form]");
+  const formStartedAt = performance.now();
+  document.querySelectorAll("[data-service-choice]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const select = form?.querySelector("[name='service']");
+      if (!select) return;
+      select.value = link.dataset.serviceChoice;
+      select.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+  });
+
+  form?.addEventListener("submit", (event) => {
     event.preventDefault();
-    const form = event.currentTarget;
     const status = form.querySelector("[data-form-status]");
+    const submit = form.querySelector("[type='submit']");
+    const trap = form.querySelector("[name='website']");
+    const minimumDelay = Number(form.dataset.minSubmitDelay || 0);
+    status.classList.remove("is-success", "is-error");
+
+    if (trap?.value || performance.now() - formStartedAt < minimumDelay) {
+      status.textContent = status.dataset.error;
+      status.classList.add("is-error");
+      return;
+    }
+
     if (!form.checkValidity()) {
+      status.textContent = status.dataset.error;
+      status.classList.add("is-error");
+      form.querySelector(":invalid")?.focus();
       form.reportValidity();
       return;
     }
-    status.textContent = status.dataset.message;
+
+    submit.disabled = true;
+    form.setAttribute("aria-busy", "true");
+    form.classList.add("is-sending");
+    status.textContent = status.dataset.loading;
+
+    window.setTimeout(() => {
+      form.classList.remove("is-sending");
+      form.removeAttribute("aria-busy");
+      submit.disabled = false;
+      status.textContent = status.dataset.success;
+      status.classList.add("is-success");
+      form.reset();
+    }, reducedMotion ? 0 : 350);
   });
 
-  document.querySelectorAll("[data-placeholder]").forEach((link) => {
-    link.addEventListener("click", (event) => event.preventDefault());
-  });
   document.querySelectorAll("[data-year]").forEach((node) => {
     node.textContent = new Date().getFullYear();
   });
 
   addEventListener("scroll", requestRead, { passive: true });
   addEventListener("resize", requestRead, { passive: true });
+  initSelectedWorkCarousel();
+  commercialProjectScenes.forEach((scene) => {
+    if (reducedMotion) setCommercialProjectProgress(scene, 1);
+  });
   if (scrollProof && reducedMotion) setScrollProofProgress(1);
   if (brandGravity && reducedMotion) setBrandGravityProgress(1);
   readScroll();
-  setScene(0);
 })();
