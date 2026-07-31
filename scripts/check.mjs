@@ -15,9 +15,12 @@ const required = [
   "assets/brand/standloud-logo-horizontal.svg",
   "assets/brand/standloud-signature.svg",
   "favicon.svg",
+  "public/404.html",
   "config/site.json",
   "content/lab/pt.json",
   "content/lab/en.json",
+  "content/lab/legacy-concepts-pt.json",
+  "content/lab/legacy-concepts-en.json",
   "prompts/generated/manifest.json"
 ];
 const css = await readFile(path.join(root, "assets/css/styles.css"), "utf8");
@@ -38,21 +41,15 @@ const selectors = [
   ".commercial-hero",
   ".hero-title-accent",
   ".selected-work",
-  ".quick-proof",
-  ".problems",
-  ".service-offers",
-  ".commercial-project-scene",
-  ".project-site",
   ".project-showcase",
   ".project-browser",
   ".project-action",
   ".project-carousel-controls",
   ".project-preview-site",
   ".project-card-showcase",
+  ".image-comparison",
   ".process-commercial",
-  ".differentials",
   ".about",
-  ".diagnostic",
   ".faq",
   ".contact",
   ".quote-form",
@@ -67,7 +64,8 @@ for (const breakpoint of ["1100", "920", "760"]) {
   }
 }
 if (!css.includes("@media (prefers-reduced-motion: reduce)") ||
-    !css.includes(".selected-work__slide { transition: none !important; }")) {
+    !css.includes(".selected-work__slide { transition: none !important; }") ||
+    !css.includes(".image-comparison__layer--before { transition: none !important; }")) {
   errors.push("CSS: reduced-motion final states are incomplete");
 }
 if (!css.includes("linear-gradient(135deg, #7c3aed, #2563eb 52%, #22d3ee)") ||
@@ -77,8 +75,9 @@ if (!css.includes("linear-gradient(135deg, #7c3aed, #2563eb 52%, #22d3ee)") ||
     !css.includes("overflow: visible")) {
   errors.push("Hero: premium bilingual title gradient or readable fallback is incomplete");
 }
-if (!css.includes(".site-header.is-menu-open .primary-nav") ||
-    !clientJs.includes('header.classList.toggle("is-menu-open")')) {
+if (!css.includes(".js .site-header.is-menu-open .primary-nav") ||
+    !clientJs.includes("const setMenuOpen") ||
+    !clientJs.includes('event.key !== "Escape"')) {
   errors.push("Mobile navigation contract is incomplete");
 }
 if (!css.includes("@keyframes standloud-rise") ||
@@ -91,11 +90,11 @@ if (site.home.maxScenes > 4 || site.home.scenes.length > site.home.maxScenes) {
   errors.push("Home scene configuration exceeds the four-scene limit");
 }
 const enabledScenes = site.home.scenes.filter((scene) => scene.enabled).map((scene) => scene.id);
-if (enabledScenes.join(",") !== "aquaform,brasa27,atlasVale") {
-  errors.push(`Home: expected only AQUAFORM, BRASA 27 and ATLAS & VALE enabled, found ${enabledScenes.join(",")}`);
+if (enabledScenes.length) {
+  errors.push(`Home: content architecture must not render long scenes, found ${enabledScenes.join(",")}`);
 }
 const requiredRoutes = [
-  "projects", "projectAquaform", "projectBrasa27", "projectAtlasVale",
+  "projects", "projectNuppac", "projectAquaform", "projectBrasa27", "projectAtlasVale",
   "services", "process", "about", "contact", "lab"
 ];
 for (const key of requiredRoutes) {
@@ -105,11 +104,11 @@ for (const key of requiredRoutes) {
   }
 }
 
-if (!clientJs.includes("[data-commercial-project-scene]") ||
-    !clientJs.includes("--project-progress") ||
-    !clientJs.includes("requestAnimationFrame(readScroll)") ||
-    !clientJs.includes("setCommercialProjectProgress(scene")) {
-  errors.push("Commercial project scenes: normalized reversible rAF scroll progress is incomplete");
+if (clientJs.includes("[data-commercial-project-scene]") ||
+    clientJs.includes("--project-progress") ||
+    clientJs.includes("setCommercialProjectProgress(scene)") ||
+    !clientJs.includes("requestAnimationFrame(readScroll)")) {
+  errors.push("Home: archived scroll-scene runtime is still public or header rAF is missing");
 }
 if (!clientJs.includes("[data-selected-work]") ||
     !clientJs.includes("selectedWorkReady") ||
@@ -122,11 +121,33 @@ if (clientJs.includes(".world-step") || clientJs.includes(".world-stage") ||
     clientJs.includes("setScene(") || clientJs.includes("sceneObserver")) {
   errors.push("Client JS still loads the archived eight-scene Home runtime");
 }
+if (clientJs.includes("scrollProof") || clientJs.includes("brandGravity") ||
+    css.includes(".scroll-proof") || css.includes(".brand-gravity")) {
+  errors.push("Public CSS or JS still loads archived Lumina/Nexora scene runtime");
+}
 if (!clientJs.includes("[data-service-choice]") ||
     !clientJs.includes("data-min-submit-delay") && !clientJs.includes("minSubmitDelay") ||
     !clientJs.includes("[name='website']") ||
-    !clientJs.includes("form.checkValidity()")) {
+    !clientJs.includes("form.checkValidity()") ||
+    !clientJs.includes("status.dataset.unavailable")) {
   errors.push("Form: service prefill, accidental-submit protection or accessible validation is missing");
+}
+if (!clientJs.includes("[data-image-comparison]") ||
+    !clientJs.includes('setAttribute("role", "slider")') ||
+    !clientJs.includes('"aria-valuenow"') ||
+    !clientJs.includes('"pointerdown"') ||
+    !clientJs.includes('event.key === "Home"') ||
+    !clientJs.includes('event.key === "End"') ||
+    !css.includes("touch-action: pan-y") ||
+    !css.includes(".image-comparison:focus-visible")) {
+  errors.push("NUPPAC comparison: Pointer Events, keyboard or accessible slider contract is incomplete");
+}
+const nuppacComparison = site.projectAssets?.nuppac?.comparison;
+if (nuppacComparison?.previous !== "assets/images/projects/nuppac/previous-site.webp" ||
+    nuppacComparison?.newDirection !== "assets/images/projects/nuppac/new-direction.webp" ||
+    nuppacComparison?.width !== 1440 ||
+    nuppacComparison?.height !== 900) {
+  errors.push("NUPPAC comparison: expected real-asset paths and dimensions are not configured");
 }
 
 const storyboardFields = [
@@ -152,35 +173,28 @@ const expected = {
     lang: "pt-BR",
     hero: "Seu negócio merece ser impossível de ignorar.",
     heroLines: ["Seu negócio", "merece ser", "impossível", "de ignorar."],
-    heroBody: "Criamos sites e landing pages estratégicas para marcas e especialistas",
+    heroBody: "Criamos sites e landing pages para marcas e especialistas",
     selectedWork: "Trabalhos conceituais selecionados da STANDLOUD",
     projects: ["AQUAFORM Auto Spa", "BRASA 27", "ATLAS &amp; VALE"],
     anchors: ["projeto-aquaform", "projeto-brasa-27", "projeto-atlas-vale"],
     concept: "Projeto conceitual"
   },
   en: {
-    lang: "en",
+    lang: "en-US",
     hero: "Your business deserves to be impossible to ignore.",
     heroLines: ["Your business", "deserves to be", "impossible", "to ignore."],
-    heroBody: "We create strategic websites and landing pages for brands and specialists",
+    heroBody: "We create websites and landing pages for brands and specialists",
     selectedWork: "Selected STANDLOUD concept work",
     projects: ["AQUAFORM Auto Spa", "BRASA 27", "ATLAS &amp; VALE"],
     anchors: ["projeto-aquaform", "projeto-brasa-27", "projeto-atlas-vale"],
-    concept: "Concept project"
+    concept: "Independent concept project"
   }
 };
 const orderedMarkers = [
   'class="commercial-hero',
-  'class="problems',
-  'class="services-commercial',
-  'class="commercial-project-scene commercial-project-scene--aquaform',
   'class="projects-commercial',
   'class="process-commercial',
-  'class="commercial-project-scene commercial-project-scene--brasa27',
-  'class="differentials',
-  'class="commercial-project-scene commercial-project-scene--atlas-vale',
   'class="about',
-  'class="diagnostic',
   'class="faq',
   'class="contact'
 ];
@@ -201,7 +215,7 @@ for (const locale of ["pt", "en"]) {
       (html.match(/data-selected-work-action/g) || []).length !== 1 ||
       html.includes("project-meta") ||
       !html.includes(expected[locale].selectedWork) ||
-      !html.includes(`class="button button--primary" href="#diagnostic"`) ||
+      !html.includes(`class="button button--primary" href="#contact"`) ||
       !html.includes(`class="button button--ghost" href="#projects"`)) {
     errors.push(`${locale}: compact Hero message, selected-work carousel or CTA targets are incomplete`);
   }
@@ -213,9 +227,9 @@ for (const locale of ["pt", "en"]) {
       errors.push(`${locale}: missing working anchor for ${anchor}`);
     }
   }
-  if ((html.match(/data-commercial-project-scene/g) || []).length !== 3 ||
-      (html.match(/--project-progress:0/g) || []).length !== 3) {
-    errors.push(`${locale}: expected exactly three commercial project animations`);
+  if ((html.match(/data-commercial-project-scene/g) || []).length !== 0 ||
+      html.includes("--project-progress:0")) {
+    errors.push(`${locale}: long commercial project scenes must not render on the simplified Home`);
   }
   if (html.includes("attentionToAction") || html.includes("Da atenção à ação") ||
       html.includes("From attention to action") || html.includes("data-scroll-proof") ||
@@ -223,23 +237,60 @@ for (const locale of ["pt", "en"]) {
       html.includes("world-step")) {
     errors.push(`${locale}: disabled or archived scenes are visible on the Home`);
   }
-  if ((html.match(/class="service-offer reveal"/g) || []).length !== 3) {
-    errors.push(`${locale}: expected three commercial services`);
+  if (html.includes('class="quick-proof') ||
+      html.includes('class="problems') ||
+      html.includes('class="services-commercial') ||
+      html.includes('class="case-study') ||
+      html.includes('class="differentials') ||
+      html.includes('class="diagnostic')) {
+    errors.push(`${locale}: duplicate commercial sections remain visible after consolidation`);
   }
-  if ((html.match(/class="commercial-project /g) || []).length !== 3 ||
+  if ((html.match(/class="commercial-project /g) || []).length !== 4 ||
       (html.match(new RegExp(expected[locale].concept, "g")) || []).length < 3) {
-    errors.push(`${locale}: project showcase must contain three clearly labeled concept projects`);
+    errors.push(`${locale}: project showcase must contain NUPPAC and three clearly labeled concept projects`);
+  }
+  const expectedComparisonLabels = locale === "pt"
+    ? ["SITE ANTERIOR", "NOVA DIREÇÃO"]
+    : ["PREVIOUS WEBSITE", "NEW DIRECTION"];
+  const comparisonPending = html.includes('data-comparison-assets="pending"');
+  const comparisonReady = html.includes('data-comparison-assets="ready"');
+  if (!html.includes("data-image-comparison") ||
+      (!comparisonPending && !comparisonReady) ||
+      expectedComparisonLabels.some((label) => !html.includes(label)) ||
+      (comparisonPending && !html.includes(locale === "pt" ? "Captura real pendente" : "Real screenshot pending")) ||
+      (comparisonReady && (!html.includes("../assets/images/projects/nuppac/previous-site.webp") ||
+        !html.includes("../assets/images/projects/nuppac/new-direction.webp")))) {
+    errors.push(`${locale}: NUPPAC comparison placeholder or bilingual labels are incomplete`);
+  }
+  if (!html.includes('id="case-nuppac"') ||
+      !html.includes(locale === "pt" ? "Projeto real" : "Real project")) {
+    errors.push(`${locale}: NUPPAC real-project proof is missing`);
   }
   if ((html.match(/class="process-commercial__list"/g) || []).length !== 1 ||
-      (html.match(/<li class="reveal">/g) || []).length < 5) {
-    errors.push(`${locale}: five-step process is missing`);
+      (html.match(/class="process-commercial__list"[\s\S]*?<\/ol>/g) || []).some((block) =>
+        (block.match(/<li class="reveal">/g) || []).length !== 3)) {
+    errors.push(`${locale}: simplified three-step process is missing`);
   }
-  if ((html.match(/<details/g) || []).length !== 8) errors.push(`${locale}: expected 8 FAQ items`);
-  if (!html.includes('data-min-submit-delay="1600"') ||
+  if ((html.match(/<details/g) || []).length !== 6) errors.push(`${locale}: expected 6 essential FAQ items`);
+  if (!html.includes('data-contact-form') ||
+      !html.includes('data-min-submit-delay="1600"') ||
       !html.includes('name="website"') ||
       !html.includes("data-success=") ||
-      !html.includes("data-error=")) {
+      !html.includes("data-error=") ||
+      !html.includes("data-unavailable=")) {
     errors.push(`${locale}: accessible protected form contract is incomplete`);
+  }
+  if (!html.includes('rel="canonical"') ||
+      !html.includes('property="og:url"') ||
+      !html.includes('hreflang="en-US"') ||
+      !html.includes('property="og:image"') ||
+      !html.includes('name="twitter:card" content="summary_large_image"') ||
+      !html.includes('"knowsLanguage":["Portuguese","English"]')) {
+    errors.push(`${locale}: canonical bilingual metadata is incomplete`);
+  }
+  if (html.includes("hello@example.com") || html.includes("whatsapp-float") ||
+      html.includes('property="og:image" content="../assets/scenes/studio.svg"')) {
+    errors.push(`${locale}: placeholder contact or obsolete social preview remains public`);
   }
   if (!html.includes('rel="icon" href="../assets/brand/standloud-symbol.svg"') ||
       !html.includes("class=\"brand brand--header\"") ||
@@ -255,7 +306,9 @@ for (const locale of ["pt", "en"]) {
     }
     lastPosition = position;
   }
-  if (/(>98<|>1\.2s<|>AA<)/.test(html)) errors.push(`${locale}: contains unverified metrics`);
+  if (/(>98<|>1\.2s<|>AA<|18 anos|64 projetos|12 prêmios|18 years|64 completed|12 architecture awards|Reservas limitadas|Limited reservations)/.test(html)) {
+    errors.push(`${locale}: contains unverified metrics or scarcity`);
+  }
 
   const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
   const ids = new Set([...html.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]));
@@ -297,4 +350,4 @@ if (errors.length) {
   console.error(errors.join("\n"));
   process.exit(1);
 }
-console.log("Checks passed: commercial PT/EN Home, three concept project scenes, Lab archive, routes, form and motion fallbacks.");
+console.log("Checks passed: simplified PT/EN Home, NUPPAC comparison, honest project status, routes, form and accessibility fallbacks.");

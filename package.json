@@ -8,10 +8,13 @@
     "build:cloudflare": "npm run build && npm run check && node scripts/build-cloudflare.mjs",
     "check": "node scripts/check.mjs",
     "deploy:cloudflare": "wrangler deploy",
+    "qa:baseline": "node scripts/qa-browser.mjs baseline",
+    "qa:final": "node scripts/qa-browser.mjs final",
     "serve": "node scripts/serve.mjs",
     "serve:cloudflare": "node scripts/serve.mjs --root _site"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "wrangler": "^4.113.0"
   }
 }

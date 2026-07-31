@@ -1,5 +1,5 @@
 {
-  "lang": "en",
+  "lang": "en-US",
   "locale": "en",
   "seo": {
     "title": "Strategic websites and landing pages",
@@ -20,7 +20,7 @@
     "titleLead": "Your business deserves to be",
     "titleHighlight": "impossible to ignore.",
     "titleLines": ["Your business", "deserves to be", "impossible", "to ignore."],
-    "body": "We create strategic websites and landing pages for brands and specialists that need to turn attention into contacts, authority and real opportunities.",
+    "body": "We create websites and landing pages for brands and specialists that need to explain their offer, build trust and generate opportunities.",
     "primary": "Request a review",
     "secondary": "View projects",
     "micro": "Design, development and launch in one complete process.",
@@ -38,7 +38,7 @@
         "name": "AQUAFORM Auto Spa",
         "type": "CONCEPT PROJECT",
         "body": "A premium presence designed to turn automotive services into bookings.",
-        "address": "aquaform.studio",
+        "address": "concept / aquaform",
         "href": "#projeto-aquaform",
         "previewLabel": "HTML preview of the AQUAFORM Auto Spa project"
       },
@@ -51,7 +51,7 @@
         "name": "BRASA 27",
         "type": "CONCEPT PROJECT",
         "body": "An editorial experience built to create appetite and make reservations easy.",
-        "address": "brasa27.restaurant",
+        "address": "concept / brasa-27",
         "href": "#projeto-brasa-27",
         "previewLabel": "HTML preview of the BRASA 27 project"
       },
@@ -64,7 +64,7 @@
         "name": "ATLAS & VALE",
         "type": "CONCEPT PROJECT",
         "body": "An institutional site built to communicate authority, clarity and trust.",
-        "address": "atlasvale.law",
+        "address": "concept / atlas-vale",
         "href": "#projeto-atlas-vale",
         "previewLabel": "HTML preview of the ATLAS & VALE project"
       }
@@ -72,25 +72,25 @@
   },
   "quickProof": {
     "eyebrow": "PROOF IN CONTEXT",
-    "title": "Real work and honest studies that show how we think.",
+    "title": "Real work, independent concepts and one complete process.",
     "items": [
       {
         "name": "NUPPAC",
         "type": "Real project",
-        "body": "Website, courses, payments and launch."
+        "body": "An institutional experience, course pages, payments and a responsive launch."
       },
       {
-        "name": "Lumina",
-        "type": "Concept project",
-        "body": "Editorial direction and architectural experience."
+        "name": "AQUAFORM • BRASA 27 • ATLAS & VALE",
+        "type": "Independent concept studies",
+        "body": "Three directions created to demonstrate strategy, visual language and adaptation across industries."
       },
       {
-        "name": "Nexora",
-        "type": "Concept project",
-        "body": "Brand presence guided by attention."
+        "name": "From direction to launch",
+        "type": "Integrated process",
+        "body": "Strategy, design and development handled in one flow, with clear stages and approvals."
       }
     ],
-    "process": "Design, development and launch delivered through one process."
+    "process": "We do not ask clients to imagine. We show the direction first."
   },
   "problems": {
     "eyebrow": "WHAT NEEDS TO CHANGE",
@@ -126,53 +126,6 @@
       }
     ]
   },
-  "scrollProof": {
-    "aria": "Scroll animation from concept to launch",
-    "eyebrow": "SCROLL PROOF",
-    "title": "From concept to published project.",
-    "body": "Ideas become digital experiences as every part of a real website finds its place.",
-    "scrollHint": "Scroll to assemble the project",
-    "launch": "Project launched",
-    "status": "Scroll controls the visual build",
-    "landing": {
-      "brand": "Lumina",
-      "nav": ["Projects", "Studio", "Services", "Contact"],
-      "eyebrow": "Contemporary architecture",
-      "title": "Spaces designed to stand the test of time.",
-      "body": "We design residences, commercial spaces and environments that combine function, material and identity.",
-      "primary": "Explore our projects",
-      "secondary": "Contact the studio",
-      "project": "Project 042 — Horizon House",
-      "statsLabel": "Studio figures",
-      "stats": [
-        { "value": "18", "label": "years of experience" },
-        { "value": "64", "label": "completed projects" },
-        { "value": "12", "label": "architecture awards" }
-      ],
-      "servicesLabel": "Areas of practice",
-      "services": [
-        { "title": "Residential architecture", "body": "Homes shaped around the way each client lives." },
-        { "title": "Interior design", "body": "Material, light and proportion in welcoming spaces." },
-        { "title": "Commercial projects", "body": "Brand spaces that unite experience and function." }
-      ],
-      "cta": "Let’s design something memorable.",
-      "ctaButton": "Start a conversation"
-    }
-  },
-  "animationIntros": {
-    "lumina": {
-      "eyebrow": "DEMONSTRATION 01",
-      "title": "From concept to launch.",
-      "body": "Strategy, structure, design and development brought together in one complete experience.",
-      "afterCta": "Explore our process"
-    },
-    "brandGravity": {
-      "eyebrow": "DEMONSTRATION 02",
-      "title": "Most brands compete for attention. Some create their own gravity.",
-      "body": "See how hierarchy, contrast and motion turn noise into presence.",
-      "afterCta": "I want to strengthen my digital presence"
-    }
-  },
   "featuredProjects": [
     {
       "id": "aquaform",
@@ -194,9 +147,9 @@
       "services": ["Technical wash", "Interior cleaning", "Polishing and protection", "Complete detailing"],
       "plans": ["Essential", "Premium", "Signature"],
       "planCta": "Request pricing",
-      "location": "Concept Avenue, 120 • Concept project",
-      "hours": "Monday to Saturday, 8am to 7pm",
-      "notice": "Address and service flow are demonstrative for this concept presentation."
+      "location": "Concept flow • no real service",
+      "hours": "Demonstration details",
+      "notice": "Independent project created as a visual and strategic demonstration."
     },
     {
       "id": "brasa27",
@@ -216,11 +169,11 @@
       "secondary": "Explore the menu",
       "nav": ["Concept", "Menu", "Experience", "Location"],
       "services": ["Charred pumpkin", "Fish, brown butter and lemon", "Short rib, roots and wine", "Chocolate, coffee and salt"],
-      "plans": ["Open kitchen", "Seasonal menu", "Local ingredients", "Limited reservations"],
+      "plans": ["Open kitchen", "Seasonal menu", "Local ingredients", "Private events"],
       "planCta": "Reserve",
-      "location": "Brasa Street, 27 • Concept project",
-      "hours": "Tuesday to Sunday, 6pm to 11pm",
-      "notice": "Visual reservation flow only, with no external integration at this stage."
+      "location": "Concept flow • no real reservations",
+      "hours": "Demonstration details",
+      "notice": "Independent project created as a visual and strategic demonstration."
     },
     {
       "id": "atlasVale",
@@ -242,80 +195,94 @@
       "services": ["Business law", "Contracts", "Wealth planning", "Corporate matters", "Conflict prevention", "Strategic counsel"],
       "plans": ["Understanding", "Strategy", "Guidance", "Follow-up"],
       "planCta": "Request a consultation",
-      "location": "Institutional Avenue, 410 • Concept project",
-      "hours": "Consultations by appointment",
-      "notice": "Visual form only, with no backend at this stage."
+      "location": "Concept flow • no real service",
+      "hours": "Demonstration details",
+      "notice": "Independent project created as a visual and strategic demonstration."
     }
   ],
   "projects": {
     "eyebrow": "PROJECTS",
-    "title": "Real work, honest concepts.",
-    "body": "Every card clearly identifies what has been delivered and what exists as a demonstration study.",
-    "linkLabel": "View project",
+    "title": "Work that shows how we think.",
+    "body": "One real project and three independent studies, always with their status clearly identified.",
+    "labels": {
+      "context": "Challenge",
+      "objective": "Objective",
+      "direction": "Direction"
+    },
+    "comparison": {
+      "label": "Compare NUPPAC’s previous website with the new direction created by STANDLOUD",
+      "before": "PREVIOUS WEBSITE",
+      "after": "NEW DIRECTION",
+      "beforeAlt": "Screenshot of NUPPAC’s previous website.",
+      "afterAlt": "Screenshot of NUPPAC’s new direction created by STANDLOUD.",
+      "pending": "Real screenshot pending",
+      "fallback": "Static comparison at 50%. Enable JavaScript to drag."
+    },
     "items": [
       {
         "id": "nuppac",
+        "anchor": "case-nuppac",
+        "routeKey": "projectNuppac",
         "name": "NUPPAC",
         "type": "Real project",
-        "body": "A corporate platform with course presentation, payment integration and responsive launch.",
-        "scope": ["Strategy", "UI", "Development", "Payments", "Launch"]
+        "segment": "Psychoanalysis, art and culture",
+        "context": "Bring the institution, its courses and the path to enrollment into one coherent presence.",
+        "objective": "Make it easier to navigate content, courses, registration and payment.",
+        "direction": "A clear page architecture, responsive interface and flow connected to payment integration.",
+        "scope": ["Strategy", "UI", "Development", "Payments", "Launch"],
+        "linkLabel": "Compare the transformation"
       },
       {
-        "id": "lumina",
-        "name": "Lumina Architecture",
-        "type": "Concept project",
-        "body": "An editorial study for a contemporary architecture studio.",
-        "scope": ["Visual direction", "UI", "Motion", "Responsive design"]
+        "id": "aquaform",
+        "anchor": "projeto-aquaform",
+        "routeKey": "projectAquaform",
+        "name": "AQUAFORM Auto Spa",
+        "type": "Independent concept project",
+        "segment": "Premium automotive detailing",
+        "context": "Present a premium technical service without looking like just another car wash.",
+        "objective": "Turn automotive care into a premium offer that is easy to understand and request.",
+        "direction": "Technical contrast, precise language and a service-led journey.",
+        "scope": ["Strategy", "Visual direction", "UI", "Scroll", "Responsive design"],
+        "linkLabel": "View visual direction"
       },
       {
-        "id": "nexora",
-        "name": "Nexora",
-        "type": "Concept project",
-        "body": "A digital presence experiment in which a brand earns the center of attention.",
-        "scope": ["Narrative", "UI", "Scroll", "Interaction"]
+        "id": "brasa27",
+        "anchor": "projeto-brasa-27",
+        "routeKey": "projectBrasa27",
+        "name": "BRASA 27",
+        "type": "Independent concept project",
+        "segment": "Contemporary restaurant",
+        "context": "Translate a contemporary restaurant’s atmosphere before the first visit.",
+        "objective": "Create desire and make the path to a reservation visually direct.",
+        "direction": "Editorial composition, warm tones and rhythm inspired by fire, material and the table.",
+        "scope": ["Strategy", "Editorial direction", "UI", "Interaction", "Mobile"],
+        "linkLabel": "View visual direction"
+      },
+      {
+        "id": "atlasVale",
+        "anchor": "projeto-atlas-vale",
+        "routeKey": "projectAtlasVale",
+        "name": "ATLAS & VALE",
+        "type": "Independent concept project",
+        "segment": "Business and wealth law",
+        "context": "Explain complex legal services with clarity and restraint.",
+        "objective": "Organize practice areas and guide the visitor toward a qualified conversation.",
+        "direction": "An institutional grid, controlled contrast and comprehension-led hierarchy.",
+        "scope": ["Strategy", "Architecture", "UI", "Content", "Responsive design"],
+        "linkLabel": "View visual direction"
       }
     ]
   },
-  "brandGravity": {
-    "aria": "Scroll animation about the gravity of a memorable brand",
-    "eyebrow": "SCENE 02",
-    "title": "Brand gravity",
-    "status": "Digital noise finds a center of attention",
-    "established": "Presence established",
-    "noise": ["Another solution", "Discover now", "Explore our services", "Fast results"],
-    "noiseBody": "An experience built for every business.",
-    "noiseCta": "Learn more",
-    "landing": {
-      "brand": "Nexora",
-      "nav": ["Solutions", "Work", "Studio"],
-      "navCta": "Start a project",
-      "eyebrow": "Strategy • Design • Technology",
-      "title": "Your business deserves to be",
-      "highlight": "impossible to ignore.",
-      "body": "We create websites and landing pages that transform ideas into memorable digital experiences.",
-      "primary": "Create a remarkable presence",
-      "secondary": "View projects",
-      "visualLabel": "Digital presence in motion",
-      "cards": [
-        { "title": "Strategy that connects", "body": "Positioning and journeys guided by real objectives." },
-        { "title": "Design that communicates", "body": "Distinctive interfaces that make your brand recognizable." },
-        { "title": "Technology that accelerates", "body": "Performance and structure built for consistent growth." },
-        { "title": "Results that matter", "body": "Experiences designed to turn attention into action." }
-      ],
-      "proof": "Digital presence for brands in motion.",
-      "proofBrands": ["Nexus", "CloudWave", "Innova", "Nextly", "Modular", "Bold"]
-    }
-  },
   "process": {
     "eyebrow": "PROCESS",
-    "title": "From discovery to launch, with no invisible stages.",
-    "body": "Every phase has a clear objective, a concrete deliverable and an approval point.",
+    "title": "A focused process with visible decisions.",
+    "body": "From the first review to launch, every stage ends with a clear direction.",
+    "principle": "We do not ask clients to imagine. We show the direction first.",
+    "principleBody": "The visual direction appears early and in context, so decisions can be evaluated before full development.",
     "steps": [
       { "number": "01", "title": "Discovery", "body": "We understand the business, offer, audience and what needs to improve." },
-      { "number": "02", "title": "Strategy", "body": "We define the message, structure, journey and priorities for the page." },
-      { "number": "03", "title": "Design", "body": "We create the visual direction and validate the experience across key screens." },
-      { "number": "04", "title": "Development", "body": "We turn the design into a fast, accessible and responsive implementation." },
-      { "number": "05", "title": "Launch", "body": "We review content, devices and configuration before putting the project live." }
+      { "number": "02", "title": "Direction presented", "body": "We organize the message, structure and design into a proposal that can be evaluated in context." },
+      { "number": "03", "title": "Project built", "body": "We develop, review across screen sizes and prepare the launch." }
     ]
   },
   "caseStudy": {
@@ -343,9 +310,9 @@
   },
   "about": {
     "eyebrow": "ABOUT",
-    "title": "A focused studio with a complete view of the project.",
-    "body": "STANDLOUD is a digital studio created by Vitor Santana to build websites, landing pages and interactive experiences that help businesses present themselves with greater clarity, presence and personality.",
-    "signature": "Strategy, design and code working in the same direction."
+    "title": "One studio with a complete view of the project.",
+    "body": "STANDLOUD is Vitor Santana’s digital studio. We create websites, landing pages and interactive experiences for businesses that need to present themselves with clarity and personality.",
+    "signature": "Direction, design, development and launch in one process."
   },
   "diagnostic": {
     "eyebrow": "FIRST STEP",
@@ -362,19 +329,17 @@
       ["Does STANDLOUD write the content?", "We can structure the message, guide the content and develop the copy included in scope. Technical materials depend on client collaboration."],
       ["Will the website work on mobile?", "Yes. Mobile is designed as its own experience and validated across different screen sizes."],
       ["Are domain and hosting included?", "We can advise on and configure these services. Recurring domain, hosting or platform costs are presented separately."],
-      ["Is maintenance available?", "Yes. Maintenance, improvements and post-launch support can be contracted according to need."],
-      ["How does payment work?", "Terms are defined in the proposal according to scope and schedule, before the project begins."],
       ["Does the project belong to the client?", "After completion and agreed payment, the client receives the files and access credentials specified in the contract."]
     ]
   },
   "contact": {
-    "eyebrow": "LET’S TALK",
-    "title": "Tell us what needs to change.",
-    "body": "This form prepares the initial review. In this version, data is validated locally and is not sent to external services.",
-    "availability": "Open for new projects",
+    "eyebrow": "FIRST STEP",
+    "title": "Digital presence review",
+    "body": "Tell us about your website, profile or idea. The form organizes the review context; sending will be enabled as soon as the commercial channel is confirmed.",
+    "availability": "First step: understand the context and priority",
     "labels": {
       "name": "Name",
-      "contact": "Email or WhatsApp",
+      "contact": "Reply email",
       "business": "Business name",
       "service": "Desired service",
       "currentLink": "Current website, Instagram or link",
@@ -385,7 +350,9 @@
     },
     "serviceOptions": ["Select an option", "Strategic Landing Page", "Corporate Website", "Interactive Digital Experience", "I am not sure yet"],
     "budgetOptions": ["Select a range", "Not defined yet", "Up to US$ 1,000", "US$ 1,000 to US$ 2,500", "Above US$ 2,500"],
-    "success": "Review prepared. The sending integration will be connected after your authorization.",
+    "success": "Request prepared. Review the message in your email app before sending.",
+    "unavailable": "The sending channel is not configured yet. No data was sent.",
+    "subject": "STANDLOUD review request",
     "error": "Review the indicated fields before continuing.",
     "loading": "Preparing your request..."
   },

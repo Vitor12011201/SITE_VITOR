@@ -1,4 +1,7 @@
-# Plano do site — STANDLOUD
+# Plano histórico de scroll-world — STANDLOUD
+
+> Arquivo preservado como referência da primeira exploração imersiva. Não descreve a
+> Home comercial atual nem o bundle público.
 
 ## 1. Objetivo e estratégia
 

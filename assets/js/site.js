@@ -2,17 +2,9 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const header = document.querySelector("[data-header]");
   const menuButton = document.querySelector(".menu-toggle");
-  const scrollProof = document.querySelector("[data-scroll-proof]");
-  const proofBlocks = [...document.querySelectorAll(".wire-block")];
-  const brandGravity = document.querySelector("[data-brand-gravity]");
-  const gravityPanels = [...document.querySelectorAll(".noise-panel")];
-  const gravityComponents = [...document.querySelectorAll(".gravity-component")];
-  const commercialProjectScenes = [...document.querySelectorAll("[data-commercial-project-scene]")];
   let frameRequested = false;
 
   const clamp01 = (value) => Math.min(1, Math.max(0, value));
-  const phase = (value, start, end) => clamp01((value - start) / (end - start));
-  const lerp = (from, to, value) => from + (to - from) * value;
   const setInert = (node, value) => {
     if ("inert" in node) node.inert = value;
     if (value) node.setAttribute("inert", "");
@@ -129,192 +121,81 @@
     });
   };
 
-  const blockOrigins = [
-    { x: -160, y: -115, z: 90, r: -8, s: 0.94 },
-    { x: -125, y: -40, z: 125, r: -6, s: 0.96 },
-    { x: -175, y: 35, z: 185, r: 7, s: 1.04 },
-    { x: -145, y: 98, z: 105, r: -5, s: 0.96 },
-    { x: -70, y: 145, z: 155, r: 6, s: 1.02 },
-    { x: 175, y: 10, z: 220, r: 10, s: 1.08 },
-    { x: -130, y: 145, z: 90, r: -5, s: 0.97 },
-    { x: 10, y: 175, z: 130, r: 4, s: 0.98 },
-    { x: 140, y: 135, z: 105, r: -5, s: 0.97 },
-    { x: -125, y: 205, z: 125, r: -7, s: 0.96 },
-    { x: 15, y: 225, z: 170, r: 5, s: 0.98 },
-    { x: 145, y: 195, z: 120, r: -6, s: 0.96 },
-    { x: 70, y: 245, z: 150, r: 4, s: 0.98 }
-  ];
-  const gravityPanelOrigins = [
-    { x: -610, y: -245, z: -80, r: -8, s: 0.94, blur: 1.5 },
-    { x: -385, y: -285, z: 55, r: 6, s: 0.82, blur: 2.4 },
-    { x: -155, y: -255, z: -120, r: -4, s: 0.72, blur: 3.2 },
-    { x: 205, y: -275, z: -90, r: 5, s: 0.76, blur: 2.8 },
-    { x: 440, y: -235, z: 70, r: -6, s: 0.88, blur: 1.8 },
-    { x: 620, y: -90, z: -60, r: 8, s: 0.92, blur: 2.2 },
-    { x: -635, y: 5, z: 45, r: 7, s: 0.86, blur: 2.6 },
-    { x: -520, y: 235, z: -75, r: -5, s: 0.9, blur: 1.7 },
-    { x: -225, y: 270, z: 80, r: 5, s: 0.76, blur: 3.1 },
-    { x: 180, y: 285, z: -85, r: -4, s: 0.72, blur: 3.4 },
-    { x: 430, y: 250, z: 65, r: 6, s: 0.84, blur: 2.1 },
-    { x: 625, y: 115, z: -55, r: -7, s: 0.94, blur: 1.6 }
-  ];
-  const gravityComponentOrigins = [
-    { x: -210, y: -145, z: 150, r: -7, s: 0.94 },
-    { x: -180, y: -55, z: 120, r: -5, s: 0.96 },
-    { x: -235, y: 20, z: 210, r: 6, s: 1.04 },
-    { x: -190, y: 105, z: 120, r: -4, s: 0.96 },
-    { x: -90, y: 155, z: 175, r: 5, s: 1.02 },
-    { x: 225, y: 15, z: 240, r: 9, s: 1.08 },
-    { x: -210, y: 205, z: 120, r: -6, s: 0.96 },
-    { x: -65, y: 235, z: 165, r: 5, s: 0.98 },
-    { x: 85, y: 220, z: 140, r: -5, s: 0.97 },
-    { x: 225, y: 195, z: 110, r: 6, s: 0.96 },
-    { x: 120, y: 275, z: 150, r: -4, s: 0.98 }
-  ];
+  const initImageComparisons = () => {
+    document.querySelectorAll("[data-image-comparison]").forEach((comparison) => {
+      if (comparison.dataset.comparisonReady === "true") return;
+      comparison.dataset.comparisonReady = "true";
+      comparison.classList.add("is-enhanced");
+      comparison.setAttribute("role", "slider");
+      comparison.setAttribute("tabindex", "0");
+      comparison.setAttribute("aria-orientation", "horizontal");
+      comparison.setAttribute("aria-valuemin", "0");
+      comparison.setAttribute("aria-valuemax", "100");
+      comparison.setAttribute("aria-label", comparison.dataset.comparisonLabel || "Image comparison");
 
-  const setScrollProofProgress = (value) => {
-    if (!scrollProof) return;
-    const progressValue = reducedMotion ? 1 : value;
-    const emerge = phase(progressValue, 0, 0.15);
-    const scatter = phase(progressValue, 0.15, 0.35);
-    const assemble = phase(progressValue, 0.35, 0.6);
-    const polish = phase(progressValue, 0.6, 0.82);
-    const launch = phase(progressValue, 0.82, 1);
-    const isMobile = window.innerWidth <= 760;
-    const depthScale = isMobile ? 0.42 : 1;
-    const cameraSettle = clamp01(assemble * 0.72 + polish * 0.28);
+      let activePointer = null;
+      const beforeLabel = comparison.dataset.beforeLabel || "Before";
+      const afterLabel = comparison.dataset.afterLabel || "After";
 
-    scrollProof.style.setProperty("--scene-progress", progressValue.toFixed(4));
-    scrollProof.style.setProperty("--scene-phase-a", emerge.toFixed(4));
-    scrollProof.style.setProperty("--scene-phase-b", scatter.toFixed(4));
-    scrollProof.style.setProperty("--scene-phase-c", assemble.toFixed(4));
-    scrollProof.style.setProperty("--scene-phase-d", polish.toFixed(4));
-    scrollProof.style.setProperty("--scene-phase-e", launch.toFixed(4));
-    scrollProof.style.setProperty("--proof-ambient-opacity", String(lerp(0.06, 0.34, emerge)));
-    scrollProof.style.setProperty("--proof-browser-opacity", String(lerp(0.04, 1, Math.max(emerge, assemble))));
-    scrollProof.style.setProperty("--proof-copy-opacity", String(lerp(1, 0.56, launch)));
-    scrollProof.style.setProperty("--proof-polish", String(polish));
-    scrollProof.style.setProperty("--proof-launch", String(launch));
-    scrollProof.style.setProperty("--proof-content-opacity", String(Math.max(scatter * 0.48, polish)));
-    scrollProof.style.setProperty("--proof-guides-opacity", String(lerp(0.72, 0.08, polish)));
-    scrollProof.style.setProperty("--proof-glow", `${(polish * 1.4).toFixed(2)}rem`);
-    scrollProof.style.setProperty("--proof-launch-offset", `${lerp(12, 0, launch).toFixed(1)}px`);
-    scrollProof.style.setProperty("--proof-sheen-x", `${lerp(-145, 145, launch).toFixed(1)}%`);
-    scrollProof.style.setProperty("--proof-camera-transform", `translate3d(0, ${lerp(24, 0, cameraSettle).toFixed(1)}px, 0) rotateX(${lerp(isMobile ? 14 : 50, isMobile ? 0.25 : 0.5, cameraSettle).toFixed(2)}deg) rotateZ(${lerp(isMobile ? -1.5 : -7, 0, cameraSettle).toFixed(2)}deg) scale(${lerp(isMobile ? 0.9 : 0.8, isMobile ? 0.995 : 0.99, cameraSettle).toFixed(3)})`);
-    scrollProof.classList.toggle("is-settled", progressValue >= 0.82);
-    scrollProof.classList.toggle("is-complete", progressValue >= 0.985);
+      const setPosition = (value) => {
+        const position = Math.round(clamp01(Number(value) / 100) * 100);
+        comparison.style.setProperty("--compare-position", `${position}%`);
+        comparison.dataset.position = String(position);
+        comparison.setAttribute("aria-valuenow", String(position));
+        comparison.setAttribute("aria-valuetext", `${position}% — ${beforeLabel} / ${afterLabel}`);
+      };
 
-    proofBlocks.forEach((block, index) => {
-      const origin = blockOrigins[index] || blockOrigins[0];
-      const reveal = clamp01(scatter * 1.35 - index * 0.08);
-      const remaining = 1 - assemble;
-      const x = origin.x * remaining * depthScale;
-      const y = origin.y * remaining * depthScale;
-      const z = origin.z * remaining * depthScale;
-      const rotate = origin.r * remaining;
-      const scale = lerp(origin.s, 1, assemble);
-      block.style.opacity = String(Math.max(reveal, assemble, reducedMotion ? 1 : 0));
-      block.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotate(${rotate.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
+      const setFromPointer = (clientX) => {
+        const rect = comparison.getBoundingClientRect();
+        if (!rect.width) return;
+        setPosition(((clientX - rect.left) / rect.width) * 100);
+      };
+
+      comparison.addEventListener("pointerdown", (event) => {
+        if (event.pointerType === "mouse" && event.button !== 0) return;
+        activePointer = event.pointerId;
+        comparison.classList.add("is-dragging");
+        try { comparison.setPointerCapture(event.pointerId); } catch {}
+        setFromPointer(event.clientX);
+        event.preventDefault();
+      });
+      comparison.addEventListener("pointermove", (event) => {
+        if (activePointer !== event.pointerId) return;
+        setFromPointer(event.clientX);
+        event.preventDefault();
+      });
+      const finishPointer = (event) => {
+        if (activePointer !== event.pointerId) return;
+        try {
+          if (comparison.hasPointerCapture(event.pointerId)) {
+            comparison.releasePointerCapture(event.pointerId);
+          }
+        } catch {}
+        activePointer = null;
+        comparison.classList.remove("is-dragging");
+      };
+      comparison.addEventListener("pointerup", finishPointer);
+      comparison.addEventListener("pointercancel", finishPointer);
+      comparison.addEventListener("dragstart", (event) => event.preventDefault());
+      comparison.addEventListener("keydown", (event) => {
+        const current = Number(comparison.dataset.position || 50);
+        const step = event.shiftKey ? 10 : 5;
+        let next = current;
+        if (event.key === "ArrowLeft" || event.key === "ArrowDown") next -= step;
+        else if (event.key === "ArrowRight" || event.key === "ArrowUp") next += step;
+        else if (event.key === "Home") next = 0;
+        else if (event.key === "End") next = 100;
+        else return;
+        event.preventDefault();
+        setPosition(next);
+      });
+
+      setPosition(50);
     });
-  };
-
-  const setBrandGravityProgress = (value) => {
-    if (!brandGravity) return;
-    const progressValue = reducedMotion ? 1 : value;
-    const noise = phase(progressValue, 0, 0.2);
-    const pulse = phase(progressValue, 0.2, 0.4);
-    const attraction = phase(progressValue, 0.4, 0.65);
-    const dominance = phase(progressValue, 0.65, 0.85);
-    const final = phase(progressValue, 0.85, 1);
-    const isMobile = window.innerWidth <= 760;
-    const spatialScale = isMobile ? 0.55 : Math.min(1, window.innerWidth / 1440);
-    const depthScale = isMobile ? 0.46 : 1;
-    const retreat = clamp01(attraction * 0.55 + dominance * 0.35 + final * 0.1);
-    const camera = clamp01(pulse * 0.25 + attraction * 0.45 + dominance * 0.25 + final * 0.05);
-    const presence = Math.max(pulse * 0.46, attraction, dominance, final);
-
-    brandGravity.style.setProperty("--brand-gravity-progress", progressValue.toFixed(4));
-    brandGravity.style.setProperty("--brand-noise", noise.toFixed(4));
-    brandGravity.style.setProperty("--brand-pulse", pulse.toFixed(4));
-    brandGravity.style.setProperty("--brand-attraction", attraction.toFixed(4));
-    brandGravity.style.setProperty("--brand-dominance", dominance.toFixed(4));
-    brandGravity.style.setProperty("--brand-final", final.toFixed(4));
-    brandGravity.style.setProperty("--brand-browser-opacity", String(lerp(0.015, 1, presence)));
-    brandGravity.style.setProperty("--brand-core-opacity", String(lerp(0.04, 0.82, Math.max(pulse, attraction))));
-    brandGravity.style.setProperty("--brand-core-scale", String(lerp(0.25, 1.8, clamp01(pulse * 0.65 + attraction * 0.35))));
-    brandGravity.style.setProperty("--brand-label-opacity", String(lerp(1, 0.08, dominance)));
-    brandGravity.style.setProperty("--brand-page-clarity", String(clamp01(attraction * 0.45 + dominance * 0.55)));
-    brandGravity.style.setProperty("--brand-glow", `${lerp(0, isMobile ? 1.5 : 3.2, dominance).toFixed(2)}rem`);
-    brandGravity.style.setProperty("--brand-established-opacity", String(final));
-    brandGravity.style.setProperty("--brand-established-offset", `${lerp(12, 0, final).toFixed(1)}px`);
-    brandGravity.style.setProperty("--brand-sheen-x", `${lerp(-150, 150, final).toFixed(1)}%`);
-    brandGravity.style.setProperty("--brand-browser-transform", `translate3d(0, ${lerp(34, 0, camera).toFixed(1)}px, 0) rotateX(${lerp(isMobile ? 15 : 38, isMobile ? 0.3 : 0.6, camera).toFixed(2)}deg) rotateZ(${lerp(isMobile ? -2 : -6, 0, camera).toFixed(2)}deg) scale(${lerp(isMobile ? 0.62 : 0.54, isMobile ? 0.995 : 1, camera).toFixed(3)})`);
-    brandGravity.classList.toggle("is-settled", progressValue >= 0.85);
-    brandGravity.classList.toggle("is-complete", progressValue >= 0.985);
-
-    gravityPanels.forEach((panel, index) => {
-      const origin = gravityPanelOrigins[index] || gravityPanelOrigins[0];
-      const direction = origin.x < 0 ? -1 : 1;
-      const driftX = Math.sin(progressValue * Math.PI * (1.25 + index * 0.035) + index) * 18 * (1 - dominance);
-      const driftY = Math.cos(progressValue * Math.PI * (1.1 + index * 0.025) + index) * 12 * (1 - dominance);
-      const x = (origin.x + driftX + direction * retreat * 18) * spatialScale;
-      const y = (origin.y * (1 + retreat * 0.12) + driftY) * (isMobile ? 0.72 : 1);
-      const z = origin.z - retreat * 210;
-      const rotate = origin.r + direction * retreat * 7;
-      const scale = lerp(origin.s, isMobile ? 0.58 : 0.68, dominance * 0.82 + final * 0.18);
-      const blur = lerp(origin.blur, isMobile ? 4.2 : 8.5, dominance * 0.82 + final * 0.18);
-      const opacity = lerp(0.34, 0.095, dominance * 0.84 + final * 0.16);
-      panel.style.opacity = String(opacity);
-      panel.style.filter = `blur(${blur.toFixed(2)}px) saturate(${lerp(0.72, 0.15, dominance).toFixed(2)})`;
-      panel.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotate(${rotate.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
-    });
-
-    gravityComponents.forEach((component, index) => {
-      const origin = gravityComponentOrigins[index] || gravityComponentOrigins[0];
-      const reveal = clamp01(pulse * 1.35 - index * 0.055);
-      const remaining = 1 - attraction;
-      const x = origin.x * remaining * depthScale;
-      const y = origin.y * remaining * depthScale;
-      const z = origin.z * remaining * depthScale;
-      const rotate = origin.r * remaining;
-      const scale = lerp(origin.s, 1, attraction);
-      component.style.opacity = String(Math.max(reveal, attraction, reducedMotion ? 1 : 0));
-      component.style.transform = `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, ${z.toFixed(1)}px) rotate(${rotate.toFixed(2)}deg) scale(${scale.toFixed(3)})`;
-    });
-  };
-
-  const setCommercialProjectProgress = (scene, value) => {
-    const progressValue = reducedMotion ? 1 : value;
-    const structure = phase(progressValue, 0, 0.2);
-    const assemble = phase(progressValue, 0.2, 0.45);
-    const polish = phase(progressValue, 0.45, 0.7);
-    const final = phase(progressValue, 0.7, 1);
-    scene.style.setProperty("--project-progress", progressValue.toFixed(4));
-    scene.style.setProperty("--project-phase-a", structure.toFixed(4));
-    scene.style.setProperty("--project-phase-b", assemble.toFixed(4));
-    scene.style.setProperty("--project-phase-c", polish.toFixed(4));
-    scene.style.setProperty("--project-phase-d", final.toFixed(4));
-    scene.classList.toggle("is-complete", progressValue >= 0.985);
   };
 
   const readScroll = () => {
     header?.classList.toggle("is-scrolled", window.scrollY > 24);
-    if (scrollProof) {
-      const rect = scrollProof.getBoundingClientRect();
-      const travel = Math.max(1, scrollProof.offsetHeight - window.innerHeight);
-      setScrollProofProgress(clamp01(-rect.top / travel));
-    }
-    if (brandGravity) {
-      const rect = brandGravity.getBoundingClientRect();
-      const travel = Math.max(1, brandGravity.offsetHeight - window.innerHeight);
-      setBrandGravityProgress(clamp01(-rect.top / travel));
-    }
-    commercialProjectScenes.forEach((scene) => {
-      const rect = scene.getBoundingClientRect();
-      if (rect.bottom < -window.innerHeight || rect.top > window.innerHeight * 2) return;
-      const travel = Math.max(1, scene.offsetHeight - window.innerHeight);
-      setCommercialProjectProgress(scene, clamp01(-rect.top / travel));
-    });
     frameRequested = false;
   };
 
@@ -338,13 +219,27 @@
     revealItems.forEach((item) => item.classList.add("is-visible"));
   }
 
-  menuButton?.addEventListener("click", () => {
-    const open = header.classList.toggle("is-menu-open");
+  const setMenuOpen = (open) => {
+    if (!header || !menuButton) return;
+    header.classList.toggle("is-menu-open", open);
     menuButton.setAttribute("aria-expanded", String(open));
+    const label = menuButton.querySelector(".sr-only");
+    if (label) label.textContent = open ? menuButton.dataset.closeLabel : menuButton.dataset.openLabel;
+  };
+  menuButton?.addEventListener("click", () => {
+    setMenuOpen(!header.classList.contains("is-menu-open"));
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape" || !header?.classList.contains("is-menu-open")) return;
+    setMenuOpen(false);
+    menuButton?.focus();
+  });
+  document.addEventListener("pointerdown", (event) => {
+    if (!header?.classList.contains("is-menu-open") || header.contains(event.target)) return;
+    setMenuOpen(false);
   });
   document.querySelectorAll(".primary-nav a").forEach((link) => link.addEventListener("click", () => {
-    header?.classList.remove("is-menu-open");
-    menuButton?.setAttribute("aria-expanded", "false");
+    setMenuOpen(false);
   }));
   document.querySelectorAll(".selected-work__link").forEach((link) => {
     link.addEventListener("click", () => {
@@ -364,7 +259,7 @@
     });
   });
 
-  const form = document.querySelector("[data-demo-form]");
+  const form = document.querySelector("[data-contact-form]");
   const formStartedAt = performance.now();
   document.querySelectorAll("[data-service-choice]").forEach((link) => {
     link.addEventListener("click", () => {
@@ -397,18 +292,36 @@
       return;
     }
 
+    const recipient = form.dataset.recipient?.trim() || "";
+    if (!recipient || !recipient.includes("@")) {
+      status.textContent = status.dataset.unavailable;
+      status.classList.add("is-error");
+      return;
+    }
+
     submit.disabled = true;
     form.setAttribute("aria-busy", "true");
     form.classList.add("is-sending");
     status.textContent = status.dataset.loading;
 
     window.setTimeout(() => {
+      const values = new FormData(form);
+      const lines = [...form.querySelectorAll("input, select, textarea")]
+        .filter((field) => field.name && field.name !== "website")
+        .map((field) => {
+          const label = field.labels?.[0]?.textContent?.trim() || field.name;
+          return `${label}: ${values.get(field.name) || "—"}`;
+        });
+      const query = new URLSearchParams({
+        subject: form.dataset.subject || "STANDLOUD",
+        body: lines.join("\n\n")
+      });
+      window.location.href = `mailto:${recipient}?${query}`;
       form.classList.remove("is-sending");
       form.removeAttribute("aria-busy");
       submit.disabled = false;
       status.textContent = status.dataset.success;
       status.classList.add("is-success");
-      form.reset();
     }, reducedMotion ? 0 : 350);
   });
 
@@ -417,12 +330,7 @@
   });
 
   addEventListener("scroll", requestRead, { passive: true });
-  addEventListener("resize", requestRead, { passive: true });
   initSelectedWorkCarousel();
-  commercialProjectScenes.forEach((scene) => {
-    if (reducedMotion) setCommercialProjectProgress(scene, 1);
-  });
-  if (scrollProof && reducedMotion) setScrollProofProgress(1);
-  if (brandGravity && reducedMotion) setBrandGravityProgress(1);
+  initImageComparisons();
   readScroll();
 })();

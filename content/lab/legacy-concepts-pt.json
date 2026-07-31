@@ -1,0 +1,18 @@
+{
+  "title": "Conceitos anteriores preservados",
+  "description": "Referências históricas fora da Home e do bundle público. Nenhum item representa cliente, resultado ou métrica real.",
+  "items": [
+    {
+      "id": "lumina",
+      "name": "Lumina Arquitetura",
+      "status": "Estudo conceitual arquivado",
+      "idea": "Montagem progressiva de uma landing page editorial para um estúdio de arquitetura."
+    },
+    {
+      "id": "nexora",
+      "name": "Nexora",
+      "status": "Estudo conceitual arquivado",
+      "idea": "Uma presença central conquista atenção enquanto interfaces genéricas perdem relevância."
+    }
+  ]
+}

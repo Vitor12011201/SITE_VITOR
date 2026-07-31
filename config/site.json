@@ -16,32 +16,12 @@
   },
   "home": {
     "maxScenes": 3,
-    "scenes": [
-      {
-        "id": "aquaform",
-        "enabled": true
-      },
-      {
-        "id": "brasa27",
-        "enabled": true
-      },
-      {
-        "id": "atlasVale",
-        "enabled": true
-      }
-    ],
+    "scenes": [],
     "sectionOrder": [
       "hero",
-      "problems",
-      "services",
-      "scene:aquaform",
       "projects",
       "process",
-      "scene:brasa27",
-      "differentials",
-      "scene:atlasVale",
       "about",
-      "diagnostic",
       "faq",
       "contact"
     ]
@@ -52,6 +32,12 @@
       "en": "/en/projects/",
       "implemented": false,
       "fallback": "#projects"
+    },
+    "projectNuppac": {
+      "pt": "/pt/projetos/nuppac/",
+      "en": "/en/projects/nuppac/",
+      "implemented": false,
+      "fallback": "#case-nuppac"
     },
     "projectAquaform": {
       "pt": "/pt/projetos/aquaform/",
@@ -75,7 +61,7 @@
       "pt": "/pt/servicos/",
       "en": "/en/services/",
       "implemented": false,
-      "fallback": "#services"
+      "fallback": "#process"
     },
     "process": {
       "pt": "/pt/processo/",
@@ -103,14 +89,24 @@
     }
   },
   "contact": {
-    "email": "hello@example.com",
-    "whatsappUrl": "#contact",
-    "instagramUrl": "#",
-    "linkedinUrl": "#",
-    "behanceUrl": "#"
+    "email": "",
+    "whatsappUrl": "",
+    "instagramUrl": "",
+    "linkedinUrl": "",
+    "behanceUrl": ""
+  },
+  "projectAssets": {
+    "nuppac": {
+      "comparison": {
+        "previous": "assets/images/projects/nuppac/previous-site.webp",
+        "newDirection": "assets/images/projects/nuppac/new-direction.webp",
+        "width": 1440,
+        "height": 900
+      }
+    }
   },
   "site": {
-    "baseUrl": "",
+    "baseUrl": "https://vitor-site.vitorrodrigues12011201.workers.dev",
     "defaultLanguage": "pt",
     "formEndpoint": ""
   }

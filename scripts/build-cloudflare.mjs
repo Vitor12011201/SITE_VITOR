@@ -13,9 +13,11 @@ import { fileURLToPath } from "node:url";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const output = path.join(root, "_site");
+const siteConfig = JSON.parse(await readFile(path.join(root, "config/site.json"), "utf8"));
 const allowedDirectories = [
   ["assets/brand", "assets/brand", new Set([".svg"])],
   ["assets/css", "assets/css", new Set([".css"])],
+  ["assets/images", "assets/images", new Set([".png", ".webp", ".avif", ".jpg", ".jpeg"])],
   ["assets/js", "assets/js", new Set([".js"])],
   ["assets/scenes", "assets/scenes", new Set([".svg", ".png", ".webp", ".avif", ".jpg", ".jpeg"])],
   ["assets/vid", "assets/vid", new Set([".mp4", ".webm", ".mov", ".png", ".webp", ".avif", ".jpg", ".jpeg"])],
@@ -79,7 +81,8 @@ async function collectFiles(directory, relative = "") {
 }
 
 function normalizeSiteUrl() {
-  const candidate = process.env.SITE_URL || process.env.CF_PAGES_URL || "http://127.0.0.1:4173";
+  const candidate = process.env.SITE_URL || process.env.CF_PAGES_URL ||
+    siteConfig.site.baseUrl || "http://127.0.0.1:4173";
   const url = new URL(candidate);
   return url.href.replace(/\/$/, "");
 }
@@ -88,7 +91,6 @@ async function writeDiscoveryFiles() {
   const siteUrl = normalizeSiteUrl();
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>${siteUrl}/</loc></url>
   <url><loc>${siteUrl}/pt/</loc></url>
   <url><loc>${siteUrl}/en/</loc></url>
 </urlset>
@@ -116,6 +118,7 @@ async function validateOutput() {
   ]);
   const required = [
     "index.html",
+    "404.html",
     "pt/index.html",
     "en/index.html",
     "assets/css/styles.css",
@@ -124,6 +127,7 @@ async function validateOutput() {
     "assets/brand/standloud-symbol-mono.svg",
     "assets/brand/standloud-logo-horizontal.svg",
     "assets/brand/standloud-signature.svg",
+    "assets/images/standloud-logo-reference.png",
     "favicon.svg",
     "robots.txt",
     "sitemap.xml"
