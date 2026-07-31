@@ -1,35 +1,38 @@
 # Arquitetura comercial da Home
 
-## Jornada
+## Jornada pública
 
-A Home segue a sequência atenção → compreensão → confiança → demonstração → contato.
-As animações são provas de capacidade inseridas no fluxo comercial e não substituem
-serviços, projetos, processo, estudo de caso ou formulário.
+A Home segue a sequência entendimento → prova → diferenciação → confiança → contato.
+`config/site.json > home.sectionOrder` mantém uma única ordem:
 
-## Controle das cenas
+1. `hero`;
+2. `projects`;
+3. `process`;
+4. `about`;
+5. `faq`;
+6. `contact`.
 
-`config/site.json` contém:
+Esses são os seis blocos comerciais principais. O footer encerra e orienta, mas não é
+contado como seção de argumento. Não existem placeholders ou cenas longas ativas.
 
-- `home.maxScenes`: limite estrutural de quatro cenas;
-- `home.scenes`: registro único de cenas e seu estado;
-- `home.sectionOrder`: ordem única de seções e cenas.
+## Projetos
 
-O gerador possui um mapa de renderizadores em `scripts/build.mjs`. Uma cena desabilitada
-retorna uma string vazia e não produz seção, espaço, asset ou placeholder na Home.
-
-Estado atual:
-
-| Cena | Estado | Uso |
-| --- | --- | --- |
-| `lumina` | ativa | Do conceito ao projeto publicado |
-| `brandGravity` | ativa | Gravidade da marca |
-| `attentionToAction` | desabilitada | Arquitetura futura, sem renderização |
+- NUPPAC aparece primeiro e é o único projeto identificado como real.
+- Seu visual principal é um comparador antes/depois. O build usa imagens reais apenas
+  quando os dois arquivos configurados existem; caso contrário, publica placeholders
+  claramente identificados.
+- AQUAFORM, BRASA 27 e ATLAS & VALE aparecem como projetos conceituais independentes.
+- O Hero antecipa os três conceitos em previews compactos, sem criar blocos adicionais
+  no fluxo.
 
 ## Laboratório
 
 As oito ideias experimentais originais permanecem em `content/lab/pt.json` e
-`content/lab/en.json`. Storyboard e prompts continuam em `docs/`, `prompts/` e
-`assets/scenes/`, mas o runtime antigo não é carregado pela Home.
+`content/lab/en.json`. Storyboard, prompts e assets continuam em `docs/`, `prompts/`
+e `assets/scenes/`, mas nenhuma seção experimental é renderizada pela Home.
+
+Lumina e Nexora permanecem resumidas em `content/lab/legacy-concepts-pt.json` e
+`content/lab/legacy-concepts-en.json`. Não competem com a jornada comercial pública.
 
 As rotas futuras `/pt/lab/` e `/en/lab/` estão registradas, porém com
 `implemented: false`. Até a página Lab existir, a navegação utiliza um fallback real
@@ -44,6 +47,7 @@ gradualmente sem criar links quebrados.
 
 ## Formulário
 
-O formulário valida os campos no navegador, mostra estados de processamento, sucesso
-e erro, bloqueia submissões imediatas e contém um campo honeypot. Nenhuma informação é
-enviada externamente até a futura autorização de uma integração.
+O formulário mantém validação nativa, bloqueio contra submissão imediata e honeypot.
+Sem e-mail comercial aprovado, o botão permanece desabilitado e a página informa que
+nenhum dado foi enviado. Quando um e-mail for configurado, o fluxo prepara uma mensagem
+no aplicativo de e-mail do visitante; não existe backend nesta etapa.

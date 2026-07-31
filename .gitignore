@@ -9,6 +9,7 @@
 node_modules/
 .cache/
 coverage/
+qa/
 dist/
 build/
 _site/

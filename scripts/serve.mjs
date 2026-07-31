@@ -36,8 +36,14 @@ http.createServer(async (request, response) => {
     response.writeHead(200, { "Content-Type": types[path.extname(file)] || "application/octet-stream" });
     response.end(body);
   } catch {
-    response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
-    response.end("Not found");
+    try {
+      const fallback = await readFile(path.join(root, "404.html"));
+      response.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+      response.end(fallback);
+    } catch {
+      response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
+      response.end("Not found");
+    }
   }
 }).listen(port, "127.0.0.1", () => {
   console.log(`Preview (${path.relative(projectRoot, root) || "."}): http://127.0.0.1:${port}/pt/`);

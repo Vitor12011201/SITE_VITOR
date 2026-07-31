@@ -1,0 +1,18 @@
+{
+  "title": "Preserved previous concepts",
+  "description": "Historical references outside the Home and public bundle. No item represents a real client, result or metric.",
+  "items": [
+    {
+      "id": "lumina",
+      "name": "Lumina Architecture",
+      "status": "Archived concept study",
+      "idea": "The progressive assembly of an editorial landing page for an architecture studio."
+    },
+    {
+      "id": "nexora",
+      "name": "Nexora",
+      "status": "Archived concept study",
+      "idea": "A central presence earns attention while generic interfaces lose relevance."
+    }
+  ]
+}

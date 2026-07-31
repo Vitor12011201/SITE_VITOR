@@ -20,7 +20,7 @@
     "titleLead": "Seu negócio merece ser",
     "titleHighlight": "impossível de ignorar.",
     "titleLines": ["Seu negócio", "merece ser", "impossível", "de ignorar."],
-    "body": "Criamos sites e landing pages estratégicas para marcas e especialistas que precisam transformar atenção em contatos, autoridade e oportunidades reais.",
+    "body": "Criamos sites e landing pages para marcas e especialistas que precisam explicar melhor sua oferta, transmitir confiança e gerar oportunidades.",
     "primary": "Solicitar diagnóstico",
     "secondary": "Ver projetos",
     "micro": "Design, desenvolvimento e publicação em um único processo.",
@@ -38,7 +38,7 @@
         "name": "AQUAFORM Auto Spa",
         "type": "PROJETO CONCEITUAL",
         "body": "Uma presença premium para transformar serviços automotivos em agendamentos.",
-        "address": "aquaform.studio",
+        "address": "conceito / aquaform",
         "href": "#projeto-aquaform",
         "previewLabel": "Prévia em HTML do projeto AQUAFORM Auto Spa"
       },
@@ -51,7 +51,7 @@
         "name": "BRASA 27",
         "type": "PROJETO CONCEITUAL",
         "body": "Uma experiência editorial para despertar desejo e facilitar reservas.",
-        "address": "brasa27.restaurant",
+        "address": "conceito / brasa-27",
         "href": "#projeto-brasa-27",
         "previewLabel": "Prévia em HTML do projeto BRASA 27"
       },
@@ -64,7 +64,7 @@
         "name": "ATLAS & VALE",
         "type": "PROJETO CONCEITUAL",
         "body": "Um site institucional para transmitir autoridade, clareza e confiança.",
-        "address": "atlasvale.law",
+        "address": "conceito / atlas-vale",
         "href": "#projeto-atlas-vale",
         "previewLabel": "Prévia em HTML do projeto ATLAS & VALE"
       }
@@ -72,25 +72,25 @@
   },
   "quickProof": {
     "eyebrow": "PROVA EM CONTEXTO",
-    "title": "Projetos reais e estudos que mostram como pensamos.",
+    "title": "Trabalho real, conceitos independentes e um processo completo.",
     "items": [
       {
         "name": "NUPPAC",
         "type": "Projeto real",
-        "body": "Site, cursos, pagamentos e publicação."
+        "body": "Experiência institucional, páginas de cursos, pagamentos e publicação responsiva."
       },
       {
-        "name": "Lumina",
-        "type": "Projeto conceitual",
-        "body": "Direção editorial e experiência arquitetônica."
+        "name": "AQUAFORM • BRASA 27 • ATLAS & VALE",
+        "type": "Estudos conceituais independentes",
+        "body": "Três direções criadas para demonstrar estratégia, linguagem visual e adaptação por segmento."
       },
       {
-        "name": "Nexora",
-        "type": "Projeto conceitual",
-        "body": "Presença de marca orientada pela atenção."
+        "name": "Da direção à publicação",
+        "type": "Processo integrado",
+        "body": "Estratégia, design e desenvolvimento conduzidos no mesmo fluxo, com etapas e aprovações claras."
       }
     ],
-    "process": "Design, desenvolvimento e publicação realizados no mesmo processo."
+    "process": "Não pedimos que o cliente imagine. Mostramos primeiro."
   },
   "problems": {
     "eyebrow": "O QUE PRECISA MUDAR",
@@ -126,53 +126,6 @@
       }
     ]
   },
-  "scrollProof": {
-    "aria": "Animação por scroll do conceito ao lançamento",
-    "eyebrow": "PROVA DE SCROLL",
-    "title": "Do conceito ao projeto publicado.",
-    "body": "Ideias se transformam em experiências digitais enquanto cada parte de um site real encontra o seu lugar.",
-    "scrollHint": "Role para montar o projeto",
-    "launch": "Projeto publicado",
-    "status": "Scroll controla a construção visual",
-    "landing": {
-      "brand": "Lumina",
-      "nav": ["Projetos", "Estúdio", "Serviços", "Contato"],
-      "eyebrow": "Arquitetura contemporânea",
-      "title": "Espaços pensados para atravessar o tempo.",
-      "body": "Projetamos residências, espaços comerciais e ambientes que unem funcionalidade, matéria e identidade.",
-      "primary": "Conheça nossos projetos",
-      "secondary": "Fale com o estúdio",
-      "project": "Projeto 042 — Casa Horizonte",
-      "statsLabel": "Números do estúdio",
-      "stats": [
-        { "value": "18", "label": "anos de experiência" },
-        { "value": "64", "label": "projetos concluídos" },
-        { "value": "12", "label": "prêmios de arquitetura" }
-      ],
-      "servicesLabel": "Áreas de atuação",
-      "services": [
-        { "title": "Arquitetura residencial", "body": "Casas desenhadas para o modo de viver de cada cliente." },
-        { "title": "Interiores", "body": "Matéria, luz e proporção em ambientes que acolhem." },
-        { "title": "Projetos comerciais", "body": "Espaços de marca que unem experiência e funcionalidade." }
-      ],
-      "cta": "Vamos projetar algo memorável.",
-      "ctaButton": "Iniciar conversa"
-    }
-  },
-  "animationIntros": {
-    "lumina": {
-      "eyebrow": "DEMONSTRAÇÃO 01",
-      "title": "Do conceito ao projeto publicado.",
-      "body": "Estratégia, estrutura, design e desenvolvimento reunidos em uma experiência completa.",
-      "afterCta": "Conhecer nosso processo"
-    },
-    "brandGravity": {
-      "eyebrow": "DEMONSTRAÇÃO 02",
-      "title": "A maioria das marcas disputa atenção. Algumas criam sua própria gravidade.",
-      "body": "Veja como hierarquia, contraste e movimento transformam ruído em presença.",
-      "afterCta": "Quero fortalecer minha presença digital"
-    }
-  },
   "featuredProjects": [
     {
       "id": "aquaform",
@@ -194,9 +147,9 @@
       "services": ["Lavagem técnica", "Higienização interna", "Polimento e proteção", "Detalhamento completo"],
       "plans": ["Essential", "Premium", "Signature"],
       "planCta": "Solicitar valor",
-      "location": "Alameda Concept, 120 • Projeto conceitual",
-      "hours": "Segunda a sábado, 8h às 19h",
-      "notice": "Endereço e atendimento demonstrativos para apresentação conceitual."
+      "location": "Fluxo conceitual • sem atendimento real",
+      "hours": "Informações demonstrativas",
+      "notice": "Projeto independente criado para demonstração visual e estratégica."
     },
     {
       "id": "brasa27",
@@ -216,11 +169,11 @@
       "secondary": "Explorar o menu",
       "nav": ["Conceito", "Menu", "Experiência", "Localização"],
       "services": ["Abóbora na brasa", "Peixe, manteiga tostada e limão", "Costela, raízes e vinho", "Chocolate, café e sal"],
-      "plans": ["Cozinha aberta", "Menu sazonal", "Ingredientes locais", "Reservas limitadas"],
+      "plans": ["Cozinha aberta", "Menu sazonal", "Ingredientes locais", "Eventos privados"],
       "planCta": "Reservar",
-      "location": "Rua da Brasa, 27 • Projeto conceitual",
-      "hours": "Terça a domingo, 18h às 23h",
-      "notice": "Reserva visual demonstrativa, sem conexão externa nesta etapa."
+      "location": "Fluxo conceitual • sem reservas reais",
+      "hours": "Informações demonstrativas",
+      "notice": "Projeto independente criado para demonstração visual e estratégica."
     },
     {
       "id": "atlasVale",
@@ -242,80 +195,94 @@
       "services": ["Direito empresarial", "Contratos", "Planejamento patrimonial", "Societário", "Prevenção de conflitos", "Consultoria estratégica"],
       "plans": ["Entendimento", "Estratégia", "Orientação", "Acompanhamento"],
       "planCta": "Solicitar consulta",
-      "location": "Av. Institucional, 410 • Projeto conceitual",
-      "hours": "Atendimento com horário agendado",
-      "notice": "Formulário visual demonstrativo, sem backend nesta etapa."
+      "location": "Fluxo conceitual • sem atendimento real",
+      "hours": "Informações demonstrativas",
+      "notice": "Projeto independente criado para demonstração visual e estratégica."
     }
   ],
   "projects": {
     "eyebrow": "PROJETOS",
-    "title": "Trabalho real, conceitos honestos.",
-    "body": "Cada card identifica claramente o que já foi entregue e o que existe como estudo demonstrativo.",
-    "linkLabel": "Ver projeto",
+    "title": "Projetos que mostram como pensamos.",
+    "body": "Um projeto real e três estudos independentes, sempre com o status identificado.",
+    "labels": {
+      "context": "Desafio",
+      "objective": "Objetivo",
+      "direction": "Direção"
+    },
+    "comparison": {
+      "label": "Comparar o site anterior do NUPPAC com a nova direção criada pela STANDLOUD",
+      "before": "SITE ANTERIOR",
+      "after": "NOVA DIREÇÃO",
+      "beforeAlt": "Captura do site anterior do NUPPAC.",
+      "afterAlt": "Captura da nova direção do NUPPAC criada pela STANDLOUD.",
+      "pending": "Captura real pendente",
+      "fallback": "Comparação estática em 50%. Ative o JavaScript para arrastar."
+    },
     "items": [
       {
         "id": "nuppac",
+        "anchor": "case-nuppac",
+        "routeKey": "projectNuppac",
         "name": "NUPPAC",
         "type": "Projeto real",
-        "body": "Plataforma institucional com apresentação de cursos, integração de pagamentos e publicação responsiva.",
-        "scope": ["Estratégia", "UI", "Desenvolvimento", "Pagamentos", "Publicação"]
+        "segment": "Psicanálise, arte e cultura",
+        "context": "Reunir a instituição, os cursos e o caminho até a inscrição em uma presença coerente.",
+        "objective": "Facilitar a navegação entre conteúdo, cursos, inscrição e pagamento.",
+        "direction": "Arquitetura de páginas clara, interface responsiva e fluxo conectado à integração de pagamentos.",
+        "scope": ["Estratégia", "UI", "Desenvolvimento", "Pagamentos", "Publicação"],
+        "linkLabel": "Comparar a transformação"
       },
       {
-        "id": "lumina",
-        "name": "Lumina Arquitetura",
-        "type": "Projeto conceitual",
-        "body": "Estudo editorial para um estúdio de arquitetura contemporânea.",
-        "scope": ["Direção visual", "UI", "Motion", "Responsividade"]
+        "id": "aquaform",
+        "anchor": "projeto-aquaform",
+        "routeKey": "projectAquaform",
+        "name": "AQUAFORM Auto Spa",
+        "type": "Projeto conceitual independente",
+        "segment": "Detalhamento automotivo premium",
+        "context": "Apresentar um serviço técnico premium sem parecer apenas mais um lava-rápido.",
+        "objective": "Transformar cuidado automotivo em uma oferta premium fácil de entender e solicitar.",
+        "direction": "Contraste técnico, linguagem precisa e jornada orientada ao atendimento.",
+        "scope": ["Estratégia", "Direção visual", "UI", "Scroll", "Responsividade"],
+        "linkLabel": "Ver direção visual"
       },
       {
-        "id": "nexora",
-        "name": "Nexora",
-        "type": "Projeto conceitual",
-        "body": "Experimento de presença digital em que uma marca conquista o centro da atenção.",
-        "scope": ["Narrativa", "UI", "Scroll", "Interação"]
+        "id": "brasa27",
+        "anchor": "projeto-brasa-27",
+        "routeKey": "projectBrasa27",
+        "name": "BRASA 27",
+        "type": "Projeto conceitual independente",
+        "segment": "Restaurante contemporâneo",
+        "context": "Traduzir atmosfera e cozinha contemporânea antes da primeira visita.",
+        "objective": "Criar desejo e tornar o caminho até a reserva visualmente direto.",
+        "direction": "Composição editorial, tons quentes e ritmo inspirado em fogo, matéria e mesa.",
+        "scope": ["Estratégia", "Direção editorial", "UI", "Interação", "Mobile"],
+        "linkLabel": "Ver direção visual"
+      },
+      {
+        "id": "atlasVale",
+        "anchor": "projeto-atlas-vale",
+        "routeKey": "projectAtlasVale",
+        "name": "ATLAS & VALE",
+        "type": "Projeto conceitual independente",
+        "segment": "Direito empresarial e patrimonial",
+        "context": "Explicar serviços jurídicos complexos com clareza e sobriedade.",
+        "objective": "Organizar áreas de atuação e conduzir o visitante até uma conversa qualificada.",
+        "direction": "Grid institucional, contraste contido e hierarquia orientada à compreensão.",
+        "scope": ["Estratégia", "Arquitetura", "UI", "Conteúdo", "Responsividade"],
+        "linkLabel": "Ver direção visual"
       }
     ]
   },
-  "brandGravity": {
-    "aria": "Animação por scroll sobre a gravidade de uma marca memorável",
-    "eyebrow": "CENA 02",
-    "title": "Gravidade da marca",
-    "status": "Ruído digital encontra um centro de atenção",
-    "established": "Presença estabelecida",
-    "noise": ["Mais uma solução", "Descubra agora", "Conheça nossos serviços", "Resultados rápidos"],
-    "noiseBody": "Uma experiência para todos os negócios.",
-    "noiseCta": "Saiba mais",
-    "landing": {
-      "brand": "Nexora",
-      "nav": ["Soluções", "Projetos", "Estúdio"],
-      "navCta": "Iniciar projeto",
-      "eyebrow": "Estratégia • Design • Tecnologia",
-      "title": "Seu negócio merece ser",
-      "highlight": "impossível de ignorar.",
-      "body": "Criamos sites e landing pages que transformam ideias em experiências digitais marcantes.",
-      "primary": "Criar uma presença marcante",
-      "secondary": "Ver projetos",
-      "visualLabel": "Presença digital em movimento",
-      "cards": [
-        { "title": "Estratégia que conecta", "body": "Posicionamento e jornadas guiados por objetivos reais." },
-        { "title": "Design que comunica", "body": "Interfaces autorais que tornam sua marca reconhecível." },
-        { "title": "Tecnologia que impulsiona", "body": "Performance e estrutura para crescer com consistência." },
-        { "title": "Resultados que importam", "body": "Experiências que transformam atenção em ação." }
-      ],
-      "proof": "Presenças digitais para marcas em movimento.",
-      "proofBrands": ["Nexus", "CloudWave", "Innova", "Nextly", "Modular", "Bold"]
-    }
-  },
   "process": {
     "eyebrow": "PROCESSO",
-    "title": "Do diagnóstico à publicação, sem etapas invisíveis.",
-    "body": "Cada fase tem um objetivo claro, uma entrega concreta e um ponto de aprovação.",
+    "title": "Um processo curto, com decisões visíveis.",
+    "body": "Do primeiro diagnóstico à publicação, cada etapa termina com uma direção clara.",
+    "principle": "Não pedimos que o cliente imagine. Mostramos primeiro.",
+    "principleBody": "A direção visual aparece cedo, em contexto, para que as decisões sejam avaliadas antes do desenvolvimento completo.",
     "steps": [
       { "number": "01", "title": "Diagnóstico", "body": "Entendemos o negócio, a oferta, o público e o que precisa melhorar." },
-      { "number": "02", "title": "Estratégia", "body": "Definimos mensagem, estrutura, jornada e prioridades da página." },
-      { "number": "03", "title": "Design", "body": "Criamos a direção visual e validamos a experiência nas telas principais." },
-      { "number": "04", "title": "Desenvolvimento", "body": "Transformamos o design em uma implementação rápida, acessível e responsiva." },
-      { "number": "05", "title": "Publicação", "body": "Revisamos conteúdo, dispositivos e configuração antes de colocar o projeto no ar." }
+      { "number": "02", "title": "Direção apresentada", "body": "Organizamos mensagem, estrutura e design em uma proposta que pode ser avaliada em contexto." },
+      { "number": "03", "title": "Projeto construído", "body": "Desenvolvemos, revisamos em diferentes telas e preparamos a publicação." }
     ]
   },
   "caseStudy": {
@@ -343,9 +310,9 @@
   },
   "about": {
     "eyebrow": "SOBRE",
-    "title": "Um estúdio enxuto, com visão completa do projeto.",
-    "body": "A STANDLOUD é um estúdio digital criado por Vitor Santana para desenvolver sites, landing pages e experiências interativas que ajudam negócios a se apresentar com mais clareza, presença e personalidade.",
-    "signature": "Estratégia, design e código trabalhando na mesma direção."
+    "title": "Um estúdio, uma visão completa do projeto.",
+    "body": "A STANDLOUD é o estúdio digital de Vitor Santana. Criamos sites, landing pages e experiências interativas para negócios que precisam se apresentar com clareza e personalidade.",
+    "signature": "Direção, design, desenvolvimento e publicação no mesmo processo."
   },
   "diagnostic": {
     "eyebrow": "PRIMEIRO PASSO",
@@ -362,19 +329,17 @@
       ["A STANDLOUD cria os textos?", "Podemos estruturar a mensagem, orientar o conteúdo e desenvolver a copy prevista no escopo. Materiais técnicos dependem da colaboração do cliente."],
       ["O site funciona no celular?", "Sim. O mobile é projetado como uma experiência própria e validado em diferentes tamanhos de tela."],
       ["Domínio e hospedagem estão incluídos?", "Podemos orientar e configurar esses serviços. Custos recorrentes de domínio, hospedagem ou plataformas são apresentados separadamente."],
-      ["Existe manutenção?", "Sim. Manutenção, melhorias e suporte pós-publicação podem ser contratados conforme a necessidade."],
-      ["Como funciona o pagamento?", "As condições são definidas na proposta de acordo com o escopo e o cronograma, antes do início do projeto."],
       ["O projeto pertence ao cliente?", "Após a conclusão e o pagamento acordado, o cliente recebe os arquivos e acessos previstos em contrato." ]
     ]
   },
   "contact": {
-    "eyebrow": "VAMOS CONVERSAR",
-    "title": "Conte o que precisa mudar.",
-    "body": "Este formulário prepara o diagnóstico inicial. Nesta versão, os dados são validados localmente e ainda não são enviados para serviços externos.",
-    "availability": "Novos projetos",
+    "eyebrow": "PRIMEIRO PASSO",
+    "title": "Diagnóstico de presença digital",
+    "body": "Conte sobre seu site, perfil ou ideia. O formulário organiza o contexto do diagnóstico; o envio será habilitado assim que o canal comercial for confirmado.",
+    "availability": "Primeiro passo: entender contexto e prioridade",
     "labels": {
       "name": "Nome",
-      "contact": "E-mail ou WhatsApp",
+      "contact": "E-mail para retorno",
       "business": "Nome do negócio",
       "service": "Serviço desejado",
       "currentLink": "Site, Instagram ou link atual",
@@ -385,7 +350,9 @@
     },
     "serviceOptions": ["Selecione uma opção", "Landing Page Estratégica", "Site Institucional", "Experiência Digital Interativa", "Ainda não tenho certeza"],
     "budgetOptions": ["Selecione uma faixa", "Ainda não definido", "Até R$ 5 mil", "R$ 5 mil a R$ 10 mil", "Acima de R$ 10 mil"],
-    "success": "Diagnóstico preparado. A integração de envio será conectada após sua autorização.",
+    "success": "Solicitação preparada. Revise a mensagem no seu aplicativo de e-mail antes de enviar.",
+    "unavailable": "O canal de envio ainda não está configurado. Nenhum dado foi enviado.",
+    "subject": "Solicitação de diagnóstico STANDLOUD",
     "error": "Revise os campos indicados antes de continuar.",
     "loading": "Preparando sua solicitação..."
   },
