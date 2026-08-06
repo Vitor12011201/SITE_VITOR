@@ -116,14 +116,14 @@ async function validateOutput() {
   ]);
   const required = [
     "index.html",
-    "pt/index.html",
-    "en/index.html",
-    "assets/css/styles.css",
-    "assets/js/site.js",
-    "assets/brand/standloud-symbol.svg",
-    "assets/brand/standloud-symbol-mono.svg",
-    "assets/brand/standloud-logo-horizontal.svg",
-    "assets/brand/standloud-signature.svg",
+    path.join("pt", "index.html"),
+    path.join("en", "index.html"),
+    path.join("assets", "css", "styles.css"),
+    path.join("assets", "js", "site.js"),
+    path.join("assets", "brand", "standloud-symbol.svg"),
+    path.join("assets", "brand", "standloud-symbol-mono.svg"),
+    path.join("assets", "brand", "standloud-logo-horizontal.svg"),
+    path.join("assets", "brand", "standloud-signature.svg"),
     "favicon.svg",
     "robots.txt",
     "sitemap.xml"
@@ -147,15 +147,23 @@ async function validateOutput() {
   }
 
   for (const locale of ["pt", "en"]) {
-    const pagePath = path.join(output, locale, "index.html");
-    const html = await readFile(pagePath, "utf8");
-    const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
-    for (const reference of references) {
-      if (/^(#|mailto:|https?:)/.test(reference)) continue;
-      const pathname = decodeURIComponent(new URL(reference, `https://example.test/${locale}/`).pathname);
-      const target = path.resolve(output, `.${pathname}`);
-      if ((target !== output && !target.startsWith(`${output}${path.sep}`)) || !(await exists(target))) {
-        throw new Error(`${locale}: broken public reference ${reference}`);
+    const pagePaths = [
+      path.join(output, locale, "index.html"),
+      path.join(output, locale, locale === "pt" ? "projetos" : "projects", "index.html")
+    ];
+    for (const pagePath of pagePaths) {
+      if (!(await exists(pagePath))) continue;
+      const html = await readFile(pagePath, "utf8");
+      const references = [...html.matchAll(/(?:src|href)="([^"]+)"/g)].map((match) => match[1]);
+      for (const reference of references) {
+        if (/^(#|mailto:|https?:)/.test(reference)) continue;
+        const pageDir = path.dirname(pagePath);
+        const relDir = path.relative(output, pageDir).replace(/\\/g, "/");
+        const pathname = decodeURIComponent(new URL(reference, `https://example.test/${relDir}/`).pathname);
+        const target = path.resolve(output, `.${pathname}`);
+        if ((target !== output && !target.startsWith(`${output}${path.sep}`)) || !(await exists(target))) {
+          throw new Error(`${pagePath}: broken public reference ${reference}`);
+        }
       }
     }
   }
@@ -177,6 +185,10 @@ for (const entry of ["index.html", "favicon.svg"]) {
 for (const locale of ["pt", "en"]) {
   await mkdir(path.join(output, locale), { recursive: true });
   await copyFile(path.join(root, locale, "index.html"), path.join(output, locale, "index.html"));
+  
+  const projectsDir = locale === "pt" ? "projetos" : "projects";
+  await mkdir(path.join(output, locale, projectsDir), { recursive: true });
+  await copyFile(path.join(root, locale, projectsDir, "index.html"), path.join(output, locale, projectsDir, "index.html"));
 }
 
 for (const [source, destination, extensions] of allowedDirectories) {

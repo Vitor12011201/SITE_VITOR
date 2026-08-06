@@ -652,6 +652,44 @@ function configuredScene(locale, id) {
   </div>`;
 }
 
+function renderProjects(locale) {
+  const isPt = locale.locale === "pt";
+  const title = isPt ? "Projetos Selecionados" : "Selected Projects";
+  const eyebrow = isPt ? "Nosso Trabalho" : "Our Work";
+  const body = isPt ? "Uma seleção do nosso trabalho recente combinando estratégia visual, tecnologia e direção criativa para marcas que buscam relevância indiscutível." : "A selection of our recent work combining visual strategy, technology, and creative direction for brands seeking undisputed relevance.";
+
+  const projectsContent = locale.featuredProjects.map((item, index) => {
+    return `<article class="projects-page-item reveal">
+      <div class="projects-page-item__visual" aria-hidden="true">
+        <span>0${index + 1}</span><i></i><i></i><i></i>
+        ${projectVisual(item)}
+      </div>
+      <div class="projects-page-item__content">
+        <p class="eyebrow">${esc(item.badge)}</p>
+        <h2>${esc(item.name)}</h2>
+        <p>${esc(item.segment)}. ${esc(item.concept)}</p>
+        <div class="projects-page-item__services">
+          ${item.services.map((scope) => `<span>${esc(scope)}</span>`).join("")}
+        </div>
+        <div class="projects-page-item__actions">
+          <a class="button button--primary" href="../../${locale.locale}/#${attr(item.anchor)}">${isPt ? "Ver detalhes" : "View details"}<span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+
+  return `<section class="projects-page section-shell">
+    <div class="projects-page-header reveal">
+      <p class="eyebrow">${esc(eyebrow)}</p>
+      <h1>${esc(title)}</h1>
+      <p class="projects-page-intro">${esc(body)}</p>
+    </div>
+    <div class="projects-page-grid">
+      ${projectsContent}
+    </div>
+  </section>`;
+}
+
 function renderHome(locale) {
   if (site.home.scenes.length > site.home.maxScenes || site.home.maxScenes > 4) {
     throw new Error("Home supports a maximum of four configured scenes");
@@ -678,10 +716,17 @@ function renderHome(locale) {
   }).join("\n");
 }
 
-function page(locale) {
+function page(locale, options = {}) {
   const isPt = locale.locale === "pt";
   const otherLocale = isPt ? "EN" : "PT";
-  const otherHref = isPt ? "../en/" : "../pt/";
+  const depth = options.isProjects ? "../../" : "../";
+  const rootHref = depth + locale.locale + "/";
+  let otherHref = isPt ? depth + "en/" : depth + "pt/";
+  
+  if (options.isProjects) {
+    otherHref = isPt ? "../../en/projects/" : "../../pt/projetos/";
+  }
+  
   const brand = site.brand.name;
   const socialLinks = [
     ["Instagram", site.contact.instagramUrl],
@@ -700,14 +745,14 @@ function page(locale) {
   <meta property="og:type" content="website">
   <meta property="og:title" content="${attr(brand)} — ${attr(locale.seo.title)}">
   <meta property="og:description" content="${attr(locale.seo.description)}">
-  <meta property="og:image" content="../assets/scenes/studio.svg">
-  <link rel="icon" href="../assets/brand/standloud-symbol.svg" type="image/svg+xml" sizes="any">
-  <link rel="mask-icon" href="../assets/brand/standloud-symbol-mono.svg" color="#7C3AED">
-  <link rel="alternate" hreflang="pt-BR" href="../pt/">
-  <link rel="alternate" hreflang="en" href="../en/">
-  <link rel="alternate" hreflang="x-default" href="../pt/">
+  <meta property="og:image" content="${depth}assets/scenes/studio.svg">
+  <link rel="icon" href="${depth}assets/brand/standloud-symbol.svg" type="image/svg+xml" sizes="any">
+  <link rel="mask-icon" href="${depth}assets/brand/standloud-symbol-mono.svg" color="#7C3AED">
+  <link rel="alternate" hreflang="pt-BR" href="${isPt && !options.isProjects ? depth + "pt/" : options.isProjects ? "../../pt/projetos/" : depth + "pt/"}">
+  <link rel="alternate" hreflang="en" href="${!isPt && !options.isProjects ? depth + "en/" : options.isProjects ? "../../en/projects/" : depth + "en/"}">
+  <link rel="alternate" hreflang="x-default" href="${isPt && !options.isProjects ? depth + "pt/" : options.isProjects ? "../../pt/projetos/" : depth + "pt/"}">
   <script>document.documentElement.classList.add("js")</script>
-  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="${depth}assets/css/styles.css">
   <style>:root{${paletteStyle}}</style>
   <title>${esc(brand)} — ${esc(locale.seo.title)}</title>
   <script type="application/ld+json">${JSON.stringify({
@@ -722,7 +767,7 @@ function page(locale) {
 <body data-locale="${attr(locale.locale)}">
   <a class="skip-link" href="#main">${esc(locale.skip)}</a>
   <header class="site-header" data-header>
-    <a class="brand brand--header" href="#top" aria-label="${attr(`${brand} — ${site.brand.tagline}`)}">
+    <a class="brand brand--header" href="${options.isProjects ? rootHref + "#top" : "#top"}" aria-label="${attr(`${brand} — ${site.brand.tagline}`)}">
       ${standloudSymbol("header")}
       <span class="brand__name">${esc(brand)}</span>
     </a>
@@ -730,11 +775,11 @@ function page(locale) {
       <span></span><span></span><span class="sr-only">${isPt ? "Abrir menu" : "Open menu"}</span>
     </button>
     <nav class="primary-nav" id="primary-nav" aria-label="${isPt ? "Navegação principal" : "Primary navigation"}">
-      <a href="#projects">${esc(locale.nav.projects)}</a>
-      <a href="#services">${esc(locale.nav.services)}</a>
-      <a href="#process">${esc(locale.nav.process)}</a>
-      <a href="#about">${esc(locale.nav.about)}</a>
-      <a href="#contact">${esc(locale.nav.contact)}</a>
+      <a href="${options.isProjects ? rootHref + "#projects" : "#projects"}">${esc(locale.nav.projects)}</a>
+      <a href="${options.isProjects ? rootHref + "#services" : "#services"}">${esc(locale.nav.services)}</a>
+      <a href="${options.isProjects ? rootHref + "#process" : "#process"}">${esc(locale.nav.process)}</a>
+      <a href="${options.isProjects ? rootHref + "#about" : "#about"}">${esc(locale.nav.about)}</a>
+      <a href="${options.isProjects ? rootHref + "#contact" : "#contact"}">${esc(locale.nav.contact)}</a>
     </nav>
     <div class="header-actions">
       <div class="language-switcher" aria-label="${isPt ? "Selecionar idioma" : "Choose language"}">
@@ -742,18 +787,18 @@ function page(locale) {
         <i aria-hidden="true">|</i>
         <a href="${otherHref}" data-language="${otherLocale.toLowerCase()}">${otherLocale}</a>
       </div>
-      <a class="header-cta" href="#diagnostic">${esc(locale.nav.diagnostic)}<span aria-hidden="true">↗</span></a>
+      <a class="header-cta" href="${options.isProjects ? rootHref + "#diagnostic" : "#diagnostic"}">${esc(locale.nav.diagnostic)}<span aria-hidden="true">↗</span></a>
     </div>
   </header>
 
   <main id="main">
     <div id="top" aria-hidden="true"></div>
-    ${renderHome(locale)}
+    ${options.isProjects ? renderProjects(locale) : renderHome(locale)}
   </main>
 
   <footer class="site-footer">
     <div class="footer-top">
-      <a class="brand brand--footer" href="#top" aria-label="${attr(`${brand} — ${site.brand.tagline}`)}">
+      <a class="brand brand--footer" href="${options.isProjects ? rootHref + "#top" : "#top"}" aria-label="${attr(`${brand} — ${site.brand.tagline}`)}">
         ${standloudSymbol("footer")}
         <span class="brand__lockup">
           <strong class="brand__name">${esc(brand)}</strong>
@@ -763,11 +808,11 @@ function page(locale) {
       <p>${esc(locale.footer.line)}</p>
       <div class="footer-navigation">
         <nav aria-label="${isPt ? "Links principais" : "Main links"}">
-          <a href="#projects">${esc(locale.nav.projects)}</a>
-          <a href="#services">${esc(locale.nav.services)}</a>
-          <a href="#process">${esc(locale.nav.process)}</a>
-          <a href="#about">${esc(locale.nav.about)}</a>
-          <a href="#contact">${esc(locale.nav.contact)}</a>
+          <a href="${options.isProjects ? rootHref + "#projects" : "#projects"}">${esc(locale.nav.projects)}</a>
+          <a href="${options.isProjects ? rootHref + "#services" : "#services"}">${esc(locale.nav.services)}</a>
+          <a href="${options.isProjects ? rootHref + "#process" : "#process"}">${esc(locale.nav.process)}</a>
+          <a href="${options.isProjects ? rootHref + "#about" : "#about"}">${esc(locale.nav.about)}</a>
+          <a href="${options.isProjects ? rootHref + "#contact" : "#contact"}">${esc(locale.nav.contact)}</a>
         </nav>
         <a class="footer-back" href="#top">${esc(locale.footer.back)} ↑</a>
       </div>
@@ -779,14 +824,14 @@ function page(locale) {
           ? `<span aria-disabled="true">${esc(name)}</span>`
           : `<a href="${attr(href)}">${esc(name)}</a>`
       ).join("")}</nav>
-      <div class="language-switcher"><a href="../pt/"${isPt ? " aria-current=\"page\"" : ""}>PT</a><i>|</i><a href="../en/"${!isPt ? " aria-current=\"page\"" : ""}>EN</a></div>
+      <div class="language-switcher"><a href="${depth}pt/"${isPt && !options.isProjects ? " aria-current=\"page\"" : ""}>PT</a><i>|</i><a href="${depth}en/"${!isPt && !options.isProjects ? " aria-current=\"page\"" : ""}>EN</a></div>
     </div>
   </footer>
   <a class="whatsapp-float" href="${attr(site.contact.whatsappUrl)}"
     aria-label="${isPt ? "Falar pelo WhatsApp" : "Contact on WhatsApp"}">
     <span>WA</span><i aria-hidden="true"></i>
   </a>
-  <script src="../assets/js/site.js" defer></script>
+  <script src="${depth}assets/js/site.js" defer></script>
 </body>
 </html>`;
 }
@@ -833,9 +878,13 @@ function sceneSvg(id, index) {
 
 await mkdir(path.join(root, "pt"), { recursive: true });
 await mkdir(path.join(root, "en"), { recursive: true });
+await mkdir(path.join(root, "pt/projetos"), { recursive: true });
+await mkdir(path.join(root, "en/projects"), { recursive: true });
 await mkdir(path.join(root, "assets/scenes"), { recursive: true });
 await writeFile(path.join(root, "pt/index.html"), page(locales.pt));
 await writeFile(path.join(root, "en/index.html"), page(locales.en));
+await writeFile(path.join(root, "pt/projetos/index.html"), page(locales.pt, { isProjects: true }));
+await writeFile(path.join(root, "en/projects/index.html"), page(locales.en, { isProjects: true }));
 
 await Promise.all(labLocales.pt.world.scenes.map((scene, index) =>
   writeFile(path.join(root, `assets/scenes/${scene.id}.svg`), sceneSvg(scene.id, index))

@@ -50,7 +50,7 @@
     "projects": {
       "pt": "/pt/projetos/",
       "en": "/en/projects/",
-      "implemented": false,
+      "implemented": true,
       "fallback": "#projects"
     },
     "projectAquaform": {
